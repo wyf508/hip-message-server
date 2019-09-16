@@ -1,0 +1,544 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djhu.hiup.message.server.core.dao.IDocDao">
+    <resultMap id="BaseResultMap" type="com.djhu.hiup.message.server.core.model.Doc">
+        <id column="PK" property="pk" jdbcType="DECIMAL"/>
+        <result column="MSG_ID" property="msgId" jdbcType="VARCHAR"/>
+        <result column="MSG_CREATION_TIME" property="msgCreationTime" jdbcType="VARCHAR"/>
+        <result column="RECEIVE_ID" property="receiveId" jdbcType="VARCHAR"/>
+        <result column="SEND_ID" property="sendId" jdbcType="VARCHAR"/>
+        <result column="DOC_FLOW_NO" property="docFlowNo" jdbcType="VARCHAR"/>
+        <result column="DOC_TYPE_ID" property="docTypeId" jdbcType="VARCHAR"/>
+        <result column="DOC_TYPE_DEPICT" property="docTypeDepict" jdbcType="VARCHAR"/>
+        <result column="DOC_CREATION_TIME" property="docCreationTime" jdbcType="VARCHAR"/>
+        <result column="DOC_SECRECY_LEVEL_ID" property="docSecrecyLevelId" jdbcType="VARCHAR"/>
+        <result column="DOC_SECRECY_LEVEL_DEPICT" property="docSecrecyLevelDepict" jdbcType="VARCHAR"/>
+        <result column="DOC_VERSION_NO" property="docVersionNo" jdbcType="VARCHAR"/>
+        <result column="SYSTEM_DIR_PK" property="systemDirPk" jdbcType="DECIMAL"/>
+        <result column="DOC_PATH" property="docPath" jdbcType="VARCHAR"/>
+        <result column="PATIENT_ID" property="patientId" jdbcType="VARCHAR"/>
+        <result column="INPATIENT_NO" property="inpatientNo" jdbcType="VARCHAR"/>
+        <result column="OUTPATIENT_NO" property="outpatientNo" jdbcType="VARCHAR"/>
+        <result column="PATIENT_VISIT_TIME" property="patientVisitTime" jdbcType="VARCHAR"/>
+        <result column="IDENTITY_NO" property="identityNo" jdbcType="VARCHAR"/>
+        <result column="NAME" property="name" jdbcType="VARCHAR"/>
+        <result column="HOSPITAL_CODE" property="hospitalCode" jdbcType="VARCHAR"/>
+        <result column="HOSPITAL_NAME" property="hospitalName" jdbcType="VARCHAR"/>
+        <result column="DEPT_CODE" property="deptCode" jdbcType="VARCHAR"/>
+        <result column="AUTHOR_CODE" property="authorCode" jdbcType="VARCHAR"/>
+        <result column="AUTHOR_NAME" property="authorName" jdbcType="VARCHAR"/>
+        <result column="DOC_STORAGE_UNIT_CODE" property="docStorageUnitCode" jdbcType="VARCHAR"/>
+        <result column="DOC_STORAGE_UNIT_NAME" property="docStorageUnitName" jdbcType="VARCHAR"/>
+        <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="HIUP_STATUS" property="hiupStatus" jdbcType="VARCHAR"/>
+        <result column="HIUP_INFO" property="hiupInfo" jdbcType="VARCHAR"/>
+        <result column="HEALTH_CARD_ID" property="healthCardId" jdbcType="VARCHAR"/>
+        <result column="SERVER_ORGANIZATION" property="serverOrganization" jdbcType="VARCHAR"/>
+        <result column="EPISODE_ID" property="episodeId" jdbcType="VARCHAR"/>
+        <result column="IN_TIME" property="inTime" jdbcType="VARCHAR"/>
+        <result column="OUT_TIME" property="outTime" jdbcType="VARCHAR"/>
+        <result column="ADMISSION_DEPART" property="admissionDepart" jdbcType="VARCHAR"/>
+        <result column="ADMISSION_TYPE" property="admissionType" jdbcType="VARCHAR"/>
+        <result column="ADMISSION_DOCTOR" property="admissionDoctor" jdbcType="VARCHAR"/>
+        <result column="DIAGNOSIS_RESULT" property="diagnosisResult" jdbcType="VARCHAR"/>
+        <result column="REPOSITORY_UNIQUE_ID" property="repositoryUniqueId" jdbcType="VARCHAR"/>
+        <result column="DOC_TYPE" property="docType" jdbcType="VARCHAR"/>
+        <result column="DOCUMENT_ID" property="documentId" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    PK, MSG_ID, MSG_CREATION_TIME, RECEIVE_ID, SEND_ID, DOC_FLOW_NO, DOC_TYPE_ID, DOC_TYPE_DEPICT, 
+    DOC_CREATION_TIME, DOC_SECRECY_LEVEL_ID, DOC_SECRECY_LEVEL_DEPICT, DOC_VERSION_NO, 
+    SYSTEM_DIR_PK, DOC_PATH, PATIENT_ID, INPATIENT_NO, OUTPATIENT_NO, PATIENT_VISIT_TIME, 
+    IDENTITY_NO, NAME, HOSPITAL_CODE, HOSPITAL_NAME, DEPT_CODE, AUTHOR_CODE, AUTHOR_NAME, 
+    DOC_STORAGE_UNIT_CODE, DOC_STORAGE_UNIT_NAME, CREATE_TIME, UPDATE_TIME, HIUP_STATUS, 
+    HIUP_INFO,HEALTH_CARD_ID, SERVER_ORGANIZATION, EPISODE_ID, IN_TIME, OUT_TIME, ADMISSION_DEPART, 
+    ADMISSION_TYPE,ADMISSION_DOCTOR, DIAGNOSIS_RESULT, REPOSITORY_UNIQUE_ID, DOC_TYPE, DOCUMENT_ID
+  </sql>
+
+    <select id="selectCountBySelective" resultType="java.lang.Integer" parameterType="map">
+        select count(*) from DOC
+        where 1=1
+        <if test="healthCardId !=null">AND HEALTH_CARD_ID = #{healthCardId,jdbcType=VARCHAR}</if>
+        <if test="repositoryUniqueId !=null">AND REPOSITORY_UNIQUE_ID = #{repositoryUniqueId,jdbcType=VARCHAR}</if>
+        <if test="docFlowNo !=null">AND DOC_FLOW_NO = #{docFlowNo,jdbcType=VARCHAR}</if>
+        <if test="docTypeDepict !=null">AND DOC_TYPE_DEPICT = #{docTypeDepict,jdbcType=VARCHAR}</if>
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal">
+    delete from DOC
+    where PK = #{pk,jdbcType=DECIMAL}
+  </delete>
+
+    <insert id="insertSelective" parameterType="map">
+        insert into DOC
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            PK,
+            <if test="msgId != null">
+                MSG_ID,
+            </if>
+            <if test="msgCreationTime != null">
+                MSG_CREATION_TIME,
+            </if>
+            <if test="receiveId != null">
+                RECEIVE_ID,
+            </if>
+            <if test="sendId != null">
+                SEND_ID,
+            </if>
+            <if test="docFlowNo != null">
+                DOC_FLOW_NO,
+            </if>
+            <if test="docTypeId != null">
+                DOC_TYPE_ID,
+            </if>
+            <if test="docTypeDepict != null">
+                DOC_TYPE_DEPICT,
+            </if>
+            <if test="docCreationTime != null">
+                DOC_CREATION_TIME,
+            </if>
+            <if test="docSecrecyLevelId != null">
+                DOC_SECRECY_LEVEL_ID,
+            </if>
+            <if test="docSecrecyLevelDepict != null">
+                DOC_SECRECY_LEVEL_DEPICT,
+            </if>
+            <if test="docVersionNo != null">
+                DOC_VERSION_NO,
+            </if>
+            <if test="systemDirPk != null">
+                SYSTEM_DIR_PK,
+            </if>
+            <if test="docPath != null">
+                DOC_PATH,
+            </if>
+            <if test="patientId != null">
+                PATIENT_ID,
+            </if>
+            <if test="inpatientNo != null">
+                INPATIENT_NO,
+            </if>
+            <if test="outpatientNo != null">
+                OUTPATIENT_NO,
+            </if>
+            <if test="patientVisitTime != null">
+                PATIENT_VISIT_TIME,
+            </if>
+            <if test="identityNo != null">
+                IDENTITY_NO,
+            </if>
+            <if test="name != null">
+                NAME,
+            </if>
+            <if test="hospitalCode != null">
+                HOSPITAL_CODE,
+            </if>
+            <if test="hospitalName != null">
+                HOSPITAL_NAME,
+            </if>
+            <if test="deptCode != null">
+                DEPT_CODE,
+            </if>
+            <if test="authorCode != null">
+                AUTHOR_CODE,
+            </if>
+            <if test="authorName != null">
+                AUTHOR_NAME,
+            </if>
+            <if test="docStorageUnitCode != null">
+                DOC_STORAGE_UNIT_CODE,
+            </if>
+            <if test="docStorageUnitName != null">
+                DOC_STORAGE_UNIT_NAME,
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME,
+            </if>
+            <if test="updateTime != null">
+                UPDATE_TIME,
+            </if>
+            <if test="hiupStatus != null">
+                HIUP_STATUS,
+            </if>
+            <if test="hiupInfo != null">
+                HIUP_INFO,
+            </if>
+            <if test="healthCardId != null">
+                HEALTH_CARD_ID,
+            </if>
+            <if test="serverOrganization != null">
+                SERVER_ORGANIZATION,
+            </if>
+            <if test="episodeId != null">
+                EPISODE_ID,
+            </if>
+            <if test="inTime != null">
+                IN_TIME,
+            </if>
+            <if test="outTime != null">
+                OUT_TIME,
+            </if>
+            <if test="admissionDepart != null">
+                ADMISSION_DEPART,
+            </if>
+            <if test="admissionType != null">
+                ADMISSION_TYPE,
+            </if>
+            <if test="diagnosisResult != null">
+                DIAGNOSIS_RESULT,
+            </if>
+            <if test="repositoryUniqueId != null">
+                REPOSITORY_UNIQUE_ID,
+            </if>
+            <if test="admissionDoctor!=null">
+                ADMISSION_DOCTOR,
+            </if>
+            <if test="docType!=null">
+                DOC_TYPE,
+            </if>
+            <if test="documentId!=null">
+                DOCUMENT_ID,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            DOC_SEQ.NEXTVAL,
+            <if test="msgId != null">
+                #{msgId,jdbcType=VARCHAR},
+            </if>
+            <if test="msgCreationTime != null">
+                #{msgCreationTime,jdbcType=VARCHAR},
+            </if>
+            <if test="receiveId != null">
+                #{receiveId,jdbcType=VARCHAR},
+            </if>
+            <if test="sendId != null">
+                #{sendId,jdbcType=VARCHAR},
+            </if>
+            <if test="docFlowNo != null">
+                #{docFlowNo,jdbcType=VARCHAR},
+            </if>
+            <if test="docTypeId != null">
+                #{docTypeId,jdbcType=VARCHAR},
+            </if>
+            <if test="docTypeDepict != null">
+                #{docTypeDepict,jdbcType=VARCHAR},
+            </if>
+            <if test="docCreationTime != null">
+                #{docCreationTime,jdbcType=VARCHAR},
+            </if>
+            <if test="docSecrecyLevelId != null">
+                #{docSecrecyLevelId,jdbcType=VARCHAR},
+            </if>
+            <if test="docSecrecyLevelDepict != null">
+                #{docSecrecyLevelDepict,jdbcType=VARCHAR},
+            </if>
+            <if test="docVersionNo != null">
+                #{docVersionNo,jdbcType=VARCHAR},
+            </if>
+            <if test="systemDirPk != null">
+                #{systemDirPk,jdbcType=DECIMAL},
+            </if>
+            <if test="docPath != null">
+                #{docPath,jdbcType=VARCHAR},
+            </if>
+            <if test="patientId != null">
+                #{patientId,jdbcType=VARCHAR},
+            </if>
+            <if test="inpatientNo != null">
+                #{inpatientNo,jdbcType=VARCHAR},
+            </if>
+            <if test="outpatientNo != null">
+                #{outpatientNo,jdbcType=VARCHAR},
+            </if>
+            <if test="patientVisitTime != null">
+                #{patientVisitTime,jdbcType=VARCHAR},
+            </if>
+            <if test="identityNo != null">
+                #{identityNo,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="hospitalCode != null">
+                #{hospitalCode,jdbcType=VARCHAR},
+            </if>
+            <if test="hospitalName != null">
+                #{hospitalName,jdbcType=VARCHAR},
+            </if>
+            <if test="deptCode != null">
+                #{deptCode,jdbcType=VARCHAR},
+            </if>
+            <if test="authorCode != null">
+                #{authorCode,jdbcType=VARCHAR},
+            </if>
+            <if test="authorName != null">
+                #{authorName,jdbcType=VARCHAR},
+            </if>
+            <if test="docStorageUnitCode != null">
+                #{docStorageUnitCode,jdbcType=VARCHAR},
+            </if>
+            <if test="docStorageUnitName != null">
+                #{docStorageUnitName,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="hiupStatus != null">
+                #{hiupStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="hiupInfo != null">
+                #{hiupInfo,jdbcType=VARCHAR},
+            </if>
+            <if test="healthCardId != null">
+                #{healthCardId,jdbcType=VARCHAR},
+            </if>
+            <if test="serverOrganization != null">
+                #{serverOrganization,jdbcType=VARCHAR},
+            </if>
+            <if test="episodeId != null">
+                #{episodeId,jdbcType=VARCHAR},
+            </if>
+            <if test="inTime != null">
+                #{inTime,jdbcType=VARCHAR},
+            </if>
+            <if test="outTime != null">
+                #{outTime,jdbcType=VARCHAR},
+            </if>
+            <if test="admissionDepart != null">
+                #{admissionDepart,jdbcType=VARCHAR},
+            </if>
+            <if test="admissionType != null">
+                #{admissionType,jdbcType=VARCHAR},
+            </if>
+            <if test="diagnosisResult != null">
+                #{diagnosisResult,jdbcType=VARCHAR},
+            </if>
+            <if test="repositoryUniqueId != null">
+                #{repositoryUniqueId,jdbcType=VARCHAR},
+            </if>
+            <if test="admissionDoctor!=null">
+                #{admissionDoctor,jdbcType=VARCHAR},
+            </if>
+            <if test="docType != null">
+                #{docType,jdbcType=VARCHAR},
+            </if>
+            <if test="documentId!=null">
+                #{documentId,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateBySelective" parameterType="map">
+        update DOC
+        <set>
+            <if test="msgId != null">
+                MSG_ID = #{msgId,jdbcType=VARCHAR},
+            </if>
+            <if test="msgCreationTime != null">
+                MSG_CREATION_TIME = #{msgCreationTime,jdbcType=VARCHAR},
+            </if>
+            <if test="receiveId != null">
+                RECEIVE_ID = #{receiveId,jdbcType=VARCHAR},
+            </if>
+            <if test="sendId != null">
+                SEND_ID = #{sendId,jdbcType=VARCHAR},
+            </if>
+            <if test="docFlowNo != null">
+                DOC_FLOW_NO = #{docFlowNo,jdbcType=VARCHAR},
+            </if>
+            <if test="docTypeId != null">
+                DOC_TYPE_ID = #{docTypeId,jdbcType=VARCHAR},
+            </if>
+            <if test="docTypeDepict != null">
+                DOC_TYPE_DEPICT = #{docTypeDepict,jdbcType=VARCHAR},
+            </if>
+            <if test="docCreationTime != null">
+                DOC_CREATION_TIME = #{docCreationTime,jdbcType=VARCHAR},
+            </if>
+            <if test="docSecrecyLevelId != null">
+                DOC_SECRECY_LEVEL_ID = #{docSecrecyLevelId,jdbcType=VARCHAR},
+            </if>
+            <if test="docSecrecyLevelDepict != null">
+                DOC_SECRECY_LEVEL_DEPICT = #{docSecrecyLevelDepict,jdbcType=VARCHAR},
+            </if>
+            <if test="docVersionNo != null">
+                DOC_VERSION_NO = #{docVersionNo,jdbcType=VARCHAR},
+            </if>
+            <if test="systemDirPk != null">
+                SYSTEM_DIR_PK = #{systemDirPk,jdbcType=DECIMAL},
+            </if>
+            <if test="docPath != null">
+                DOC_PATH = #{docPath,jdbcType=VARCHAR},
+            </if>
+            <if test="patientId != null">
+                PATIENT_ID = #{patientId,jdbcType=VARCHAR},
+            </if>
+            <if test="inpatientNo != null">
+                INPATIENT_NO = #{inpatientNo,jdbcType=VARCHAR},
+            </if>
+            <if test="outpatientNo != null">
+                OUTPATIENT_NO = #{outpatientNo,jdbcType=VARCHAR},
+            </if>
+            <if test="patientVisitTime != null">
+                PATIENT_VISIT_TIME = #{patientVisitTime,jdbcType=VARCHAR},
+            </if>
+            <if test="identityNo != null">
+                IDENTITY_NO = #{identityNo,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                NAME = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="hospitalCode != null">
+                HOSPITAL_CODE = #{hospitalCode,jdbcType=VARCHAR},
+            </if>
+            <if test="hospitalName != null">
+                HOSPITAL_NAME = #{hospitalName,jdbcType=VARCHAR},
+            </if>
+            <if test="deptCode != null">
+                DEPT_CODE = #{deptCode,jdbcType=VARCHAR},
+            </if>
+            <if test="authorCode != null">
+                AUTHOR_CODE = #{authorCode,jdbcType=VARCHAR},
+            </if>
+            <if test="authorName != null">
+                AUTHOR_NAME = #{authorName,jdbcType=VARCHAR},
+            </if>
+            <if test="docStorageUnitCode != null">
+                DOC_STORAGE_UNIT_CODE = #{docStorageUnitCode,jdbcType=VARCHAR},
+            </if>
+            <if test="docStorageUnitName != null">
+                DOC_STORAGE_UNIT_NAME = #{docStorageUnitName,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="hiupStatus != null">
+                HIUP_STATUS = #{hiupStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="hiupInfo != null">
+                HIUP_INFO = #{hiupInfo,jdbcType=VARCHAR},
+            </if>
+            <if test="healthCardId != null">
+                HEALTH_CARD_ID = #{healthCardId,jdbcType=VARCHAR},
+            </if>
+            <if test="serverOrganization != null">
+                SERVER_ORGANIZATION = #{serverOrganization,jdbcType=VARCHAR},
+            </if>
+            <if test="episodeId != null">
+                EPISODE_ID = #{episodeId,jdbcType=VARCHAR},
+            </if>
+            <if test="inTime != null">
+                IN_TIME = #{inTime,jdbcType=VARCHAR},
+            </if>
+            <if test="outTime != null">
+                OUT_TIME = #{outTime,jdbcType=VARCHAR},
+            </if>
+            <if test="admissionDepart != null">
+                ADMISSION_DEPART = #{admissionDepart,jdbcType=VARCHAR},
+            </if>
+            <if test="admissionType != null">
+                ADMISSION_TYPE = #{admissionType,jdbcType=VARCHAR},
+            </if>
+            <if test="diagnosisResult != null">
+                DIAGNOSIS_RESULT = #{diagnosisResult,jdbcType=VARCHAR},
+            </if>
+            <if test="repositoryUniqueId != null">
+                REPOSITORY_UNIQUE_ID = #{repositoryUniqueId,jdbcType=VARCHAR},
+            </if>
+            <if test="admissionDoctor!=null">
+                ADMISSION_DOCTOR=#{admissionDoctor,jdbcType=VARCHAR},
+            </if>
+            <if test="docType != null">
+                DOC_TYPE = #{docType,jdbcType=VARCHAR},
+            </if>
+            <if test="documentId!=null">
+                DOCUMENT_ID=#{documentId,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where
+        REPOSITORY_UNIQUE_ID = #{repositoryUniqueId,jdbcType=VARCHAR}
+        AND DOC_FLOW_NO = #{docFlowNo,jdbcType=VARCHAR}
+    </update>
+
+    <select id="selectBySelective" parameterType="map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from DOC
+        where 1=1
+        <!--文档注册日期-->
+        <if test="docRegisterTimeHigh != null">
+            <![CDATA[AND to_char(CREATE_TIME,'yyyymmdd') <= #{docRegisterTimeHigh,jdbcType=VARCHAR}]]>
+        </if>
+        <if test="docRegisterTimeLow != null">
+            AND to_char(CREATE_TIME,'yyyymmdd')> = #{docRegisterTimeLow,jdbcType=VARCHAR}
+        </if>
+        <!--文档生成日期-->
+        <if test="docCreationTimeLow != null">
+            AND DOC_CREATION_TIME >= #{docCreationTimeLow,jdbcType=VARCHAR}
+        </if>
+        <if test="docCreationTimeHigh != null">
+            <![CDATA[AND DOC_CREATION_TIME <= #{docCreationTimeHigh,jdbcType=VARCHAR}]]>
+        </if>
+        <!--患者就诊日期-->
+        <if test="patientVisitTimeLow != null">
+            AND PATIENT_VISIT_TIME >= #{patientVisitTimeLow,jdbcType=VARCHAR}
+        </if>
+        <if test="patientVisitTimeHigh != null">
+            <![CDATA[AND PATIENT_VISIT_TIME< = #{patientVisitTimeHigh,jdbcType=VARCHAR}]]>
+        </if>
+        <!--文档创建者-->
+        <if test="authorCode != null">
+            AND AUTHOR_CODE = #{authorCode,jdbcType=VARCHAR}
+        </if>
+        <if test="authorName != null">
+            AND AUTHOR_NAME = #{authorName,jdbcType=VARCHAR}
+        </if>
+        <if test="docTypeId != null">
+            AND DOC_TYPE_ID = #{docTypeId,jdbcType=VARCHAR}
+        </if>
+        <if test="docTypeDepict != null">
+            AND DOC_TYPE_DEPICT = #{docTypeDepict,jdbcType=VARCHAR}
+        </if>
+        <if test="inpatientNo != null">
+            AND INPATIENT_NO = #{inpatientNo,jdbcType=VARCHAR}
+        </if>
+        <if test="docFlowNo != null">
+            AND DOC_FLOW_NO = #{docFlowNo,jdbcType=VARCHAR}
+        </if>
+        <if test="outpatientNo != null">
+            AND OUTPATIENT_NO = #{outpatientNo,jdbcType=VARCHAR}
+        </if>
+        <if test="patientId != null">
+            AND PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+        </if>
+        <if test="identityNo != null and  identityNo != ''">
+            AND IDENTITY_NO = #{identityNo,jdbcType=VARCHAR}
+        </if>
+        <if test="name != null">
+            AND NAME = #{name,jdbcType=VARCHAR}
+        </if>
+        <if test="healthCardId !=null and healthCardId !=''">
+            AND HEALTH_CARD_ID = #{healthCardId,jdbcType=VARCHAR}
+        </if>
+        <if test="healthCardId ==null or healthCardId ==''">
+            AND HEALTH_CARD_ID is null
+        </if>
+        <if test="repositoryUniqueId !=null">
+            AND REPOSITORY_UNIQUE_ID = #{repositoryUniqueId,jdbcType=VARCHAR}
+        </if>
+        <if test="docType != null">
+            AND DOC_TYPE = #{docType,jdbcType=VARCHAR}
+        </if>
+        <if test="documentId!=null">
+            AND DOCUMENT_ID = #{documentId,jdbcType=VARCHAR}
+        </if>
+    </select>
+</mapper>

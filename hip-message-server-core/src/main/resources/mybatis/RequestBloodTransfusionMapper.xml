@@ -1,0 +1,905 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djhu.hiup.message.server.core.dao.IRequestBloodTransfusionDao" >
+  <resultMap id="BaseResultMap" type="com.djhu.hiup.message.server.core.model.RequestBloodTransfusion" >
+    <id column="PK" property="pk" jdbcType="DECIMAL" />
+    <result column="MSG_ID" property="msgId" jdbcType="VARCHAR" />
+    <result column="MSG_CREATION_TIME" property="msgCreationTime" jdbcType="VARCHAR" />
+    <result column="RECEIVE_ID" property="receiveId" jdbcType="VARCHAR" />
+    <result column="SEND_ID" property="sendId" jdbcType="VARCHAR" />
+    <result column="REQUEST_NO" property="requestNo" jdbcType="VARCHAR" />
+    <result column="REQUEST_CONTENT" property="requestContent" jdbcType="VARCHAR" />
+    <result column="REQUEST_TIME" property="requestTime" jdbcType="VARCHAR" />
+    <result column="PRIORITY_LEVEL_CODE" property="priorityLevelCode" jdbcType="VARCHAR" />
+    <result column="PRIORITY_LEVEL_DEPICT" property="priorityLevelDepict" jdbcType="VARCHAR" />
+    <result column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
+    <result column="IDENTITY_NO" property="identityNo" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="OPEN_BILL_TIME" property="openBillTime" jdbcType="VARCHAR" />
+    <result column="OPEN_BILL_DOCTOR_CODE" property="openBillDoctorCode" jdbcType="VARCHAR" />
+    <result column="OPEN_BILL_DOCTOR_NAME" property="openBillDoctorName" jdbcType="VARCHAR" />
+    <result column="OPEN_DEPT_ID" property="openDeptId" jdbcType="VARCHAR" />
+    <result column="OPEN_DEPT_NAME" property="openDeptName" jdbcType="VARCHAR" />
+    <result column="AUDIT_TIME" property="auditTime" jdbcType="VARCHAR" />
+    <result column="AUDIT_PERSON_ID" property="auditPersonId" jdbcType="VARCHAR" />
+    <result column="AUDIT_PERSON_NAME" property="auditPersonName" jdbcType="VARCHAR" />
+    <result column="DEPT_CODE" property="deptCode" jdbcType="VARCHAR" />
+    <result column="DEPT_DEPICT" property="deptDepict" jdbcType="VARCHAR" />
+    <result column="INPATIENT_AREA_CODE" property="inpatientAreaCode" jdbcType="VARCHAR" />
+    <result column="INPATIENT_AREA_NAME" property="inpatientAreaName" jdbcType="VARCHAR" />
+    <result column="WARD_CODE" property="wardCode" jdbcType="VARCHAR" />
+    <result column="WARD_NAME" property="wardName" jdbcType="VARCHAR" />
+    <result column="HOSPITAL_BED_CODE" property="hospitalBedCode" jdbcType="VARCHAR" />
+    <result column="HOSPITAL_BED_NAME" property="hospitalBedName" jdbcType="VARCHAR" />
+    <result column="DIAGNOSIS_INFO" property="diagnosisInfo" jdbcType="VARCHAR" />
+    <result column="DIAGNOSIS_CODE" property="diagnosisCode" jdbcType="VARCHAR" />
+    <result column="DIAGNOSIS_DEPICT" property="diagnosisDepict" jdbcType="VARCHAR" />
+    <result column="INPATIENT_NO" property="inpatientNo" jdbcType="VARCHAR" />
+    <result column="OUTPATIENT_NO" property="outpatientNo" jdbcType="VARCHAR" />
+    <result column="VISIT_TYPE_CODE" property="visitTypeCode" jdbcType="VARCHAR" />
+    <result column="VISIT_TYPE_DEPICT" property="visitTypeDepict" jdbcType="VARCHAR" />
+    <result column="ADMISSION_TIME" property="admissionTime" jdbcType="VARCHAR" />
+    <result column="MEDICARE_TYPE_ID" property="medicareTypeId" jdbcType="VARCHAR" />
+    <result column="MEDICARE_TYPE_DEPICT" property="medicareTypeDepict" jdbcType="VARCHAR" />
+    <result column="INPATIENT_FREQUENCY" property="inpatientFrequency" jdbcType="VARCHAR" />
+    <result column="ABO_BLOOD_TYPE_CODE" property="aboBloodTypeCode" jdbcType="VARCHAR" />
+    <result column="ABO_BLOOD_TYPE_DEPICT" property="aboBloodTypeDepict" jdbcType="VARCHAR" />
+    <result column="RH_BLOOD_TYPE_CODE" property="rhBloodTypeCode" jdbcType="VARCHAR" />
+    <result column="RH_BLOOD_TYPE_DEPICT" property="rhBloodTypeDepict" jdbcType="VARCHAR" />
+    <result column="HEIGHT" property="height" jdbcType="VARCHAR" />
+    <result column="WEIGHT" property="weight" jdbcType="VARCHAR" />
+    <result column="SYSTOLIC_PRESSURE" property="systolicPressure" jdbcType="VARCHAR" />
+    <result column="DIASTOLIC_PRESSURE" property="diastolicPressure" jdbcType="VARCHAR" />
+    <result column="TEMPERATURE" property="temperature" jdbcType="VARCHAR" />
+    <result column="PULSE" property="pulse" jdbcType="VARCHAR" />
+    <result column="REQUEST_ABO_BLOOD_TYPE_CODE" property="requestAboBloodTypeCode" jdbcType="VARCHAR" />
+    <result column="REQUEST_ABO_BLOOD_TYPE_DEPICT" property="requestAboBloodTypeDepict" jdbcType="VARCHAR" />
+    <result column="REQUEST_RH_BLOOD_TYPE_CODE" property="requestRhBloodTypeCode" jdbcType="VARCHAR" />
+    <result column="REQUEST_RH_BLOOD_TYPE_DEPICT" property="requestRhBloodTypeDepict" jdbcType="VARCHAR" />
+    <result column="BLOOD_SAMPLING" property="bloodSampling" jdbcType="VARCHAR" />
+    <result column="PLACE_BLOOD_ADDRESS" property="placeBloodAddress" jdbcType="VARCHAR" />
+    <result column="BLOOD_TRANSFUSION_PUSRPOSES" property="bloodTransfusionPusrposes" jdbcType="VARCHAR" />
+    <result column="BLOOD_TRANSFUSION_NATURE" property="bloodTransfusionNature" jdbcType="VARCHAR" />
+    <result column="BLOOD_TRANSFUSION_EMERGENCY" property="bloodTransfusionEmergency" jdbcType="VARCHAR" />
+    <result column="MEDICAL_HISTORY_INFORMATION" property="medicalHistoryInformation" jdbcType="VARCHAR" />
+    <result column="BLOOD_TRANSFUSION_HISTORY" property="bloodTransfusionHistory" jdbcType="VARCHAR" />
+    <result column="BLOOD_REACTION_HISTORY" property="bloodReactionHistory" jdbcType="VARCHAR" />
+    <result column="DRUG_ALLERGY_HISTORY" property="drugAllergyHistory" jdbcType="VARCHAR" />
+    <result column="PREGNANCY" property="pregnancy" jdbcType="VARCHAR" />
+    <result column="SECONDARY_PRODUCTION" property="secondaryProduction" jdbcType="VARCHAR" />
+    <result column="OTHER_MEDICAL_HISTORY" property="otherMedicalHistory" jdbcType="VARCHAR" />
+    <result column="REMARKS" property="remarks" jdbcType="VARCHAR" />
+    <result column="BLOOD_UNIT" property="bloodUnit" jdbcType="VARCHAR" />
+    <result column="BLOOD" property="blood" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="HIUP_STATUS" property="hiupStatus" jdbcType="VARCHAR" />
+    <result column="HIUP_INFO" property="hiupInfo" jdbcType="VARCHAR" />
+    
+    <result column="BINGSHI" property="bingshi" jdbcType="VARCHAR" />
+    <result column="ZHENGZHUANG" property="zhengzhuang" jdbcType="VARCHAR" />
+    <result column="SPECIMEN_CODE" property="specimenCode" jdbcType="VARCHAR" />
+    <result column="SPECIMEN_DESC" property="specimenDesc" jdbcType="VARCHAR" />
+    <result column="ADDITIVE" property="additive" jdbcType="VARCHAR" />
+    <result column="SPECIMEN_TIME" property="specimenTime" jdbcType="VARCHAR" />
+    <result column="SPECIMEN_EFFECTIVETIME" property="specimenEffectivetime" jdbcType="VARCHAR" />
+    <result column="HEALTH_CARD" property="healthCard" jdbcType="VARCHAR" />
+    <result column="HEALTH_SEQ" property="healthSeq" jdbcType="VARCHAR" />
+    <result column="OBSERVATION_EVENTCRITERION" property="observationEventcriterion" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PK, MSG_ID, MSG_CREATION_TIME, RECEIVE_ID, SEND_ID, REQUEST_NO, REQUEST_CONTENT, 
+    REQUEST_TIME, PRIORITY_LEVEL_CODE, PRIORITY_LEVEL_DEPICT, PATIENT_ID, IDENTITY_NO, 
+    NAME, OPEN_BILL_TIME, OPEN_BILL_DOCTOR_CODE, OPEN_BILL_DOCTOR_NAME, OPEN_DEPT_ID, 
+    OPEN_DEPT_NAME, AUDIT_TIME, AUDIT_PERSON_ID, AUDIT_PERSON_NAME, DEPT_CODE, DEPT_DEPICT, 
+    INPATIENT_AREA_CODE, INPATIENT_AREA_NAME, WARD_CODE, WARD_NAME, HOSPITAL_BED_CODE, 
+    HOSPITAL_BED_NAME, DIAGNOSIS_INFO, DIAGNOSIS_CODE, DIAGNOSIS_DEPICT, INPATIENT_NO, 
+    OUTPATIENT_NO, VISIT_TYPE_CODE, VISIT_TYPE_DEPICT, ADMISSION_TIME, MEDICARE_TYPE_ID, 
+    MEDICARE_TYPE_DEPICT, INPATIENT_FREQUENCY, ABO_BLOOD_TYPE_CODE, ABO_BLOOD_TYPE_DEPICT, 
+    RH_BLOOD_TYPE_CODE, RH_BLOOD_TYPE_DEPICT, HEIGHT, WEIGHT, SYSTOLIC_PRESSURE, DIASTOLIC_PRESSURE, 
+    TEMPERATURE, PULSE, REQUEST_ABO_BLOOD_TYPE_CODE, REQUEST_ABO_BLOOD_TYPE_DEPICT, REQUEST_RH_BLOOD_TYPE_CODE, 
+    REQUEST_RH_BLOOD_TYPE_DEPICT, BLOOD_SAMPLING, PLACE_BLOOD_ADDRESS, BLOOD_TRANSFUSION_PUSRPOSES, 
+    BLOOD_TRANSFUSION_NATURE, BLOOD_TRANSFUSION_EMERGENCY, MEDICAL_HISTORY_INFORMATION, 
+    BLOOD_TRANSFUSION_HISTORY, BLOOD_REACTION_HISTORY, DRUG_ALLERGY_HISTORY, PREGNANCY, 
+    SECONDARY_PRODUCTION, OTHER_MEDICAL_HISTORY, REMARKS, BLOOD_UNIT, BLOOD, CREATE_TIME, 
+    UPDATE_TIME, HIUP_STATUS, HIUP_INFO , BINGSHI, ZHENGZHUANG, 
+    SPECIMEN_CODE, SPECIMEN_DESC, ADDITIVE, SPECIMEN_TIME, SPECIMEN_EFFECTIVETIME, HEALTH_CARD, 
+    HEALTH_SEQ,OBSERVATION_EVENTCRITERION
+  </sql>
+
+  <select id="selectCountBySelective"  parameterType="map" resultType="java.lang.Integer">
+     select count(*) from REQUEST_BLOOD_TRANSFUSION
+      where  REQUEST_NO = #{requestNo,jdbcType=VARCHAR}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from REQUEST_BLOOD_TRANSFUSION
+    where PK = #{pk,jdbcType=DECIMAL}
+  </delete>
+
+ <insert id="insertSelective" parameterType="map"  >
+    insert into REQUEST_BLOOD_TRANSFUSION
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      PK,
+      <if test="msgId != null" >
+        MSG_ID,
+      </if>
+      <if test="msgCreationTime != null" >
+        MSG_CREATION_TIME,
+      </if>
+      <if test="receiveId != null" >
+        RECEIVE_ID,
+      </if>
+      <if test="sendId != null" >
+        SEND_ID,
+      </if>
+      <if test="requestNo != null" >
+        REQUEST_NO,
+      </if>
+      <if test="requestContent != null" >
+        REQUEST_CONTENT,
+      </if>
+      <if test="requestTime != null" >
+        REQUEST_TIME,
+      </if>
+      <if test="priorityLevelCode != null" >
+        PRIORITY_LEVEL_CODE,
+      </if>
+      <if test="priorityLevelDepict != null" >
+        PRIORITY_LEVEL_DEPICT,
+      </if>
+      <if test="patientId != null" >
+        PATIENT_ID,
+      </if>
+      <if test="identityNo != null" >
+        IDENTITY_NO,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="openBillTime != null" >
+        OPEN_BILL_TIME,
+      </if>
+      <if test="openBillDoctorCode != null" >
+        OPEN_BILL_DOCTOR_CODE,
+      </if>
+      <if test="openBillDoctorName != null" >
+        OPEN_BILL_DOCTOR_NAME,
+      </if>
+      <if test="openDeptId != null" >
+        OPEN_DEPT_ID,
+      </if>
+      <if test="openDeptName != null" >
+        OPEN_DEPT_NAME,
+      </if>
+      <if test="auditTime != null" >
+        AUDIT_TIME,
+      </if>
+      <if test="auditPersonId != null" >
+        AUDIT_PERSON_ID,
+      </if>
+      <if test="auditPersonName != null" >
+        AUDIT_PERSON_NAME,
+      </if>
+      <if test="deptCode != null" >
+        DEPT_CODE,
+      </if>
+      <if test="deptDepict != null" >
+        DEPT_DEPICT,
+      </if>
+      <if test="inpatientAreaCode != null" >
+        INPATIENT_AREA_CODE,
+      </if>
+      <if test="inpatientAreaName != null" >
+        INPATIENT_AREA_NAME,
+      </if>
+      <if test="wardCode != null" >
+        WARD_CODE,
+      </if>
+      <if test="wardName != null" >
+        WARD_NAME,
+      </if>
+      <if test="hospitalBedCode != null" >
+        HOSPITAL_BED_CODE,
+      </if>
+      <if test="hospitalBedName != null" >
+        HOSPITAL_BED_NAME,
+      </if>
+      <if test="diagnosisInfo != null" >
+        DIAGNOSIS_INFO,
+      </if>
+      <if test="diagnosisCode != null" >
+        DIAGNOSIS_CODE,
+      </if>
+      <if test="diagnosisDepict != null" >
+        DIAGNOSIS_DEPICT,
+      </if>
+      <if test="inpatientNo != null" >
+        INPATIENT_NO,
+      </if>
+      <if test="outpatientNo != null" >
+        OUTPATIENT_NO,
+      </if>
+      <if test="visitTypeCode != null" >
+        VISIT_TYPE_CODE,
+      </if>
+      <if test="visitTypeDepict != null" >
+        VISIT_TYPE_DEPICT,
+      </if>
+      <if test="admissionTime != null" >
+        ADMISSION_TIME,
+      </if>
+      <if test="medicareTypeId != null" >
+        MEDICARE_TYPE_ID,
+      </if>
+      <if test="medicareTypeDepict != null" >
+        MEDICARE_TYPE_DEPICT,
+      </if>
+      <if test="inpatientFrequency != null" >
+        INPATIENT_FREQUENCY,
+      </if>
+      <if test="aboBloodTypeCode != null" >
+        ABO_BLOOD_TYPE_CODE,
+      </if>
+      <if test="aboBloodTypeDepict != null" >
+        ABO_BLOOD_TYPE_DEPICT,
+      </if>
+      <if test="rhBloodTypeCode != null" >
+        RH_BLOOD_TYPE_CODE,
+      </if>
+      <if test="rhBloodTypeDepict != null" >
+        RH_BLOOD_TYPE_DEPICT,
+      </if>
+      <if test="height != null" >
+        HEIGHT,
+      </if>
+      <if test="weight != null" >
+        WEIGHT,
+      </if>
+      <if test="systolicPressure != null" >
+        SYSTOLIC_PRESSURE,
+      </if>
+      <if test="diastolicPressure != null" >
+        DIASTOLIC_PRESSURE,
+      </if>
+      <if test="temperature != null" >
+        TEMPERATURE,
+      </if>
+      <if test="pulse != null" >
+        PULSE,
+      </if>
+      <if test="requestAboBloodTypeCode != null" >
+        REQUEST_ABO_BLOOD_TYPE_CODE,
+      </if>
+      <if test="requestAboBloodTypeDepict != null" >
+        REQUEST_ABO_BLOOD_TYPE_DEPICT,
+      </if>
+      <if test="requestRhBloodTypeCode != null" >
+        REQUEST_RH_BLOOD_TYPE_CODE,
+      </if>
+      <if test="requestRhBloodTypeDepict != null" >
+        REQUEST_RH_BLOOD_TYPE_DEPICT,
+      </if>
+      <if test="bloodSampling != null" >
+        BLOOD_SAMPLING,
+      </if>
+      <if test="placeBloodAddress != null" >
+        PLACE_BLOOD_ADDRESS,
+      </if>
+      <if test="bloodTransfusionPusrposes != null" >
+        BLOOD_TRANSFUSION_PUSRPOSES,
+      </if>
+      <if test="bloodTransfusionNature != null" >
+        BLOOD_TRANSFUSION_NATURE,
+      </if>
+      <if test="bloodTransfusionEmergency != null" >
+        BLOOD_TRANSFUSION_EMERGENCY,
+      </if>
+      <if test="medicalHistoryInformation != null" >
+        MEDICAL_HISTORY_INFORMATION,
+      </if>
+      <if test="bloodTransfusionHistory != null" >
+        BLOOD_TRANSFUSION_HISTORY,
+      </if>
+      <if test="bloodReactionHistory != null" >
+        BLOOD_REACTION_HISTORY,
+      </if>
+      <if test="drugAllergyHistory != null" >
+        DRUG_ALLERGY_HISTORY,
+      </if>
+      <if test="pregnancy != null" >
+        PREGNANCY,
+      </if>
+      <if test="secondaryProduction != null" >
+        SECONDARY_PRODUCTION,
+      </if>
+      <if test="otherMedicalHistory != null" >
+        OTHER_MEDICAL_HISTORY,
+      </if>
+      <if test="remarks != null" >
+        REMARKS,
+      </if>
+      <if test="bloodUnit != null" >
+        BLOOD_UNIT,
+      </if>
+      <if test="blood != null" >
+        BLOOD,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="hiupStatus != null" >
+        HIUP_STATUS,
+      </if>
+      <if test="hiupInfo != null" >
+        HIUP_INFO,
+      </if>
+      <if test="bingshi != null" >
+        BINGSHI,
+      </if>
+      <if test="zhengzhuang != null" >
+        ZHENGZHUANG,
+      </if>
+      <if test="specimenCode != null" >
+        SPECIMEN_CODE,
+      </if>
+      <if test="specimenDesc != null" >
+        SPECIMEN_DESC,
+      </if>
+      <if test="additive != null" >
+        ADDITIVE,
+      </if>
+      <if test="specimenTime != null" >
+        SPECIMEN_TIME,
+      </if>
+      <if test="specimenEffectivetime != null" >
+        SPECIMEN_EFFECTIVETIME,
+      </if>
+      <if test="healthCard != null" >
+        HEALTH_CARD,
+      </if>
+      <if test="healthSeq != null" >
+        HEALTH_SEQ,
+      </if>
+      <if test="observationEventcriterion != null" >
+        OBSERVATION_EVENTCRITERION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      REQUEST_BLOOD_TRANSFUSION_SEQ.NEXTVAL,
+      <if test="msgId != null" >
+        #{msgId,jdbcType=VARCHAR},
+      </if>
+      <if test="msgCreationTime != null" >
+        #{msgCreationTime,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveId != null" >
+        #{receiveId,jdbcType=VARCHAR},
+      </if>
+      <if test="sendId != null" >
+        #{sendId,jdbcType=VARCHAR},
+      </if>
+      <if test="requestNo != null" >
+        #{requestNo,jdbcType=VARCHAR},
+      </if>
+      <if test="requestContent != null" >
+        #{requestContent,jdbcType=VARCHAR},
+      </if>
+      <if test="requestTime != null" >
+        #{requestTime,jdbcType=VARCHAR},
+      </if>
+      <if test="priorityLevelCode != null" >
+        #{priorityLevelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="priorityLevelDepict != null" >
+        #{priorityLevelDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="patientId != null" >
+        #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="identityNo != null" >
+        #{identityNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="openBillTime != null" >
+        #{openBillTime,jdbcType=VARCHAR},
+      </if>
+      <if test="openBillDoctorCode != null" >
+        #{openBillDoctorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="openBillDoctorName != null" >
+        #{openBillDoctorName,jdbcType=VARCHAR},
+      </if>
+      <if test="openDeptId != null" >
+        #{openDeptId,jdbcType=VARCHAR},
+      </if>
+      <if test="openDeptName != null" >
+        #{openDeptName,jdbcType=VARCHAR},
+      </if>
+      <if test="auditTime != null" >
+        #{auditTime,jdbcType=VARCHAR},
+      </if>
+      <if test="auditPersonId != null" >
+        #{auditPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="auditPersonName != null" >
+        #{auditPersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="deptCode != null" >
+        #{deptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="deptDepict != null" >
+        #{deptDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="inpatientAreaCode != null" >
+        #{inpatientAreaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="inpatientAreaName != null" >
+        #{inpatientAreaName,jdbcType=VARCHAR},
+      </if>
+      <if test="wardCode != null" >
+        #{wardCode,jdbcType=VARCHAR},
+      </if>
+      <if test="wardName != null" >
+        #{wardName,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalBedCode != null" >
+        #{hospitalBedCode,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalBedName != null" >
+        #{hospitalBedName,jdbcType=VARCHAR},
+      </if>
+      <if test="diagnosisInfo != null" >
+        #{diagnosisInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="diagnosisCode != null" >
+        #{diagnosisCode,jdbcType=VARCHAR},
+      </if>
+      <if test="diagnosisDepict != null" >
+        #{diagnosisDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="inpatientNo != null" >
+        #{inpatientNo,jdbcType=VARCHAR},
+      </if>
+      <if test="outpatientNo != null" >
+        #{outpatientNo,jdbcType=VARCHAR},
+      </if>
+      <if test="visitTypeCode != null" >
+        #{visitTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="visitTypeDepict != null" >
+        #{visitTypeDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="admissionTime != null" >
+        #{admissionTime,jdbcType=VARCHAR},
+      </if>
+      <if test="medicareTypeId != null" >
+        #{medicareTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="medicareTypeDepict != null" >
+        #{medicareTypeDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="inpatientFrequency != null" >
+        #{inpatientFrequency,jdbcType=VARCHAR},
+      </if>
+      <if test="aboBloodTypeCode != null" >
+        #{aboBloodTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="aboBloodTypeDepict != null" >
+        #{aboBloodTypeDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="rhBloodTypeCode != null" >
+        #{rhBloodTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="rhBloodTypeDepict != null" >
+        #{rhBloodTypeDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="height != null" >
+        #{height,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null" >
+        #{weight,jdbcType=VARCHAR},
+      </if>
+      <if test="systolicPressure != null" >
+        #{systolicPressure,jdbcType=VARCHAR},
+      </if>
+      <if test="diastolicPressure != null" >
+        #{diastolicPressure,jdbcType=VARCHAR},
+      </if>
+      <if test="temperature != null" >
+        #{temperature,jdbcType=VARCHAR},
+      </if>
+      <if test="pulse != null" >
+        #{pulse,jdbcType=VARCHAR},
+      </if>
+      <if test="requestAboBloodTypeCode != null" >
+        #{requestAboBloodTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="requestAboBloodTypeDepict != null" >
+        #{requestAboBloodTypeDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="requestRhBloodTypeCode != null" >
+        #{requestRhBloodTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="requestRhBloodTypeDepict != null" >
+        #{requestRhBloodTypeDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodSampling != null" >
+        #{bloodSampling,jdbcType=VARCHAR},
+      </if>
+      <if test="placeBloodAddress != null" >
+        #{placeBloodAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodTransfusionPusrposes != null" >
+        #{bloodTransfusionPusrposes,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodTransfusionNature != null" >
+        #{bloodTransfusionNature,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodTransfusionEmergency != null" >
+        #{bloodTransfusionEmergency,jdbcType=VARCHAR},
+      </if>
+      <if test="medicalHistoryInformation != null" >
+        #{medicalHistoryInformation,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodTransfusionHistory != null" >
+        #{bloodTransfusionHistory,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodReactionHistory != null" >
+        #{bloodReactionHistory,jdbcType=VARCHAR},
+      </if>
+      <if test="drugAllergyHistory != null" >
+        #{drugAllergyHistory,jdbcType=VARCHAR},
+      </if>
+      <if test="pregnancy != null" >
+        #{pregnancy,jdbcType=VARCHAR},
+      </if>
+      <if test="secondaryProduction != null" >
+        #{secondaryProduction,jdbcType=VARCHAR},
+      </if>
+      <if test="otherMedicalHistory != null" >
+        #{otherMedicalHistory,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodUnit != null" >
+        #{bloodUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="blood != null" >
+        #{blood,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hiupStatus != null" >
+        #{hiupStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="hiupInfo != null" >
+        #{hiupInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="bingshi != null" >
+        #{bingshi,jdbcType=VARCHAR},
+      </if>
+      <if test="zhengzhuang != null" >
+        #{zhengzhuang,jdbcType=VARCHAR},
+      </if>
+      <if test="specimenCode != null" >
+        #{specimenCode,jdbcType=VARCHAR},
+      </if>
+      <if test="specimenDesc != null" >
+        #{specimenDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="additive != null" >
+        #{additive,jdbcType=VARCHAR},
+      </if>
+      <if test="specimenTime != null" >
+        #{specimenTime,jdbcType=VARCHAR},
+      </if>
+      <if test="specimenEffectivetime != null" >
+        #{specimenEffectivetime,jdbcType=VARCHAR},
+      </if>
+      <if test="healthCard != null" >
+        #{healthCard,jdbcType=VARCHAR},
+      </if>
+      <if test="healthSeq != null" >
+        #{healthSeq,jdbcType=VARCHAR},
+      </if>
+      <if test="observationEventcriterion != null" >
+        #{observationEventcriterion,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateBySelective" parameterType="map"  >
+    update REQUEST_BLOOD_TRANSFUSION
+    <set >
+      <if test="msgId != null" >
+        MSG_ID = #{msgId,jdbcType=VARCHAR},
+      </if>
+      <if test="msgCreationTime != null" >
+        MSG_CREATION_TIME = #{msgCreationTime,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveId != null" >
+        RECEIVE_ID = #{receiveId,jdbcType=VARCHAR},
+      </if>
+      <if test="sendId != null" >
+        SEND_ID = #{sendId,jdbcType=VARCHAR},
+      </if>
+      <if test="requestNo != null" >
+        REQUEST_NO = #{requestNo,jdbcType=VARCHAR},
+      </if>
+      <if test="requestContent != null" >
+        REQUEST_CONTENT = #{requestContent,jdbcType=VARCHAR},
+      </if>
+      <if test="requestTime != null" >
+        REQUEST_TIME = #{requestTime,jdbcType=VARCHAR},
+      </if>
+      <if test="priorityLevelCode != null" >
+        PRIORITY_LEVEL_CODE = #{priorityLevelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="priorityLevelDepict != null" >
+        PRIORITY_LEVEL_DEPICT = #{priorityLevelDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="patientId != null" >
+        PATIENT_ID = #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="identityNo != null" >
+        IDENTITY_NO = #{identityNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="openBillTime != null" >
+        OPEN_BILL_TIME = #{openBillTime,jdbcType=VARCHAR},
+      </if>
+      <if test="openBillDoctorCode != null" >
+        OPEN_BILL_DOCTOR_CODE = #{openBillDoctorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="openBillDoctorName != null" >
+        OPEN_BILL_DOCTOR_NAME = #{openBillDoctorName,jdbcType=VARCHAR},
+      </if>
+      <if test="openDeptId != null" >
+        OPEN_DEPT_ID = #{openDeptId,jdbcType=VARCHAR},
+      </if>
+      <if test="openDeptName != null" >
+        OPEN_DEPT_NAME = #{openDeptName,jdbcType=VARCHAR},
+      </if>
+      <if test="auditTime != null" >
+        AUDIT_TIME = #{auditTime,jdbcType=VARCHAR},
+      </if>
+      <if test="auditPersonId != null" >
+        AUDIT_PERSON_ID = #{auditPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="auditPersonName != null" >
+        AUDIT_PERSON_NAME = #{auditPersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="deptCode != null" >
+        DEPT_CODE = #{deptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="deptDepict != null" >
+        DEPT_DEPICT = #{deptDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="inpatientAreaCode != null" >
+        INPATIENT_AREA_CODE = #{inpatientAreaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="inpatientAreaName != null" >
+        INPATIENT_AREA_NAME = #{inpatientAreaName,jdbcType=VARCHAR},
+      </if>
+      <if test="wardCode != null" >
+        WARD_CODE = #{wardCode,jdbcType=VARCHAR},
+      </if>
+      <if test="wardName != null" >
+        WARD_NAME = #{wardName,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalBedCode != null" >
+        HOSPITAL_BED_CODE = #{hospitalBedCode,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalBedName != null" >
+        HOSPITAL_BED_NAME = #{hospitalBedName,jdbcType=VARCHAR},
+      </if>
+      <if test="diagnosisInfo != null" >
+        DIAGNOSIS_INFO = #{diagnosisInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="diagnosisCode != null" >
+        DIAGNOSIS_CODE = #{diagnosisCode,jdbcType=VARCHAR},
+      </if>
+      <if test="diagnosisDepict != null" >
+        DIAGNOSIS_DEPICT = #{diagnosisDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="inpatientNo != null" >
+        INPATIENT_NO = #{inpatientNo,jdbcType=VARCHAR},
+      </if>
+      <if test="outpatientNo != null" >
+        OUTPATIENT_NO = #{outpatientNo,jdbcType=VARCHAR},
+      </if>
+      <if test="visitTypeCode != null" >
+        VISIT_TYPE_CODE = #{visitTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="visitTypeDepict != null" >
+        VISIT_TYPE_DEPICT = #{visitTypeDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="admissionTime != null" >
+        ADMISSION_TIME = #{admissionTime,jdbcType=VARCHAR},
+      </if>
+      <if test="medicareTypeId != null" >
+        MEDICARE_TYPE_ID = #{medicareTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="medicareTypeDepict != null" >
+        MEDICARE_TYPE_DEPICT = #{medicareTypeDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="inpatientFrequency != null" >
+        INPATIENT_FREQUENCY = #{inpatientFrequency,jdbcType=VARCHAR},
+      </if>
+      <if test="aboBloodTypeCode != null" >
+        ABO_BLOOD_TYPE_CODE = #{aboBloodTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="aboBloodTypeDepict != null" >
+        ABO_BLOOD_TYPE_DEPICT = #{aboBloodTypeDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="rhBloodTypeCode != null" >
+        RH_BLOOD_TYPE_CODE = #{rhBloodTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="rhBloodTypeDepict != null" >
+        RH_BLOOD_TYPE_DEPICT = #{rhBloodTypeDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="height != null" >
+        HEIGHT = #{height,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null" >
+        WEIGHT = #{weight,jdbcType=VARCHAR},
+      </if>
+      <if test="systolicPressure != null" >
+        SYSTOLIC_PRESSURE = #{systolicPressure,jdbcType=VARCHAR},
+      </if>
+      <if test="diastolicPressure != null" >
+        DIASTOLIC_PRESSURE = #{diastolicPressure,jdbcType=VARCHAR},
+      </if>
+      <if test="temperature != null" >
+        TEMPERATURE = #{temperature,jdbcType=VARCHAR},
+      </if>
+      <if test="pulse != null" >
+        PULSE = #{pulse,jdbcType=VARCHAR},
+      </if>
+      <if test="requestAboBloodTypeCode != null" >
+        REQUEST_ABO_BLOOD_TYPE_CODE = #{requestAboBloodTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="requestAboBloodTypeDepict != null" >
+        REQUEST_ABO_BLOOD_TYPE_DEPICT = #{requestAboBloodTypeDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="requestRhBloodTypeCode != null" >
+        REQUEST_RH_BLOOD_TYPE_CODE = #{requestRhBloodTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="requestRhBloodTypeDepict != null" >
+        REQUEST_RH_BLOOD_TYPE_DEPICT = #{requestRhBloodTypeDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodSampling != null" >
+        BLOOD_SAMPLING = #{bloodSampling,jdbcType=VARCHAR},
+      </if>
+      <if test="placeBloodAddress != null" >
+        PLACE_BLOOD_ADDRESS = #{placeBloodAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodTransfusionPusrposes != null" >
+        BLOOD_TRANSFUSION_PUSRPOSES = #{bloodTransfusionPusrposes,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodTransfusionNature != null" >
+        BLOOD_TRANSFUSION_NATURE = #{bloodTransfusionNature,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodTransfusionEmergency != null" >
+        BLOOD_TRANSFUSION_EMERGENCY = #{bloodTransfusionEmergency,jdbcType=VARCHAR},
+      </if>
+      <if test="medicalHistoryInformation != null" >
+        MEDICAL_HISTORY_INFORMATION = #{medicalHistoryInformation,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodTransfusionHistory != null" >
+        BLOOD_TRANSFUSION_HISTORY = #{bloodTransfusionHistory,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodReactionHistory != null" >
+        BLOOD_REACTION_HISTORY = #{bloodReactionHistory,jdbcType=VARCHAR},
+      </if>
+      <if test="drugAllergyHistory != null" >
+        DRUG_ALLERGY_HISTORY = #{drugAllergyHistory,jdbcType=VARCHAR},
+      </if>
+      <if test="pregnancy != null" >
+        PREGNANCY = #{pregnancy,jdbcType=VARCHAR},
+      </if>
+      <if test="secondaryProduction != null" >
+        SECONDARY_PRODUCTION = #{secondaryProduction,jdbcType=VARCHAR},
+      </if>
+      <if test="otherMedicalHistory != null" >
+        OTHER_MEDICAL_HISTORY = #{otherMedicalHistory,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        REMARKS = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodUnit != null" >
+        BLOOD_UNIT = #{bloodUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="blood != null" >
+        BLOOD = #{blood,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hiupStatus != null" >
+        HIUP_STATUS = #{hiupStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="hiupInfo != null" >
+        HIUP_INFO = #{hiupInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="bingshi != null" >
+        BINGSHI = #{bingshi,jdbcType=VARCHAR},
+      </if>
+      <if test="zhengzhuang != null" >
+        ZHENGZHUANG = #{zhengzhuang,jdbcType=VARCHAR},
+      </if>
+      <if test="specimenCode != null" >
+        SPECIMEN_CODE = #{specimenCode,jdbcType=VARCHAR},
+      </if>
+      <if test="specimenDesc != null" >
+        SPECIMEN_DESC = #{specimenDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="additive != null" >
+        ADDITIVE = #{additive,jdbcType=VARCHAR},
+      </if>
+      <if test="specimenTime != null" >
+        SPECIMEN_TIME = #{specimenTime,jdbcType=VARCHAR},
+      </if>
+      <if test="specimenEffectivetime != null" >
+        SPECIMEN_EFFECTIVETIME = #{specimenEffectivetime,jdbcType=VARCHAR},
+      </if>
+      <if test="healthCard != null" >
+        HEALTH_CARD = #{healthCard,jdbcType=VARCHAR},
+      </if>
+      <if test="healthSeq != null" >
+        HEALTH_SEQ = #{healthSeq,jdbcType=VARCHAR},
+      </if>
+      <if test="observationEventcriterion != null" >
+        OBSERVATION_EVENTCRITERION = #{observationEventcriterion,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where  REQUEST_NO = #{requestNo,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectBySelective" parameterType="map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from REQUEST_BLOOD_TRANSFUSION
+    where 1=1
+    <if test="requestNo != null">
+      AND REQUEST_NO = #{requestNo,jdbcType=VARCHAR}
+    </if>
+    <if test="inpatientNo != null">
+      AND  INPATIENT_NO = #{inpatientNo,jdbcType=VARCHAR}
+    </if>
+    <if test="outpatientNo != null">
+      AND OUTPATIENT_NO = #{outpatientNo,jdbcType=VARCHAR}
+    </if>
+    <if test="openBillTimeLow != null">
+      <![CDATA[AND  OPEN_BILL_TIME >= #{openBillTimeLow,jdbcType=VARCHAR}]]>
+    </if>
+    <if test="openBillTimeHigh != null">
+      <![CDATA[ AND  OPEN_BILL_TIME <= #{openBillTimeHigh,jdbcType=VARCHAR}]]>
+    </if>
+    <if test="openBillDoctorCode != null">
+      AND OPEN_BILL_DOCTOR_CODE = #{openBillDoctorCode,jdbcType=VARCHAR}
+    </if>
+    <if test="identityNo != null">
+      AND  IDENTITY_NO = #{identityNo,jdbcType=VARCHAR}
+    </if>
+    <if test="patientId != null">
+      AND PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+    </if>
+  </select>
+</mapper>

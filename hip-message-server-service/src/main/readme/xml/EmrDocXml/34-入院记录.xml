@@ -1,0 +1,750 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ClinicalDocument xmlns="urn:hl7-org:v3" xmlns:mif="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:hl7-org:v3 ..\sdschemas\SDA.xsd"> 
+	<!--********************************************************CDA Header********************************************************--> 
+  <realmCode code="CN"/>  
+  <typeId root="2.16.840.1.113883.1.3" extension="POCD_MT000040"/>  
+  <templateId root="2.16.156.10011.2.1.1.54"/>  
+  <!-- 文档流水号 -->  
+  <id root="2.16.156.10011.1.1" extension="RN001"/>  
+  <code code="C0034" codeSystem="2.16.156.10011.2.4" codeSystemName="卫生信息共享文档编码体系"/>  
+  <title>入院记录</title>  
+  <!-- 文档机器生成时间 -->  
+  <effectiveTime value="20121024154823"/>  
+  <confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25" codeSystemName="Confidentiality" displayName="正常访问保密级别"/>  
+  <languageCode code="zh-CN"/>  
+  <setId/>  
+  <versionNumber/>  
+  <!--文档记录对象（患者） [1..*] contextControlCode="OP"表示本信息可以被重载-->  
+  <recordTarget typeCode="RCT" contextControlCode="OP"> 
+    <patientRole classCode="PAT"> 
+      <!--住院号标识-->  
+      <id root="2.16.156.10011.1.12" extension="HA201102113366666"/>  
+      <!-- 现住址 -->  
+      <addr use="H"> 
+        <houseNumber>xx号xx小区xx栋xx单元</houseNumber>  
+        <streetName>xx大道</streetName>  
+        <township>xx乡镇</township>  
+        <county>xx区</county>  
+        <city>xx市</city>  
+        <state>xx省</state> 
+      </addr>  
+      <patient classCode="PSN" determinerCode="INSTANCE"> 
+        <!--患者身份证号-->  
+        <id root="2.16.156.10011.1.3" extension="ID420106201101011919"/>  
+        <name>李患者</name>  
+        <administrativeGenderCode code="1" displayName="男性" codeSystem="2.16.156.10011.2.3.3.4" codeSystemName="生理性别代码表（GB/T 2261.1）"/>  
+        <maritalStatusCode code="10" displayName="未婚" codeSystem="2.16.156.10011.2.3.3.5" codeSystemName="婚姻状况代码表（GB/T 2261.2）"/>  
+        <ethnicGroupCode code="01" displayName="汉族" codeSystem="2.16.156.10011.2.3.3.3" codeSystemName="民族类别代码表（GB/T 3304）"/>  
+        <!-- 年龄 -->  
+        <age unit="岁" value="24"/>  
+        <!--职业状况-->  
+        <occupation> 
+          <occupationCode code="11" displayName="国家公务员" codeSystem="2.16.156.10011.2.3.3.13" codeSystemName="从业状况（个人身体）代码表（GB/T 2261.4）"/> 
+        </occupation> 
+      </patient> 
+    </patientRole> 
+  </recordTarget>  
+  <!-- 文档创作者 -->  
+  <author typeCode="AUT" contextControlCode="OP"> 
+    <time xsi:type="TS" value="20110404"/>  
+    <assignedAuthor classCode="ASSIGNED"> 
+      <id root="2.16.156.10011.1.7" extension="234234234"/>  
+      <assignedPerson> 
+        <name>李医生</name> 
+      </assignedPerson> 
+    </assignedAuthor> 
+  </author>  
+  <!-- 病史陈述者 -->  
+  <informant> 
+    <assignedEntity> 
+      <id root="2.16.156.10011.1.3" extension="身份证号码"/>  
+      <!--陈述者与患者的关系代码-->  
+      <code code="1" displayName="配偶" codeSystem="2.16.156.10011.2.3.3.8" codeSystemName="  家庭关系代码表（GB/T 4761）"/>  
+      <assignedPerson> 
+        <name>王陈述</name> 
+      </assignedPerson> 
+    </assignedEntity> 
+  </informant>  
+  <!-- 保管机构 -->  
+  <custodian typeCode="CST"> 
+    <assignedCustodian classCode="ASSIGNED"> 
+      <representedCustodianOrganization classCode="ORG" determinerCode="INSTANCE"> 
+        <id root="2.16.156.10011.1.5" extension="医疗卫生机构编号"/>  
+        <name>xx医院</name> 
+      </representedCustodianOrganization> 
+    </assignedCustodian> 
+  </custodian>  
+  <!-- 最终审核者签名 -->  
+  <legalAuthenticator> 
+    <time/>  
+    <signatureCode/>  
+    <assignedEntity> 
+      <id root="2.16.156.10011.1.4" extension="001"/>  
+      <code displayName="主任医师"/>  
+      <assignedPerson> 
+        <name>李主任</name> 
+      </assignedPerson> 
+    </assignedEntity> 
+  </legalAuthenticator>  
+  <!-- 接诊医师签名 -->  
+  <authenticator> 
+    <time/>  
+    <signatureCode/>  
+    <assignedEntity> 
+      <id root="2.16.156.10011.1.4" extension="002"/>  
+      <code displayName="接诊医师"/>  
+      <assignedPerson> 
+        <name>李接诊</name> 
+      </assignedPerson> 
+    </assignedEntity> 
+  </authenticator>  
+  <!--住院医师签名-->  
+  <authenticator> 
+    <time/>  
+    <signatureCode/>  
+    <assignedEntity> 
+      <id root="2.16.156.10011.1.4" extension="003"/>  
+      <code displayName="住院医师"/>  
+      <assignedPerson> 
+        <name>李住院</name> 
+      </assignedPerson> 
+    </assignedEntity> 
+  </authenticator>  
+  <!--主治医师签名-->  
+  <authenticator> 
+    <time/>  
+    <signatureCode/>  
+    <assignedEntity> 
+      <id root="2.16.156.10011.1.4" extension="004"/>  
+      <code displayName="主治医师"/>  
+      <assignedPerson> 
+        <name>李主治</name> 
+      </assignedPerson> 
+    </assignedEntity> 
+  </authenticator>  
+  <relatedDocument typeCode="RPLC"> 
+    <parentDocument> 
+      <id/>  
+      <setId/>  
+      <versionNumber/> 
+    </parentDocument> 
+  </relatedDocument>  
+  <!-- 病床号、病房、病区、科室和医院的关联 -->  
+  <componentOf> 
+    <encompassingEncounter> 
+      <!-- 入院日期时间 DE06.00.092.00	-->  
+      <effectiveTime value="20121112102325"/>  
+      <location> 
+        <healthCareFacility> 
+          <serviceProviderOrganization> 
+            <asOrganizationPartOf classCode="PART"> 
+              <!-- DE01.00.026.00病床号 -->  
+              <wholeOrganization classCode="ORG" determinerCode="INSTANCE"> 
+                <id root="2.16.156.10011.1.22" extension="001"/>  
+                <name>1床</name>  
+                <!-- DE01.00.019.00病房号 -->  
+                <asOrganizationPartOf classCode="PART"> 
+                  <wholeOrganization classCode="ORG" determinerCode="INSTANCE"> 
+                    <id root="2.16.156.10011.1.21" extension="001"/>  
+                    <name>205室</name>  
+                    <!-- DE08.10.026.00科室名称 -->  
+                    <asOrganizationPartOf classCode="PART"> 
+                      <wholeOrganization classCode="ORG" determinerCode="INSTANCE"> 
+                        <id root="2.16.156.10011.1.26" extension="001"/>  
+                        <name>呼吸内科</name>  
+                        <!-- DE08.10.054.00病区名称 -->  
+                        <asOrganizationPartOf classCode="PART"> 
+                          <wholeOrganization classCode="ORG" determinerCode="INSTANCE"> 
+                            <id root="2.16.156.10011.1.27" extension="001"/>  
+                            <name>1病区</name>  
+                            <!--XXX医院 -->  
+                            <asOrganizationPartOf classCode="PART"> 
+                              <wholeOrganization classCode="ORG" determinerCode="INSTANCE"> 
+                                <id root="2.16.156.10011.1.5" extension="001"/>  
+                                <name>XXX医院</name> 
+                              </wholeOrganization> 
+                            </asOrganizationPartOf> 
+                          </wholeOrganization> 
+                        </asOrganizationPartOf> 
+                      </wholeOrganization> 
+                    </asOrganizationPartOf> 
+                  </wholeOrganization> 
+                </asOrganizationPartOf> 
+              </wholeOrganization> 
+            </asOrganizationPartOf> 
+          </serviceProviderOrganization> 
+        </healthCareFacility> 
+      </location> 
+    </encompassingEncounter> 
+  </componentOf>  
+  <!--********************************************************文档体Body********************************************************-->
+  <component> 
+    <structuredBody> 
+      <!--主诉章节-->  
+      <component> 
+        <section> 
+          <code code="10154-3" displayName="CHIEF COMPLAINT" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>  
+          <text/>  
+          <!--主诉条目-->  
+          <entry> 
+            <observation classCode="OBS" moodCode="EVN"> 
+              <code code="DE04.01.119.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="主诉"/>  
+              <value xsi:type="ST">对患者本次疾病相关的主要症状及其持续时间的描述，一般由患者本人或监护人描述</value> 
+            </observation> 
+          </entry> 
+        </section> 
+      </component>  
+      <!--现病史章节-->  
+      <component> 
+        <section> 
+          <code code="10164-2" displayName="HISTORY OF PRESENT ILLNESS" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>  
+          <text/>  
+          <!--现病史条目-->  
+          <entry> 
+            <observation classCode="OBS" moodCode="EVN"> 
+              <code code="DE02.10.071.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="现病史"/>  
+              <value xsi:type="ST">对患者当前所患疾病情况的详细描述</value> 
+            </observation> 
+          </entry> 
+        </section> 
+      </component>  
+      <!--既往史章节-->  
+      <component> 
+        <section> 
+          <code code="11348-0" displayName="HISTORY OF PAST ILLNESS" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>  
+          <text/>  
+          <!--一般健康状况标志-->  
+          <entry> 
+            <observation classCode="OBS" moodCode="EVN"> 
+              <code code="DE05.10.031.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="一般健康状况标志"/>  
+              <value xsi:type="BL" value="false"/>  
+              <!--疾病史（含外伤）-->  
+              <entryRelationship typeCode="COMP"> 
+                <observation classCode="OBS" moodCode="EVN"> 
+                  <code code="DE02.10.026.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="疾病史（含外伤）"/>  
+                  <value xsi:type="ST">对患者既往健康状况和疾病（含外伤）的详细描述</value> 
+                </observation> 
+              </entryRelationship> 
+            </observation> 
+          </entry>  
+          <!--患者传染性标志-->  
+          <entry> 
+            <observation classCode="OBS" moodCode="EVN"> 
+              <code code="DE05.10.119.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="患者传染性标志"/>  
+              <value xsi:type="BL" value="true"/>  
+              <!--传染病史-->  
+              <entryRelationship typeCode="COMP"> 
+                <observation classCode="OBS" moodCode="EVN"> 
+                  <code code="DE02.10.008.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="传染病史"/>  
+                  <value xsi:type="ST">患者既往所患各种急性或慢性传染性疾病 名称的详细描述</value> 
+                </observation> 
+              </entryRelationship> 
+            </observation> 
+          </entry>  
+          <!--婚育史条目-->  
+          <entry> 
+            <observation classCode="OBS" moodCode="EVN"> 
+              <code code="DE02.10.098.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="婚育史"/>  
+              <value xsi:type="ST">对患者婚育史的详细描述</value> 
+            </observation> 
+          </entry>  
+          <!--过敏史条目-->  
+          <entry> 
+            <observation classCode="OBS" moodCode="EVN"> 
+              <code code="DE02.10.022.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="过敏史"/>  
+              <value xsi:type="ST">患者既往发生过敏情况的详细描述</value> 
+            </observation> 
+          </entry>  
+          <!--手术史条目-->  
+          <entry> 
+            <observation classCode="OBS" moodCode="EVN"> 
+              <code code="DE02.10.061.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="手术史"/>  
+              <value xsi:type="ST">对患者既往接受手术/操作经历的详细描述</value> 
+            </observation> 
+          </entry> 
+        </section> 
+      </component>  
+      <!--预防免疫史章节-->  
+      <component> 
+        <section> 
+          <code code="11369-6" displayName="HISTORY OF IMMUNIZATIONS" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>  
+          <text/>  
+          <entry> 
+            <observation classCode="OBS" moodCode="EVN"> 
+              <code code="DE02.10.101.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="预防接种史"/>  
+              <value xsi:type="ST">与患者预防接种情况的详细描述</value> 
+            </observation> 
+          </entry> 
+        </section> 
+      </component>  
+      <!--输血章节-->  
+      <component> 
+        <section> 
+          <code code="56836-0" displayName="History of blood transfusion" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>  
+          <text/>  
+          <!--输血史条目-->  
+          <entry> 
+            <observation classCode="OBS" moodCode="EVN"> 
+              <code code="DE02.10.100.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="输血史"/>  
+              <value xsi:type="ST">对患者既往输血史的详细描述</value> 
+            </observation> 
+          </entry> 
+        </section> 
+      </component>  
+      <!--个人史章节-->  
+      <component> 
+        <section> 
+          <code code="29762-2" displayName="Social history" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>  
+          <text/>  
+          <!--个人史条目-->  
+          <entry> 
+            <observation classCode="OBS" moodCode="EVN"> 
+              <code code="DE02.10.097.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="个人史"/>  
+              <value xsi:type="ST">患者个人生活习惯及有无烟、酒、药物等嗜好，职业 与工作条件及有无工业毒物、粉尘、放射性物质接触史，有无冶游史的描述</value> 
+            </observation> 
+          </entry> 
+        </section> 
+      </component>  
+      <!--月经史章节-->  
+      <component> 
+        <section> 
+          <code code="49033-4" displayName="Menstrual History" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>  
+          <text/>  
+          <!--月经史条目-->  
+          <entry> 
+            <observation classCode="OBS" moodCode="EVN"> 
+              <code code="DE02.10.102.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="月经史"/>  
+              <value xsi:type="ST">对患者月经史的详细描述</value> 
+            </observation> 
+          </entry> 
+        </section> 
+      </component>  
+      <!--家族史章节-->  
+      <component> 
+        <section> 
+          <code code="10157-6" displayName="HISTORY OF FAMILY MEMBER DISEASES" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>  
+          <text/>  
+          <!--家族史条目-->  
+          <entry> 
+            <observation classCode="OBS" moodCode="EVN"> 
+              <code code="DE02.10.103.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="家族史"/>  
+              <value xsi:type="ST">患者3代以内有血缘关系的家族成员中所患遗传疾病 史的描述</value> 
+            </observation> 
+          </entry> 
+        </section> 
+      </component>  
+      <!--生命体征章节-->  
+      <component> 
+        <section> 
+          <code code="8716-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="VITAL SIGNS"/>  
+          <text/>  
+          <!--体格检查-体温（℃）-->  
+          <entry> 
+            <observation classCode="OBS" moodCode="EVN"> 
+              <code code="DE04.10.186.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="体温（℃）"/>  
+              <value xsi:type="PQ" value="36" unit="℃"/> 
+            </observation> 
+          </entry>  
+          <!--体格检查-脉率（次/min）-->  
+          <entry> 
+            <observation classCode="OBS" moodCode="EVN"> 
+              <code code="DE04.10.118.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="脉率（次/min）"/>  
+              <value xsi:type="PQ" value="70" unit="次/min"/> 
+            </observation> 
+          </entry>  
+          <!--体格检查-呼吸频率（次/min）-->  
+          <entry> 
+            <observation classCode="OBS" moodCode="EVN"> 
+              <code code="DE04.10.082.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="呼吸频率（次/min）"/>  
+              <value xsi:type="PQ" value="20" unit="次/min"/> 
+            </observation> 
+          </entry>  
+          <!--体格检查-血压（mmHg）-->  
+          <entry> 
+            <organizer classCode="BATTERY" moodCode="EVN"> 
+              <code displayName="血压"/>  
+              <statusCode/>  
+              <component> 
+                <observation classCode="OBS" moodCode="EVN"> 
+                  <code code="DE04.10.174.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="收缩压"/>  
+                  <value xsi:type="PQ" value="120" unit="mmHg"/> 
+                </observation> 
+              </component>  
+              <component> 
+                <observation classCode="OBS" moodCode="EVN"> 
+                  <code code="DE04.10.176.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="舒张压"/>  
+                  <value xsi:type="PQ" value="60" unit="mmHg"/> 
+                </observation> 
+              </component> 
+            </organizer> 
+          </entry>  
+          <!--体格检查-身高（cm）-->  
+          <entry> 
+            <observation classCode="OBS" moodCode="EVN"> 
+              <code code="DE04.10.167.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="身高（cm）"/>  
+              <value xsi:type="PQ" value="170" unit="cm"/> 
+            </observation> 
+          </entry>  
+          <!--体格检查-体重（kg）-->  
+          <entry> 
+            <observation classCode="OBS" moodCode="EVN"> 
+              <code code="DE04.10.188.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="体重（kg）"/>  
+              <value xsi:type="PQ" value="60" unit="kg"/> 
+            </observation> 
+          </entry> 
+        </section> 
+      </component>  
+      <!--体格检查章节-->  
+      <component> 
+        <section> 
+          <code code="29545-1" displayName="PHYSICAL EXAMINATION" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>  
+          <text/>  
+          <!--体格检查-一般状况检查结果-->  
+          <entry> 
+            <observation classCode="OBS" moodCode="EVN"> 
+              <code code="DE04.10.219.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="一般状况检查结果"/>  
+              <value xsi:type="ST">对患者一般状况检查结果的详细描述，包括其发育状 况、营养状况、体味、步态、面容与表情、意识，检查能否合作等等</value> 
+            </observation> 
+          </entry>  
+          <!--体格检查-皮肤和黏膜检查结果-->  
+          <entry> 
+            <observation classCode="OBS" moodCode="EVN"> 
+              <code code="DE04.10.126.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="皮肤和黏膜检查结果"/>  
+              <value xsi:type="ST">对患者皮肤和黏膜检查结果的详细描述</value> 
+            </observation> 
+          </entry>  
+          <!--体格检查-全身浅表淋巴结检查结果-->  
+          <entry> 
+            <observation classCode="OBS" moodCode="EVN"> 
+              <code code="DE04.10.114.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="全身浅表淋巴结检查结果"/>  
+              <value xsi:type="ST">对全身浅表淋巴结检查结果的详细描述</value> 
+            </observation> 
+          </entry>  
+          <!--体格检查-头部及其器官检查结果-->  
+          <entry> 
+            <observation classCode="OBS" moodCode="EVN"> 
+              <code code="DE04.10.261.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="头部及其器官检查结果"/>  
+              <value xsi:type="ST">对患者头部及其器官检查结果的详细描述</value> 
+            </observation> 
+          </entry>  
+          <!--体格检查-颈部检查结果-->  
+          <entry> 
+            <observation classCode="OBS" moodCode="EVN"> 
+              <code code="DE04.10.255.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="颈部检查结果"/>  
+              <value xsi:type="ST">对患者颈部检查结果的详细描述</value> 
+            </observation> 
+          </entry>  
+          <!--体格检查-胸部检查结果-->  
+          <entry> 
+            <observation classCode="OBS" moodCode="EVN"> 
+              <code code="DE04.10.263.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="胸部检查结果"/>  
+              <value xsi:type="ST">对患者胸部（胸廓、肺部、心脏、血管）检查结果的详细描述，包括视触叩听的检查结果</value> 
+            </observation> 
+          </entry>  
+          <!--体格检查-腹部检查结果-->  
+          <entry> 
+            <observation classCode="OBS" moodCode="EVN"> 
+              <code code="DE04.10.046.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="腹部检查结果"/>  
+              <value xsi:type="ST">对患者腹部（肝脾等）检查结果的详细描述，包括视 触叩听的检查结果</value> 
+            </observation> 
+          </entry>  
+          <!--体格检查-肛门指诊检查结果-->  
+          <entry> 
+            <observation classCode="OBS" moodCode="EVN"> 
+              <code code="DE04.10.065.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="肛门指诊检查结果描述"/>  
+              <value xsi:type="ST">对患者肛门指诊检查结果的详细描述</value> 
+            </observation> 
+          </entry>  
+          <!--体格检查-外生殖器检查结果-->  
+          <entry> 
+            <observation classCode="OBS" moodCode="EVN"> 
+              <code code="DE04.10.195.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="外生殖器检查结果"/>  
+              <value xsi:type="ST">对患者外生殖器检查结果的详细描述</value> 
+            </observation> 
+          </entry>  
+          <!--体格检查-脊柱检查结果-->  
+          <entry> 
+            <observation classCode="OBS" moodCode="EVN"> 
+              <code code="DE04.10.093.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="脊柱检查结果"/>  
+              <value xsi:type="ST">对患者脊柱检查结果的详细描述</value> 
+            </observation> 
+          </entry>  
+          <!--体格检查-四肢检查结果-->  
+          <entry> 
+            <observation classCode="OBS" moodCode="EVN"> 
+              <code code="DE04.10.179.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="四肢检查结果"/>  
+              <value xsi:type="ST">对患者四肢检查结果的详细描述</value> 
+            </observation> 
+          </entry>  
+          <!--体格检查-神经系统检查结果-->  
+          <entry> 
+            <observation classCode="OBS" moodCode="EVN"> 
+              <code code="DE05.10.149.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="神经系统检查结果"/>  
+              <value xsi:type="ST">对患者神经系统检查结果的详细描述</value> 
+            </observation> 
+          </entry>  
+          <!--专科情况-->  
+          <entry> 
+            <observation classCode="OBS" moodCode="EVN"> 
+              <code code="DE08.10.061.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="专科情况"/>  
+              <value xsi:type="ST">根据专科需要对患者进行专科特殊检查结果的详细 描述</value> 
+            </observation> 
+          </entry> 
+        </section> 
+      </component>  
+      <!--辅助检查章节-->  
+      <component> 
+        <section> 
+          <code displayName="辅助检查"/>  
+          <text/>  
+          <!--辅助检查结果条目-->  
+          <entry> 
+            <observation classCode="OBS" moodCode="EVN"> 
+              <code code="DE04.30.009.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="辅助检查结果"/>  
+              <value xsi:type="ST">患者辅助检查结果的详细描述</value> 
+            </observation> 
+          </entry> 
+        </section> 
+      </component>  
+	  <!--********************************************************主要健康问题章节********************************************************-->
+      <component> 
+        <section> 
+          <code code="11450-4" displayName="PROBLEM LIST" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>  
+          <text/>  
+          <!--陈述内容可靠标志-->  
+          <entry> 
+            <observation classCode="OBS" moodCode="EVN"> 
+              <code code="DE05.10.143.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="陈述内容可靠标志"/>  
+              <value xsi:type="BL" value="false"/> 
+            </observation> 
+          </entry>  
+          <!--初步诊断-西医条目-->  
+          <entry> 
+            <observation classCode="OBS" moodCode="EVN"> 
+              <code code="DE05.01.025.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="初步诊断-西医诊断名称"/>  
+              <!--初步诊断日期-->  
+              <effectiveTime value="20070531"/>  
+              <value xsi:type="ST">创伤性脑损伤</value>  
+              <entryRelationship typeCode="COMP"> 
+                <observation classCode="OBS" moodCode="EVN"> 
+                  <!--初步诊断-西医诊断编码-代码-->  
+                  <code code="DE05.01.024.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="初步诊断-西医诊断编码"/>  
+                  <value xsi:type="CD" code="S06.902" displayName="创伤性脑损  伤" codeSystem="2.16.156.10011.2.3.3.11.3" codeSystemName="诊断代码表（ICD-10）"/> 
+                </observation> 
+              </entryRelationship>  
+              <!--入院诊断顺位-->  
+              <entryRelationship typeCode="COMP"> 
+                <observation classCode="OBS" moodCode="EVN"> 
+                  <code code="DE05.01.080.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="入院诊断顺位"/>  
+                  <value xsi:type="INT" value="1"/> 
+                </observation> 
+              </entryRelationship> 
+            </observation> 
+          </entry>  
+          <!--中医“四诊”观察结果-->  
+          <entry> 
+            <observation classCode="OBS" moodCode="EVN"> 
+              <code code="DE02.10.028.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="中医“四诊”观察结果"/>  
+              <value xsi:type="ST">中医“四诊”观察结果的详细描述，包括望、闻、问、 切四诊内容</value> 
+            </observation> 
+          </entry>  
+          <!--初步诊断-中医条目-->  
+          <entry> 
+            <observation classCode="OBS" moodCode="EVN"> 
+              <code code="DE05.10.172.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="初步诊断-中医病名名称"/>  
+              <!--初步诊断日期-->  
+              <effectiveTime value="20070531"/>  
+              <value xsi:type="ST">内科病</value>  
+              <entryRelationship typeCode="COMP"> 
+                <observation classCode="OBS" moodCode="EVN"> 
+                  <!--初步诊断-中医诊断编码-代码-->  
+                  <code code="DE05.10.130.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="初步诊断-中医病名代码"/>  
+                  <value xsi:type="CD" code="BN" displayName="内科病" codeSystem="2.16.156.10011.2.3.3.14" codeSystemName="中医病证分类与代码表（GB/T 15657）"/> 
+                </observation> 
+              </entryRelationship>  
+              <entryRelationship typeCode="COMP"> 
+                <observation classCode="OBS" moodCode="EVN"> 
+                  <!--初步诊断-中医证候编码-名称-->  
+                  <code code="DE05.10.172.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="初步诊断-中医证候名称"/>  
+                  <value xsi:type="ST">火毒上攻证</value> 
+                </observation> 
+              </entryRelationship>  
+              <entryRelationship typeCode="COMP"> 
+                <observation classCode="OBS" moodCode="EVN"> 
+                  <!--初步诊断-中医证候编码-代码-->  
+                  <code code="DE05.10.130.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="初步诊断-中医证候代码"/>  
+                  <value xsi:type="CD" code="ZBUD90" displayName="火毒上攻证  " codeSystem="2.16.156.10011.2.3.3.14" codeSystemName="中医病证分类与代码表（GB/T 15657）"/> 
+                </observation> 
+              </entryRelationship>  
+              <!--入院诊断顺位-->  
+              <entryRelationship typeCode="COMP"> 
+                <observation classCode="OBS" moodCode="EVN"> 
+                  <code code="DE05.01.080.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="入院诊断顺位"/>  
+                  <value xsi:type="INT" value="1"/> 
+                </observation> 
+              </entryRelationship> 
+            </observation> 
+          </entry>  
+          <!--修正诊断-西医条目-->  
+          <entry> 
+            <observation classCode="OBS" moodCode="EVN"> 
+              <code code="DE05.01.025.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="修正诊断-西医诊断名称"/>  
+              <!--修正诊断日期-->  
+              <effectiveTime value="20070531"/>  
+              <value xsi:type="ST">创伤性脑损伤</value>  
+              <entryRelationship typeCode="COMP"> 
+                <observation classCode="OBS" moodCode="EVN"> 
+                  <!--修正诊断-西医诊断编码-代码-->  
+                  <code code="DE05.01.024.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="修正诊断-西医诊断编码"/>  
+                  <value xsi:type="CD" code="S06.902" displayName="创伤性脑损伤" codeSystem="2.16.156.10011.2.3.3.11.3" codeSystemName="诊断代码表（ICD-10）"/> 
+                </observation> 
+              </entryRelationship>  
+              <!--入院诊断顺位-->  
+              <entryRelationship typeCode="COMP"> 
+                <observation classCode="OBS" moodCode="EVN"> 
+                  <code code="DE05.01.080.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="入院诊断顺位"/>  
+                  <value xsi:type="INT" value="1"/> 
+                </observation> 
+              </entryRelationship> 
+            </observation> 
+          </entry>  
+          <!--修正诊断-中医条目-->  
+          <entry> 
+            <observation classCode="OBS" moodCode="EVN"> 
+              <code code="DE05.10.172.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="修正诊断-中医病名名称"/>  
+              <!--修正诊断日期-->  
+              <effectiveTime value="20070531"/>  
+              <value xsi:type="ST">内科病</value>  
+              <entryRelationship typeCode="COMP"> 
+                <observation classCode="OBS" moodCode="EVN"> 
+                  <!--修正诊断-中医诊断编码-代码-->  
+                  <code code="DE05.10.130.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="修正诊断-中医病名代码"/>  
+                  <value xsi:type="CD" code="BN" displayName="内科病" codeSystem="2.16.156.10011.2.3.3.14" codeSystemName="中医病证分类与代码表（GB/T 15657）"/> 
+                </observation> 
+              </entryRelationship>  
+              <entryRelationship typeCode="COMP"> 
+                <observation classCode="OBS" moodCode="EVN"> 
+                  <!--修正诊断-中医证候编码-名称-->  
+                  <code code="DE05.10.172.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="修正诊断-中医证候名称"/>  
+                  <value xsi:type="ST">火毒上攻证</value> 
+                </observation> 
+              </entryRelationship>  
+              <entryRelationship typeCode="COMP"> 
+                <observation classCode="OBS" moodCode="EVN"> 
+                  <!--修正诊断-中医证候编码-代码-->  
+                  <code code="DE05.10.130.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="修正诊断-中医证候代码"/>  
+                  <value xsi:type="CD" code="ZBUD90" displayName="火毒上攻证         " codeSystem="2.16.156.10011.2.3.3.14" codeSystemName="中医病证分类与代码表（GB/T 15657）"/> 
+                </observation> 
+              </entryRelationship>  
+              <!--入院诊断顺位-->  
+              <entryRelationship typeCode="COMP"> 
+                <observation classCode="OBS" moodCode="EVN"> 
+                  <code code="DE05.01.080.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="入院诊断顺位"/>  
+                  <value xsi:type="INT" value="1"/> 
+                </observation> 
+              </entryRelationship> 
+            </observation> 
+          </entry>  
+          <!--确定诊断-西医条目-->  
+          <entry> 
+            <observation classCode="OBS" moodCode="EVN"> 
+              <code code="DE05.01.025.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="确定诊断-西医诊断名称"/>  
+              <!--确定诊断日期-->  
+              <effectiveTime value="20070531"/>  
+              <value xsi:type="ST">创伤性脑损伤</value>  
+              <entryRelationship typeCode="COMP"> 
+                <observation classCode="OBS" moodCode="EVN"> 
+                  <!--确定诊断-西医诊断编码-代码-->  
+                  <code code="DE05.01.024.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="确定诊断-西医诊断编码"/>  
+                  <value xsi:type="CD" code="S06.902" displayName="创伤性脑损  伤" codeSystem="2.16.156.10011.2.3.3.11.3" codeSystemName="诊断代码表（ICD-10）"/> 
+                </observation> 
+              </entryRelationship>  
+              <!--入院诊断顺位-->  
+              <entryRelationship typeCode="COMP"> 
+                <observation classCode="OBS" moodCode="EVN"> 
+                  <code code="DE05.01.080.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="入院诊断顺位"/>  
+                  <value xsi:type="INT" value="1"/> 
+                </observation> 
+              </entryRelationship> 
+            </observation> 
+          </entry>  
+          <!--确定诊断-中医条目-->  
+          <entry> 
+            <observation classCode="OBS" moodCode="EVN"> 
+              <code code="DE05.10.172.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="确定诊断-中医病名名称"/>  
+              <!--确定诊断日期-->  
+              <effectiveTime value="20070531"/>  
+              <value xsi:type="ST">内科病</value>  
+              <entryRelationship typeCode="COMP"> 
+                <observation classCode="OBS" moodCode="EVN"> 
+                  <!--确定诊断-中医诊断编码-代码-->  
+                  <code code="DE05.10.130.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="确定诊断-中医病名代码"/>  
+                  <value xsi:type="CD" code="BN" displayName="内科病" codeSystem="2.16.156.10011.2.3.3.14" codeSystemName="中医病证分类与代码表（GB/T 15657）"/> 
+                </observation> 
+              </entryRelationship>  
+              <entryRelationship typeCode="COMP"> 
+                <observation classCode="OBS" moodCode="EVN"> 
+                  <!--确定诊断-中医证候编码-名称-->  
+                  <code code="DE05.10.172.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="确定诊断-中医证候名称"/>  
+                  <value xsi:type="ST">火毒上攻证</value> 
+                </observation> 
+              </entryRelationship>  
+              <entryRelationship typeCode="COMP"> 
+                <observation classCode="OBS" moodCode="EVN"> 
+                  <!--确定诊断-中医证候编码-代码-->  
+                  <code code="DE05.10.130.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="确定诊断-中医证候代码"/>  
+                  <value xsi:type="CD" code="ZBUD90" displayName="火毒上攻证  " codeSystem="2.16.156.10011.2.3.3.14" codeSystemName="中医病证分类与代码表（GB/T 15657）"/> 
+                </observation> 
+              </entryRelationship>  
+              <!--入院诊断顺位-->  
+              <entryRelationship typeCode="COMP"> 
+                <observation classCode="OBS" moodCode="EVN"> 
+                  <code code="DE05.01.080.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="入院诊断顺位"/>  
+                  <value xsi:type="INT" value="1"/> 
+                </observation> 
+              </entryRelationship> 
+            </observation> 
+          </entry>  
+          <!--补充诊断-西医条目-->  
+          <entry> 
+            <observation classCode="OBS" moodCode="EVN"> 
+              <code code="DE05.01.025.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="补充诊断-西医诊断名称"/>  
+              <!--补充诊断日期-->  
+              <effectiveTime value="20070531"/>  
+              <value xsi:type="ST">创伤性脑损伤</value>  
+              <entryRelationship typeCode="COMP"> 
+                <observation classCode="OBS" moodCode="EVN"> 
+                  <!--补充诊断-西医诊断编码-代码-->  
+                  <code code="DE05.01.024.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="补充诊断-西医诊断编码"/>  
+                  <value xsi:type="CD" code="S06.902" displayName="创伤性脑损  伤" codeSystem="2.16.156.10011.2.3.3.11.3" codeSystemName="诊断代码表（ICD-10）"/> 
+                </observation> 
+              </entryRelationship>  
+              <!--入院诊断顺位-->  
+              <entryRelationship typeCode="COMP"> 
+                <observation classCode="OBS" moodCode="EVN"> 
+                  <code code="DE05.01.080.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="入院诊断顺位"/>  
+                  <value xsi:type="INT" value="1"/> 
+                </observation> 
+              </entryRelationship> 
+            </observation> 
+          </entry> 
+        </section> 
+      </component>  
+      <!--治疗计划章节-->  
+      <component> 
+        <section> 
+          <code code="18776-5" displayName="TREATMENT PLAN" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>  
+          <text/>  
+          <!--治则治法条目-->  
+          <entry> 
+            <observation classCode="OBS" moodCode="EVN"> 
+              <code code="DE06.00.300.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录" displayName="治则治法"/>  
+              <value xsi:type="ST">参照治则治法代码表（GB/T 16751.3-1997）</value> 
+            </observation> 
+          </entry> 
+        </section> 
+      </component> 
+    </structuredBody> 
+  </component> 
+</ClinicalDocument>

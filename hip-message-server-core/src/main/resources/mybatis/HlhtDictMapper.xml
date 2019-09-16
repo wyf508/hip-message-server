@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djhu.hiup.message.server.core.dao.IHlhtDictDao" >
+
+  <select id="queryStandardDict" resultType="java.util.Map">
+    select RANGE_VALUE, RANGE_VALUE_MEAN
+    from HLHT_DICT
+    where
+      CODESYSTEM = #{codeSystem}
+      and RANGE_NAME = #{rangeName}
+      <if test="code != null or code != '' or code != '-'">
+        and CODE = #{code}
+      </if>
+      and NAME = #{name}
+  </select>
+
+  <select id="queryNocodeDict" resultType="java.util.Map">
+    select RANGE_VALUE, RANGE_VALUE_MEAN
+    from HLHT_DICT
+    where
+    CODESYSTEM = #{codeSystem}
+    and RANGE_NAME = #{rangeName}
+    and NAME = #{name}
+  </select>
+
+  <select id="queryDeptDict" resultType="java.util.Map">
+    select RANGE_VALUE, RANGE_VALUE_MEAN
+    from HLHT_DICT
+    where
+    CODESYSTEM = #{codeSystem}
+    and DICT_NAME = #{dictName}
+    <if test="code != null or code != '' or code != '-'">
+      and CODE = #{code}
+    </if>
+    and NAME = #{name}
+  </select>
+
+  <select id="queryStandardDictForList" resultType="java.util.Map">
+    select RANGE_VALUE, RANGE_VALUE_MEAN
+    from HLHT_DICT
+    where
+    CODESYSTEM = #{codeSystem}
+    and RANGE_NAME = #{rangeName}
+    <if test="code != null or code != '' or code != '-'">
+      and CODE = #{code}
+    </if>
+    and NAME = #{name}
+  </select>
+
+    <select id="queryNocodeDictForList" resultType="java.util.Map">
+        select RANGE_VALUE, RANGE_VALUE_MEAN
+        from HLHT_DICT
+        where
+        CODESYSTEM = #{codeSystem}
+        and RANGE_NAME = #{rangeName}
+        and NAME = #{name}
+    </select>
+
+</mapper>

@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djhu.hiup.message.server.core.dao.IPersonnelDao" >
+  <resultMap id="BaseResultMap" type="com.djhu.hiup.message.server.core.model.Personnel" >
+    <id column="PK" property="pk" jdbcType="DECIMAL" />
+    <result column="MSG_ID" property="msgId" jdbcType="VARCHAR" />
+    <result column="MSG_CREATION_TIME" property="msgCreationTime" jdbcType="VARCHAR" />
+    <result column="RECEIVE_ID" property="receiveId" jdbcType="VARCHAR" />
+    <result column="SEND_ID" property="sendId" jdbcType="VARCHAR" />
+    <result column="HEALTH_CARE_PROVIDER_ID" property="healthCareProviderId" jdbcType="VARCHAR" />
+    <result column="JOB_CATEGORY_ID" property="jobCategoryId" jdbcType="VARCHAR" />
+    <result column="JOB_CATEGORY_NAME" property="jobCategoryName" jdbcType="VARCHAR" />
+    <result column="ROLE_EFFECTIVE_TIME_LOW" property="roleEffectiveTimeLow" jdbcType="VARCHAR" />
+    <result column="ROLE_EFFECTIVE_TIME_HIGH" property="roleEffectiveTimeHigh" jdbcType="VARCHAR" />
+    <result column="IDENTITY_NO" property="identityNo" jdbcType="VARCHAR" />
+    <result column="CERTIFICATES_TYPE_ID" property="certificatesTypeId" jdbcType="VARCHAR" />
+    <result column="CERTIFICATES_TYPE_DEPICT" property="certificatesTypeDepict" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="GENDER_ID" property="genderId" jdbcType="VARCHAR" />
+    <result column="GENDER_DEPICT" property="genderDepict" jdbcType="VARCHAR" />
+    <result column="DATE_OF_BIRTH" property="dateOfBirth" jdbcType="VARCHAR" />
+    <result column="DEPT_ID" property="deptId" jdbcType="VARCHAR" />
+    <result column="DEPT_NAME" property="deptName" jdbcType="VARCHAR" />
+    <result column="BIRTHPLACE" property="birthplace" jdbcType="VARCHAR" />
+    <result column="AUTHOR_CODE" property="authorCode" jdbcType="VARCHAR" />
+    <result column="AUTHOR_NAME" property="authorName" jdbcType="VARCHAR" />
+    <result column="AUTHOR_DEPT_ID" property="authorDeptId" jdbcType="VARCHAR" />
+    <result column="AUTHOR_DEPT_NAME" property="authorDeptName" jdbcType="VARCHAR" />
+    <result column="AUTHOR_DEPT_CONTACT_PERSON" property="authorDeptContactPerson" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="HIUP_STATUS" property="hiupStatus" jdbcType="VARCHAR" />
+    <result column="HIUP_INFO" property="hiupInfo" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    PK, MSG_ID, MSG_CREATION_TIME, RECEIVE_ID, SEND_ID, HEALTH_CARE_PROVIDER_ID, JOB_CATEGORY_ID, 
+    JOB_CATEGORY_NAME, ROLE_EFFECTIVE_TIME_LOW, ROLE_EFFECTIVE_TIME_HIGH, IDENTITY_NO, 
+    CERTIFICATES_TYPE_ID, CERTIFICATES_TYPE_DEPICT, NAME, GENDER_ID, GENDER_DEPICT, DATE_OF_BIRTH, 
+    DEPT_ID, DEPT_NAME, BIRTHPLACE, AUTHOR_CODE, AUTHOR_NAME, AUTHOR_DEPT_ID, AUTHOR_DEPT_NAME, 
+    AUTHOR_DEPT_CONTACT_PERSON, CREATE_TIME, UPDATE_TIME, HIUP_STATUS, HIUP_INFO
+  </sql>
+
+  <select id="selectCountBySelective" resultType="java.lang.Integer" parameterType="map"  >
+    select
+    count(*)
+    from PERSONNEL
+    where 1= 1
+    <if test="sendId != null and sendId != '' and sendId != 'null'">
+      AND SEND_ID = #{sendId,jdbcType=VARCHAR}
+    </if>
+    <if test="jobCategoryId != null and jobCategoryId != '' and jobCategoryId != 'null'">
+      AND JOB_CATEGORY_ID = #{jobCategoryId,jdbcType=VARCHAR}
+    </if>
+    <if test="healthCareProviderId != null and healthCareProviderId != '' and healthCareProviderId != 'null'">
+      AND HEALTH_CARE_PROVIDER_ID = #{healthCareProviderId,jdbcType=VARCHAR}
+    </if>
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from PERSONNEL
+    where PK = #{pk,jdbcType=DECIMAL}
+  </delete>
+
+  <insert id="insertSelective" parameterType="map"  >
+    insert into PERSONNEL
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      PK,
+      <if test="msgId != null" >
+        MSG_ID,
+      </if>
+      <if test="msgCreationTime != null" >
+        MSG_CREATION_TIME,
+      </if>
+      <if test="receiveId != null" >
+        RECEIVE_ID,
+      </if>
+      <if test="sendId != null" >
+        SEND_ID,
+      </if>
+      <if test="healthCareProviderId != null" >
+        HEALTH_CARE_PROVIDER_ID,
+      </if>
+      <if test="jobCategoryId != null" >
+        JOB_CATEGORY_ID,
+      </if>
+      <if test="jobCategoryName != null" >
+        JOB_CATEGORY_NAME,
+      </if>
+      <if test="roleEffectiveTimeLow != null" >
+        ROLE_EFFECTIVE_TIME_LOW,
+      </if>
+      <if test="roleEffectiveTimeHigh != null" >
+        ROLE_EFFECTIVE_TIME_HIGH,
+      </if>
+      <if test="identityNo != null" >
+        IDENTITY_NO,
+      </if>
+      <if test="certificatesTypeId != null" >
+        CERTIFICATES_TYPE_ID,
+      </if>
+      <if test="certificatesTypeDepict != null" >
+        CERTIFICATES_TYPE_DEPICT,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="genderId != null" >
+        GENDER_ID,
+      </if>
+      <if test="genderDepict != null" >
+        GENDER_DEPICT,
+      </if>
+      <if test="dateOfBirth != null" >
+        DATE_OF_BIRTH,
+      </if>
+      <if test="deptId != null" >
+        DEPT_ID,
+      </if>
+      <if test="deptName != null" >
+        DEPT_NAME,
+      </if>
+      <if test="birthplace != null" >
+        BIRTHPLACE,
+      </if>
+      <if test="authorCode != null" >
+        AUTHOR_CODE,
+      </if>
+      <if test="authorName != null" >
+        AUTHOR_NAME,
+      </if>
+      <if test="authorDeptId != null" >
+        AUTHOR_DEPT_ID,
+      </if>
+      <if test="authorDeptName != null" >
+        AUTHOR_DEPT_NAME,
+      </if>
+      <if test="authorDeptContactPerson != null" >
+        AUTHOR_DEPT_CONTACT_PERSON,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="hiupStatus != null" >
+        HIUP_STATUS,
+      </if>
+      <if test="hiupInfo != null" >
+        HIUP_INFO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      PERSONNEL_SEQ.NEXTVAL,
+      <if test="msgId != null" >
+        #{msgId,jdbcType=VARCHAR},
+      </if>
+      <if test="msgCreationTime != null" >
+        #{msgCreationTime,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveId != null" >
+        #{receiveId,jdbcType=VARCHAR},
+      </if>
+      <if test="sendId != null" >
+        #{sendId,jdbcType=VARCHAR},
+      </if>
+      <if test="healthCareProviderId != null" >
+        #{healthCareProviderId,jdbcType=VARCHAR},
+      </if>
+      <if test="jobCategoryId != null" >
+        #{jobCategoryId,jdbcType=VARCHAR},
+      </if>
+      <if test="jobCategoryName != null" >
+        #{jobCategoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="roleEffectiveTimeLow != null" >
+        #{roleEffectiveTimeLow,jdbcType=VARCHAR},
+      </if>
+      <if test="roleEffectiveTimeHigh != null" >
+        #{roleEffectiveTimeHigh,jdbcType=VARCHAR},
+      </if>
+      <if test="identityNo != null" >
+        #{identityNo,jdbcType=VARCHAR},
+      </if>
+      <if test="certificatesTypeId != null" >
+        #{certificatesTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="certificatesTypeDepict != null" >
+        #{certificatesTypeDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="genderId != null" >
+        #{genderId,jdbcType=VARCHAR},
+      </if>
+      <if test="genderDepict != null" >
+        #{genderDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="dateOfBirth != null" >
+        #{dateOfBirth,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId != null" >
+        #{deptId,jdbcType=VARCHAR},
+      </if>
+      <if test="deptName != null" >
+        #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="birthplace != null" >
+        #{birthplace,jdbcType=VARCHAR},
+      </if>
+      <if test="authorCode != null" >
+        #{authorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="authorName != null" >
+        #{authorName,jdbcType=VARCHAR},
+      </if>
+      <if test="authorDeptId != null" >
+        #{authorDeptId,jdbcType=VARCHAR},
+      </if>
+      <if test="authorDeptName != null" >
+        #{authorDeptName,jdbcType=VARCHAR},
+      </if>
+      <if test="authorDeptContactPerson != null" >
+        #{authorDeptContactPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hiupStatus != null" >
+        #{hiupStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="hiupInfo != null" >
+        #{hiupInfo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateBySelective" parameterType="map"  >
+    update PERSONNEL
+    <set >
+      <if test="msgId != null" >
+        MSG_ID = #{msgId,jdbcType=VARCHAR},
+      </if>
+      <if test="msgCreationTime != null" >
+        MSG_CREATION_TIME = #{msgCreationTime,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveId != null" >
+        RECEIVE_ID = #{receiveId,jdbcType=VARCHAR},
+      </if>
+      <if test="sendId != null" >
+        SEND_ID = #{sendId,jdbcType=VARCHAR},
+      </if>
+      <if test="healthCareProviderId != null" >
+        HEALTH_CARE_PROVIDER_ID = #{healthCareProviderId,jdbcType=VARCHAR},
+      </if>
+      <if test="jobCategoryId != null" >
+        JOB_CATEGORY_ID = #{jobCategoryId,jdbcType=VARCHAR},
+      </if>
+      <if test="jobCategoryName != null" >
+        JOB_CATEGORY_NAME = #{jobCategoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="roleEffectiveTimeLow != null" >
+        ROLE_EFFECTIVE_TIME_LOW = #{roleEffectiveTimeLow,jdbcType=VARCHAR},
+      </if>
+      <if test="roleEffectiveTimeHigh != null" >
+        ROLE_EFFECTIVE_TIME_HIGH = #{roleEffectiveTimeHigh,jdbcType=VARCHAR},
+      </if>
+      <if test="identityNo != null" >
+        IDENTITY_NO = #{identityNo,jdbcType=VARCHAR},
+      </if>
+      <if test="certificatesTypeId != null" >
+        CERTIFICATES_TYPE_ID = #{certificatesTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="certificatesTypeDepict != null" >
+        CERTIFICATES_TYPE_DEPICT = #{certificatesTypeDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="genderId != null" >
+        GENDER_ID = #{genderId,jdbcType=VARCHAR},
+      </if>
+      <if test="genderDepict != null" >
+        GENDER_DEPICT = #{genderDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="dateOfBirth != null" >
+        DATE_OF_BIRTH = #{dateOfBirth,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId != null" >
+        DEPT_ID = #{deptId,jdbcType=VARCHAR},
+      </if>
+      <if test="deptName != null" >
+        DEPT_NAME = #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="birthplace != null" >
+        BIRTHPLACE = #{birthplace,jdbcType=VARCHAR},
+      </if>
+      <if test="authorCode != null" >
+        AUTHOR_CODE = #{authorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="authorName != null" >
+        AUTHOR_NAME = #{authorName,jdbcType=VARCHAR},
+      </if>
+      <if test="authorDeptId != null" >
+        AUTHOR_DEPT_ID = #{authorDeptId,jdbcType=VARCHAR},
+      </if>
+      <if test="authorDeptName != null" >
+        AUTHOR_DEPT_NAME = #{authorDeptName,jdbcType=VARCHAR},
+      </if>
+      <if test="authorDeptContactPerson != null" >
+        AUTHOR_DEPT_CONTACT_PERSON = #{authorDeptContactPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hiupStatus != null" >
+        HIUP_STATUS = #{hiupStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="hiupInfo != null" >
+        HIUP_INFO = #{hiupInfo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where  SEND_ID = #{sendId,jdbcType=VARCHAR} AND
+    JOB_CATEGORY_ID = #{jobCategoryId,jdbcType=VARCHAR} and
+    HEALTH_CARE_PROVIDER_ID = #{healthCareProviderId,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectBySelective" parameterType="map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from personnel
+    where 1=1
+
+    <if test="genderId != null and genderId !='null'">
+      and GENDER_ID = #{genderId,jdbcType=VARCHAR}
+    </if>
+    <if test="genderDepict != null and genderDepict !='null'">
+      and GENDER_DEPICT = #{genderDepict,jdbcType=VARCHAR}
+    </if>
+    <if test="dateOfBirth != null and dateOfBirth !='null'">
+      AND DATE_OF_BIRTH = #{dateOfBirth,jdbcType=VARCHAR}
+    </if>
+    <if test="dateOfBirthLow != null and dateOfBirthLow !='null' ">
+      <![CDATA[ AND DATE_OF_BIRTH >= #{dateOfBirthLow,jdbcType=VARCHAR}]]>
+    </if>
+    <if test="dateOfBirthHigh != null and dateOfBirthHigh !='null'">
+      <![CDATA[AND DATE_OF_BIRTH <= #{dateOfBirthHigh,jdbcType=VARCHAR}]]>
+    </if>
+    <if test="healthCareProviderId != null and healthCareProviderId !='null' ">
+      AND HEALTH_CARE_PROVIDER_ID = #{healthCareProviderId,jdbcType=VARCHAR}
+    </if>
+    <if test="identityNo != null and identityNo !='null'">
+      AND IDENTITY_NO = #{identityNo,jdbcType=VARCHAR}
+    </if>
+    <if test="name != null and name !='null'">
+      AND  NAME = #{name,jdbcType=VARCHAR}
+    </if>
+
+  </select>
+</mapper>

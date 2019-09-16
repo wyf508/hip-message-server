@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+
+    <bean id="dataSourceHlht" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close"
+          primary="true">
+        <property name="driverClassName" value="${hlht.db.driver}"/>
+        <property name="url" value="${hlht.db.url}"/>
+        <property name="username" value="${hlht.db.username}"/>
+        <property name="password" value="${hlht.db.password}"/>
+        <!-- 配置初始化大小、最小、最大 -->
+        <property name="initialSize" value="5"/>
+        <property name="minIdle" value="5"/>
+        <property name="maxActive" value="${hlht.db.maxPoolSize}"/>
+        <!-- 配置获取连接等待超时的时间 -->
+        <property name="maxWait" value="10000"/>
+        <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+        <property name="timeBetweenEvictionRunsMillis" value="60000"/>
+        <!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+        <property name="minEvictableIdleTimeMillis" value="300000"/>
+        <property name="testWhileIdle" value="true"/>
+        <!-- 这里建议配置为TRUE，防止取到的连接不可用 -->
+        <property name="testOnBorrow" value="true"/>
+        <property name="testOnReturn" value="false"/>
+    </bean>
+
+
+    <!-- mybatis的SqlSession的工厂: SqlSessionFactoryBean dataSource:引用数据源,MyBatis定义数据源,同意加载配置 -->
+    <bean id="sqlSessionFactoryHlht" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!--显示sql语句-->
+        <property name="dataSource" ref="dataSourceHlht"/>
+        <property name="typeAliasesPackage" value="com.djhu.hiup.message.server.core.model"/>
+        <property name="mapperLocations">
+            <list>
+                <value>classpath*:/mybatis/*Mapper.xml</value>
+            </list>
+        </property>
+        <property name="plugins" ref="mybatisInterceptor"/>
+    </bean>
+
+    <bean id="mybatisInterceptor" class="com.djhu.hiup.message.server.core.interceptor.MybatisInterceptor"/>
+</beans>		                   

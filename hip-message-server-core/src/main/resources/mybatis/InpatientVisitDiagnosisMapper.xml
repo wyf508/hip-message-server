@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djhu.hiup.message.server.core.dao.IInpatientVisitDiagnosisDao" >
+  <resultMap id="BaseResultMap" type="com.djhu.hiup.message.server.core.model.InpatientVisitDiagnosis" >
+    <id column="PK" property="pk" jdbcType="DECIMAL" />
+    <result column="INPATIENT_VISIT_PK" property="inpatientVisitPk" jdbcType="DECIMAL" />
+    <result column="DIAGNOSIS_CODE" property="diagnosisCode" jdbcType="VARCHAR" />
+    <result column="DIAGNOSIS_NAME" property="diagnosisName" jdbcType="VARCHAR" />
+    <result column="DIAGNOSIS_PERSON_CODE" property="diagnosisPersonCode" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PK, INPATIENT_VISIT_PK, DIAGNOSIS_CODE, DIAGNOSIS_NAME, DIAGNOSIS_PERSON_CODE, CREATE_TIME
+  </sql>
+
+  <select id="selectByInpatientVisitPk" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List" />
+    from INPATIENT_VISIT_DIAGNOSIS
+    where INPATIENT_VISIT_PK = #{inpatientVisitPk,jdbcType=DECIMAL}
+  </select>
+
+  <delete id="deleteByInpatientVisitPk" parameterType="java.math.BigDecimal" >
+    delete from INPATIENT_VISIT_DIAGNOSIS
+    where INPATIENT_VISIT_PK = #{inpatientVisitPk,jdbcType=DECIMAL}
+  </delete>
+
+  <insert id="insertInpatientVisitDiagnosis" parameterType="map"  >
+    insert into INPATIENT_VISIT_DIAGNOSIS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      PK,
+      <if test="inpatientVisitPk != null" >
+        INPATIENT_VISIT_PK,
+      </if>
+      <if test="diagnosisCode != null" >
+        DIAGNOSIS_CODE,
+      </if>
+      <if test="diagnosisName != null" >
+        DIAGNOSIS_NAME,
+      </if>
+      <if test="diagnosisPersonCode != null" >
+        DIAGNOSIS_PERSON_CODE,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      INPATIENT_VISIT_DIAGNOSIS_SEQ.NEXTVAL,
+      <if test="inpatientVisitPk != null" >
+        #{inpatientVisitPk,jdbcType=DECIMAL},
+      </if>
+      <if test="diagnosisCode != null" >
+        #{diagnosisCode,jdbcType=VARCHAR},
+      </if>
+      <if test="diagnosisName != null" >
+        #{diagnosisName,jdbcType=VARCHAR},
+      </if>
+      <if test="diagnosisPersonCode != null" >
+        #{diagnosisPersonCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+
+<insert id="insertInpatientVisitDiagnosisList" parameterType="java.util.List" useGeneratedKeys="false">
+        begin
+        <foreach collection="list" item="item" index="index" separator=";">
+             insert into INPATIENT_VISIT_DIAGNOSIS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      PK,
+      <if test="item.inpatientVisitPk != null" >
+        INPATIENT_VISIT_PK,
+      </if>
+      <if test="item.diagnosisCode != null" >
+        DIAGNOSIS_CODE,
+      </if>
+      <if test="item.diagnosisName != null" >
+        DIAGNOSIS_NAME,
+      </if>
+      <if test="item.diagnosisPersonCode != null" >
+        DIAGNOSIS_PERSON_CODE,
+      </if>
+      <if test="item.createTime != null" >
+        CREATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      INPATIENT_VISIT_DIAGNOSIS_SEQ.NEXTVAL,
+      <if test="item.inpatientVisitPk != null" >
+        #{item.inpatientVisitPk,jdbcType=DECIMAL},
+      </if>
+      <if test="item.diagnosisCode != null" >
+        #{item.diagnosisCode,jdbcType=VARCHAR},
+      </if>
+      <if test="item.diagnosisName != null" >
+        #{item.diagnosisName,jdbcType=VARCHAR},
+      </if>
+      <if test="item.diagnosisPersonCode != null" >
+        #{item.diagnosisPersonCode,jdbcType=VARCHAR},
+      </if>
+      <if test="item.createTime != null" >
+        #{item.createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+        </foreach>
+        ;end;
+    </insert>
+    
+</mapper>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djhu.hiup.message.server.core.dao.IPisContactPersonDao" >
+  <resultMap id="BaseResultMap" type="com.djhu.hiup.message.server.core.model.PisContactPerson" >
+    <id column="PK" property="pk" jdbcType="DECIMAL" />
+    <result column="REQUEST_PIS_PK" property="requestPisPk" jdbcType="DECIMAL" />
+    <result column="CONTACT_PERSON_PHONE" property="contactPersonPhone" jdbcType="VARCHAR" />
+    <result column="CONTACT_PERSON_NAME" property="contactPersonName" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    PK, REQUEST_PIS_PK, CONTACT_PERSON_PHONE, CONTACT_PERSON_NAME, CREATE_TIME
+  </sql>
+
+  <select id="selectByRequestPisPk" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List" />
+    from PIS_CONTACT_PERSON
+    where REQUEST_PIS_PK = #{requestPisPk,jdbcType=DECIMAL}
+  </select>
+
+  <delete id="deleteByRequestPisPk" parameterType="java.math.BigDecimal" >
+    delete from PIS_CONTACT_PERSON
+    where REQUEST_PIS_PK = #{requestPisPk,jdbcType=DECIMAL}
+  </delete>
+
+  <insert id="insertPisContactPerson" parameterType="map"  >
+    insert into PIS_CONTACT_PERSON
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      PK,
+      <if test="requestPisPk != null" >
+        REQUEST_PIS_PK,
+      </if>
+      <if test="contactPersonPhone != null" >
+        CONTACT_PERSON_PHONE,
+      </if>
+      <if test="contactPersonName != null" >
+        CONTACT_PERSON_NAME,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      PIS_CONTACT_PERSON_SEQ.NEXTVAL,
+      <if test="requestPisPk != null" >
+        #{requestPisPk,jdbcType=DECIMAL},
+      </if>
+      <if test="contactPersonPhone != null" >
+        #{contactPersonPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPersonName != null" >
+        #{contactPersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  
+  <insert id="insertPisContactPersonList" parameterType="java.util.List" useGeneratedKeys="false">
+        begin
+        <foreach collection="list" item="item" index="index" separator=";">
+             insert into PIS_DRAWING_PARTS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      PK,
+      <if test="item.requestPisPk != null" >
+        REQUEST_PIS_PK,
+      </if>
+      <if test="item.specimentId != null" >
+        SPECIMENT_ID,
+      </if>
+      <if test="item.drawingParts != null" >
+        DRAWING_PARTS,
+      </if>
+      <if test="item.drawingNumber != null" >
+        DRAWING_NUMBER,
+      </if>
+      <if test="item.drawingNumberUnit != null" >
+        DRAWING_NUMBER_UNIT,
+      </if>
+      <if test="item.createTime != null" >
+        CREATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      PIS_DRAWING_PARTS_SEQ.NEXTVAL,
+      <if test="item.requestPisPk != null" >
+        #{item.requestPisPk,jdbcType=DECIMAL},
+      </if>
+      <if test="item.specimentId != null" >
+        #{item.specimentId,jdbcType=VARCHAR},
+      </if>
+      <if test="item.drawingParts != null" >
+        #{item.drawingParts,jdbcType=VARCHAR},
+      </if>
+      <if test="item.drawingNumber != null" >
+        #{item.drawingNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="item.drawingNumberUnit != null" >
+        #{item.drawingNumberUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="item.createTime != null" >
+        #{item.createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+        </foreach>
+        ;end;
+    </insert>
+</mapper>

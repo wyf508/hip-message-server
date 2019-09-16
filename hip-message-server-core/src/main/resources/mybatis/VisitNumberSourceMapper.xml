@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djhu.hiup.message.server.core.dao.IVisitNumberSourceDao" >
+  <resultMap id="BaseResultMap" type="com.djhu.hiup.message.server.core.model.VisitNumberSource" >
+    <id column="PK" property="pk" jdbcType="DECIMAL" />
+    <result column="MSG_ID" property="msgId" jdbcType="VARCHAR" />
+    <result column="MSG_CREATION_TIME" property="msgCreationTime" jdbcType="VARCHAR" />
+    <result column="RECEIVE_ID" property="receiveId" jdbcType="VARCHAR" />
+    <result column="SEND_ID" property="sendId" jdbcType="VARCHAR" />
+    <result column="SHIFT_WORKER_ID" property="shiftWorkerId" jdbcType="VARCHAR" />
+    <result column="SHIFT_WORKER_NAME" property="shiftWorkerName" jdbcType="VARCHAR" />
+    <result column="SCHEDULING_ID" property="schedulingId" jdbcType="VARCHAR" />
+    <result column="SUB_MAJOR_CODE" property="subMajorCode" jdbcType="VARCHAR" />
+    <result column="SUB_MAJOR_DEPICT" property="subMajorDepict" jdbcType="VARCHAR" />
+    <result column="RESOURCES_SUM" property="resourcesSum" jdbcType="VARCHAR" />
+    <result column="DEPT_ID" property="deptId" jdbcType="VARCHAR" />
+    <result column="RESOURCES_LEVE_CODE" property="resourcesLeveCode" jdbcType="VARCHAR" />
+    <result column="RESOURCES_LEVE_DEPICT" property="resourcesLeveDepict" jdbcType="VARCHAR" />
+    <result column="MEDICAL_DOCTOR_ID" property="medicalDoctorId" jdbcType="VARCHAR" />
+    <result column="JOB_CATEGORY_ID" property="jobCategoryId" jdbcType="VARCHAR" />
+    <result column="JOB_CATEGORY_DEPICT" property="jobCategoryDepict" jdbcType="VARCHAR" />
+    <result column="MEDICAL_DOCTOR_IDENTITY_NO" property="medicalDoctorIdentityNo" jdbcType="VARCHAR" />
+    <result column="MEDICAL_DOCTOR_NAME" property="medicalDoctorName" jdbcType="VARCHAR" />
+    <result column="SUB_PERIOD_INFO" property="subPeriodInfo" jdbcType="VARCHAR" />
+    <result column="TIMED_RESOURCE_TYPE_CODE" property="timedResourceTypeCode" jdbcType="VARCHAR" />
+    <result column="TIMED_RESOURCE_TYPE_DEPICT" property="timedResourceTypeDepict" jdbcType="VARCHAR" />
+    <result column="SUB_PERIOD_RESOURCES_SUM" property="subPeriodResourcesSum" jdbcType="VARCHAR" />
+    <result column="SCHEDULE_START_TIME" property="scheduleStartTime" jdbcType="VARCHAR" />
+    <result column="SCHEDULE_END_TIME" property="scheduleEndTime" jdbcType="VARCHAR" />
+    <result column="RESIDUAL_NUMBER" property="residualNumber" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="HIUP_STATUS" property="hiupStatus" jdbcType="VARCHAR" />
+    <result column="HIUP_INFO" property="hiupInfo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PK, MSG_ID, MSG_CREATION_TIME, RECEIVE_ID, SEND_ID, SHIFT_WORKER_ID, SHIFT_WORKER_NAME, 
+    SCHEDULING_ID, SUB_MAJOR_CODE, SUB_MAJOR_DEPICT, RESOURCES_SUM, DEPT_ID, RESOURCES_LEVE_CODE, 
+    RESOURCES_LEVE_DEPICT, MEDICAL_DOCTOR_ID, JOB_CATEGORY_ID, JOB_CATEGORY_DEPICT, MEDICAL_DOCTOR_IDENTITY_NO, 
+    MEDICAL_DOCTOR_NAME, SUB_PERIOD_INFO, TIMED_RESOURCE_TYPE_CODE, TIMED_RESOURCE_TYPE_DEPICT, 
+    SUB_PERIOD_RESOURCES_SUM, SCHEDULE_START_TIME, SCHEDULE_END_TIME, RESIDUAL_NUMBER, 
+    CREATE_TIME, UPDATE_TIME, HIUP_STATUS, HIUP_INFO
+  </sql>
+
+  <select id="selectCountBySelective" resultType="java.lang.Integer" parameterType="map" >
+   select count(*) from VISIT_NUMBER_SOURCE
+      where SCHEDULING_ID = #{schedulingId,jdbcType=VARCHAR}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from VISIT_NUMBER_SOURCE
+    where PK = #{pk,jdbcType=DECIMAL}
+  </delete>
+
+  <insert id="insertSelective" parameterType="map"  >
+    insert into VISIT_NUMBER_SOURCE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      PK,
+      <if test="msgId != null" >
+        MSG_ID,
+      </if>
+      <if test="msgCreationTime != null" >
+        MSG_CREATION_TIME,
+      </if>
+      <if test="receiveId != null" >
+        RECEIVE_ID,
+      </if>
+      <if test="sendId != null" >
+        SEND_ID,
+      </if>
+      <if test="shiftWorkerId != null" >
+        SHIFT_WORKER_ID,
+      </if>
+      <if test="shiftWorkerName != null" >
+        SHIFT_WORKER_NAME,
+      </if>
+      <if test="schedulingId != null" >
+        SCHEDULING_ID,
+      </if>
+      <if test="subMajorCode != null" >
+        SUB_MAJOR_CODE,
+      </if>
+      <if test="subMajorDepict != null" >
+        SUB_MAJOR_DEPICT,
+      </if>
+      <if test="resourcesSum != null" >
+        RESOURCES_SUM,
+      </if>
+      <if test="deptId != null" >
+        DEPT_ID,
+      </if>
+      <if test="resourcesLeveCode != null" >
+        RESOURCES_LEVE_CODE,
+      </if>
+      <if test="resourcesLeveDepict != null" >
+        RESOURCES_LEVE_DEPICT,
+      </if>
+      <if test="medicalDoctorId != null" >
+        MEDICAL_DOCTOR_ID,
+      </if>
+      <if test="jobCategoryId != null" >
+        JOB_CATEGORY_ID,
+      </if>
+      <if test="jobCategoryDepict != null" >
+        JOB_CATEGORY_DEPICT,
+      </if>
+      <if test="medicalDoctorIdentityNo != null" >
+        MEDICAL_DOCTOR_IDENTITY_NO,
+      </if>
+      <if test="medicalDoctorName != null" >
+        MEDICAL_DOCTOR_NAME,
+      </if>
+      <if test="subPeriodInfo != null" >
+        SUB_PERIOD_INFO,
+      </if>
+      <if test="timedResourceTypeCode != null" >
+        TIMED_RESOURCE_TYPE_CODE,
+      </if>
+      <if test="timedResourceTypeDepict != null" >
+        TIMED_RESOURCE_TYPE_DEPICT,
+      </if>
+      <if test="subPeriodResourcesSum != null" >
+        SUB_PERIOD_RESOURCES_SUM,
+      </if>
+      <if test="scheduleStartTime != null" >
+        SCHEDULE_START_TIME,
+      </if>
+      <if test="scheduleEndTime != null" >
+        SCHEDULE_END_TIME,
+      </if>
+      <if test="residualNumber != null" >
+        RESIDUAL_NUMBER,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="hiupStatus != null" >
+        HIUP_STATUS,
+      </if>
+      <if test="hiupInfo != null" >
+        HIUP_INFO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      VISIT_NUMBER_SOURCE_SEQ.NEXTVAL,
+      <if test="msgId != null" >
+        #{msgId,jdbcType=VARCHAR},
+      </if>
+      <if test="msgCreationTime != null" >
+        #{msgCreationTime,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveId != null" >
+        #{receiveId,jdbcType=VARCHAR},
+      </if>
+      <if test="sendId != null" >
+        #{sendId,jdbcType=VARCHAR},
+      </if>
+      <if test="shiftWorkerId != null" >
+        #{shiftWorkerId,jdbcType=VARCHAR},
+      </if>
+      <if test="shiftWorkerName != null" >
+        #{shiftWorkerName,jdbcType=VARCHAR},
+      </if>
+      <if test="schedulingId != null" >
+        #{schedulingId,jdbcType=VARCHAR},
+      </if>
+      <if test="subMajorCode != null" >
+        #{subMajorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="subMajorDepict != null" >
+        #{subMajorDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="resourcesSum != null" >
+        #{resourcesSum,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId != null" >
+        #{deptId,jdbcType=VARCHAR},
+      </if>
+      <if test="resourcesLeveCode != null" >
+        #{resourcesLeveCode,jdbcType=VARCHAR},
+      </if>
+      <if test="resourcesLeveDepict != null" >
+        #{resourcesLeveDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="medicalDoctorId != null" >
+        #{medicalDoctorId,jdbcType=VARCHAR},
+      </if>
+      <if test="jobCategoryId != null" >
+        #{jobCategoryId,jdbcType=VARCHAR},
+      </if>
+      <if test="jobCategoryDepict != null" >
+        #{jobCategoryDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="medicalDoctorIdentityNo != null" >
+        #{medicalDoctorIdentityNo,jdbcType=VARCHAR},
+      </if>
+      <if test="medicalDoctorName != null" >
+        #{medicalDoctorName,jdbcType=VARCHAR},
+      </if>
+      <if test="subPeriodInfo != null" >
+        #{subPeriodInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="timedResourceTypeCode != null" >
+        #{timedResourceTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="timedResourceTypeDepict != null" >
+        #{timedResourceTypeDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="subPeriodResourcesSum != null" >
+        #{subPeriodResourcesSum,jdbcType=VARCHAR},
+      </if>
+      <if test="scheduleStartTime != null" >
+        #{scheduleStartTime,jdbcType=VARCHAR},
+      </if>
+      <if test="scheduleEndTime != null" >
+        #{scheduleEndTime,jdbcType=VARCHAR},
+      </if>
+      <if test="residualNumber != null" >
+        #{residualNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hiupStatus != null" >
+        #{hiupStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="hiupInfo != null" >
+        #{hiupInfo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateBySelective" parameterType="map"  >
+    update VISIT_NUMBER_SOURCE
+    <set >
+      <if test="msgId != null" >
+        MSG_ID = #{msgId,jdbcType=VARCHAR},
+      </if>
+      <if test="msgCreationTime != null" >
+        MSG_CREATION_TIME = #{msgCreationTime,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveId != null" >
+        RECEIVE_ID = #{receiveId,jdbcType=VARCHAR},
+      </if>
+      <if test="sendId != null" >
+        SEND_ID = #{sendId,jdbcType=VARCHAR},
+      </if>
+      <if test="shiftWorkerId != null" >
+        SHIFT_WORKER_ID = #{shiftWorkerId,jdbcType=VARCHAR},
+      </if>
+      <if test="shiftWorkerName != null" >
+        SHIFT_WORKER_NAME = #{shiftWorkerName,jdbcType=VARCHAR},
+      </if>
+      <if test="schedulingId != null" >
+        SCHEDULING_ID = #{schedulingId,jdbcType=VARCHAR},
+      </if>
+      <if test="subMajorCode != null" >
+        SUB_MAJOR_CODE = #{subMajorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="subMajorDepict != null" >
+        SUB_MAJOR_DEPICT = #{subMajorDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="resourcesSum != null" >
+        RESOURCES_SUM = #{resourcesSum,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId != null" >
+        DEPT_ID = #{deptId,jdbcType=VARCHAR},
+      </if>
+      <if test="resourcesLeveCode != null" >
+        RESOURCES_LEVE_CODE = #{resourcesLeveCode,jdbcType=VARCHAR},
+      </if>
+      <if test="resourcesLeveDepict != null" >
+        RESOURCES_LEVE_DEPICT = #{resourcesLeveDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="medicalDoctorId != null" >
+        MEDICAL_DOCTOR_ID = #{medicalDoctorId,jdbcType=VARCHAR},
+      </if>
+      <if test="jobCategoryId != null" >
+        JOB_CATEGORY_ID = #{jobCategoryId,jdbcType=VARCHAR},
+      </if>
+      <if test="jobCategoryDepict != null" >
+        JOB_CATEGORY_DEPICT = #{jobCategoryDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="medicalDoctorIdentityNo != null" >
+        MEDICAL_DOCTOR_IDENTITY_NO = #{medicalDoctorIdentityNo,jdbcType=VARCHAR},
+      </if>
+      <if test="medicalDoctorName != null" >
+        MEDICAL_DOCTOR_NAME = #{medicalDoctorName,jdbcType=VARCHAR},
+      </if>
+      <if test="subPeriodInfo != null" >
+        SUB_PERIOD_INFO = #{subPeriodInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="timedResourceTypeCode != null" >
+        TIMED_RESOURCE_TYPE_CODE = #{timedResourceTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="timedResourceTypeDepict != null" >
+        TIMED_RESOURCE_TYPE_DEPICT = #{timedResourceTypeDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="subPeriodResourcesSum != null" >
+        SUB_PERIOD_RESOURCES_SUM = #{subPeriodResourcesSum,jdbcType=VARCHAR},
+      </if>
+      <if test="scheduleStartTime != null" >
+        SCHEDULE_START_TIME = #{scheduleStartTime,jdbcType=VARCHAR},
+      </if>
+      <if test="scheduleEndTime != null" >
+        SCHEDULE_END_TIME = #{scheduleEndTime,jdbcType=VARCHAR},
+      </if>
+      <if test="residualNumber != null" >
+        RESIDUAL_NUMBER = #{residualNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hiupStatus != null" >
+        HIUP_STATUS = #{hiupStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="hiupInfo != null" >
+        HIUP_INFO = #{hiupInfo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SCHEDULING_ID = #{schedulingId,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectBySelective" parameterType="map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from VISIT_NUMBER_SOURCE
+    where 1=1
+    <if test="schedulingId != null">
+      and  SCHEDULING_ID = #{schedulingId,jdbcType=VARCHAR}
+    </if>
+    <if test="scheduleStartTime != null">
+      and SCHEDULE_START_TIME = #{scheduleStartTime,jdbcType=VARCHAR}
+    </if>
+    <if test="scheduleEndTime != null">
+      and  SCHEDULE_END_TIME = #{scheduleEndTime,jdbcType=VARCHAR}
+    </if>
+    <if test="subMajorCode != null">
+      and  SUB_MAJOR_CODE = #{subMajorCode,jdbcType=VARCHAR}
+    </if>
+    <if test="subMajorDepict != null">
+      and  SUB_MAJOR_DEPICT = #{subMajorDepict,jdbcType=VARCHAR}
+    </if>
+    <if test="medicalDoctorId != null">
+      and  MEDICAL_DOCTOR_ID = #{medicalDoctorId,jdbcType=VARCHAR}
+    </if>
+    <if test="medicalDoctorIdentityNo != null">
+      and  MEDICAL_DOCTOR_IDENTITY_NO = #{medicalDoctorIdentityNo,jdbcType=VARCHAR}
+    </if>
+    <if test="medicalDoctorName != null">
+      and  MEDICAL_DOCTOR_NAME = #{medicalDoctorName,jdbcType=VARCHAR}
+    </if>
+    <if test="timedResourceTypeCode != null">
+      and TIMED_RESOURCE_TYPE_CODE = #{timedResourceTypeCode,jdbcType=VARCHAR}
+    </if>
+    <if test="timedResourceTypeDepict != null">
+      and TIMED_RESOURCE_TYPE_DEPICT = #{timedResourceTypeDepict,jdbcType=VARCHAR}
+    </if>
+  </select>
+</mapper>

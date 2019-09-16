@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djhu.hiup.message.server.core.dao.IDeptDao">
+    <resultMap id="BaseResultMap" type="com.djhu.hiup.message.server.core.model.Dept">
+        <id column="PK" property="pk" jdbcType="DECIMAL"/>
+        <result column="MSG_ID" property="msgId" jdbcType="VARCHAR"/>
+        <result column="MSG_CREATION_TIME" property="msgCreationTime" jdbcType="VARCHAR"/>
+        <result column="RECEIVE_ID" property="receiveId" jdbcType="VARCHAR"/>
+        <result column="SEND_ID" property="sendId" jdbcType="VARCHAR"/>
+        <result column="STATUS_CODE" property="statusCode" jdbcType="VARCHAR"/>
+        <result column="DEPT_ID" property="deptId" jdbcType="VARCHAR"/>
+        <result column="DEPT_TYPE_ID" property="deptTypeId" jdbcType="VARCHAR"/>
+        <result column="DEPT_TYPE_NAME" property="deptTypeName" jdbcType="VARCHAR"/>
+        <result column="ROLE_NAME" property="roleName" jdbcType="VARCHAR"/>
+        <result column="COMPANY_ADDR" property="companyAddr" jdbcType="VARCHAR"/>
+        <result column="COMPANY_CONTACT_PHONE" property="companyContactPhone" jdbcType="VARCHAR"/>
+        <result column="ROLE_EFFECTIVE_TIME_LOW" property="roleEffectiveTimeLow" jdbcType="VARCHAR"/>
+        <result column="ROLE_EFFECTIVE_TIME_HIGH" property="roleEffectiveTimeHigh" jdbcType="VARCHAR"/>
+        <result column="DEPT_ENTITY_NAME" property="deptEntityName" jdbcType="VARCHAR"/>
+        <result column="DEPT_ENTITY_ID" property="deptEntityId" jdbcType="VARCHAR"/>
+        <result column="PARENT_DEPT_NAME" property="parentDeptName" jdbcType="VARCHAR"/>
+        <result column="AUTHOR_CODE" property="authorCode" jdbcType="VARCHAR"/>
+        <result column="AUTHOR_NAME" property="authorName" jdbcType="VARCHAR"/>
+        <result column="AUTHOR_DEPT_ID" property="authorDeptId" jdbcType="VARCHAR"/>
+        <result column="AUTHOR_DEPT_NAME" property="authorDeptName" jdbcType="VARCHAR"/>
+        <result column="AUTHOR_DEPT_CONTACT_PERSON" property="authorDeptContactPerson" jdbcType="VARCHAR"/>
+        <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="HIUP_STATUS" property="hiupStatus" jdbcType="VARCHAR"/>
+        <result column="HIUP_INFO" property="hiupInfo" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    PK, MSG_ID, MSG_CREATION_TIME, RECEIVE_ID, SEND_ID, STATUS_CODE, DEPT_ID, DEPT_TYPE_ID,
+    DEPT_TYPE_NAME, ROLE_NAME, COMPANY_ADDR, COMPANY_CONTACT_PHONE, ROLE_EFFECTIVE_TIME_LOW,
+    ROLE_EFFECTIVE_TIME_HIGH, DEPT_ENTITY_NAME, DEPT_ENTITY_ID, PARENT_DEPT_NAME, AUTHOR_CODE, 
+    AUTHOR_NAME, AUTHOR_DEPT_ID, AUTHOR_DEPT_NAME, AUTHOR_DEPT_CONTACT_PERSON, CREATE_TIME, 
+    UPDATE_TIME, HIUP_STATUS, HIUP_INFO
+  </sql>
+
+    <select id="selectCountBySelective" resultType="java.lang.Integer" parameterType="map">
+        select count(*) from DEPT
+        where 1= 1
+        <if test="sendId != null and sendId != ''">
+            AND SEND_ID = #{sendId,jdbcType=VARCHAR}
+        </if>
+        <if test="deptId != null and deptId != ''">
+            AND DEPT_ID = #{deptId,jdbcType=VARCHAR}
+        </if>
+        <if test="deptTypeId != null and deptTypeId != ''">
+            AND DEPT_TYPE_ID = #{deptTypeId,jdbcType=VARCHAR}
+        </if>
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal">
+    delete from DEPT
+    where PK = #{pk,jdbcType=DECIMAL}
+  </delete>
+
+    <insert id="insertSelective" parameterType="map">
+        insert into DEPT
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            PK,
+            <if test="msgId != null">
+                MSG_ID,
+            </if>
+            <if test="msgCreationTime != null">
+                MSG_CREATION_TIME,
+            </if>
+            <if test="receiveId != null">
+                RECEIVE_ID,
+            </if>
+            <if test="sendId != null">
+                SEND_ID,
+            </if>
+            <if test="statusCode != null">
+                STATUS_CODE,
+            </if>
+            <if test="deptId != null">
+                DEPT_ID,
+            </if>
+            <if test="deptTypeId != null">
+                DEPT_TYPE_ID,
+            </if>
+            <if test="deptTypeName != null">
+                DEPT_TYPE_NAME,
+            </if>
+            <if test="roleName != null">
+                ROLE_NAME,
+            </if>
+            <if test="companyAddr != null">
+                COMPANY_ADDR,
+            </if>
+            <if test="companyContactPhone != null">
+                COMPANY_CONTACT_PHONE,
+            </if>
+            <if test="roleEffectiveTimeLow != null">
+                ROLE_EFFECTIVE_TIME_LOW,
+            </if>
+            <if test="roleEffectiveTimeHigh != null">
+                ROLE_EFFECTIVE_TIME_HIGH,
+            </if>
+            <if test="deptEntityName != null">
+                DEPT_ENTITY_NAME,
+            </if>
+            <if test="deptEntityId != null">
+                DEPT_ENTITY_ID,
+            </if>
+            <if test="parentDeptName != null">
+                PARENT_DEPT_NAME,
+            </if>
+            <if test="authorCode != null">
+                AUTHOR_CODE,
+            </if>
+            <if test="authorName != null">
+                AUTHOR_NAME,
+            </if>
+            <if test="authorDeptId != null">
+                AUTHOR_DEPT_ID,
+            </if>
+            <if test="authorDeptName != null">
+                AUTHOR_DEPT_NAME,
+            </if>
+            <if test="authorDeptContactPerson != null">
+                AUTHOR_DEPT_CONTACT_PERSON,
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME,
+            </if>
+            <if test="updateTime != null">
+                UPDATE_TIME,
+            </if>
+            <if test="hiupStatus != null">
+                HIUP_STATUS,
+            </if>
+            <if test="hiupInfo != null">
+                HIUP_INFO,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            DEPT_SEQ.NEXTVAL,
+            <if test="msgId != null">
+                #{msgId,jdbcType=VARCHAR},
+            </if>
+            <if test="msgCreationTime != null">
+                #{msgCreationTime,jdbcType=VARCHAR},
+            </if>
+            <if test="receiveId != null">
+                #{receiveId,jdbcType=VARCHAR},
+            </if>
+            <if test="sendId != null">
+                #{sendId,jdbcType=VARCHAR},
+            </if>
+            <if test="statusCode != null">
+                #{statusCode,jdbcType=VARCHAR},
+            </if>
+            <if test="deptId != null">
+                #{deptId,jdbcType=VARCHAR},
+            </if>
+            <if test="deptTypeId != null">
+                #{deptTypeId,jdbcType=VARCHAR},
+            </if>
+            <if test="deptTypeName != null">
+                #{deptTypeName,jdbcType=VARCHAR},
+            </if>
+            <if test="roleName != null">
+                #{roleName,jdbcType=VARCHAR},
+            </if>
+            <if test="companyAddr != null">
+                #{companyAddr,jdbcType=VARCHAR},
+            </if>
+            <if test="companyContactPhone != null">
+                #{companyContactPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="roleEffectiveTimeLow != null">
+                #{roleEffectiveTimeLow,jdbcType=VARCHAR},
+            </if>
+            <if test="roleEffectiveTimeHigh != null">
+                #{roleEffectiveTimeHigh,jdbcType=VARCHAR},
+            </if>
+            <if test="deptEntityName != null">
+                #{deptEntityName,jdbcType=VARCHAR},
+            </if>
+            <if test="deptEntityId != null">
+                #{deptEntityId,jdbcType=VARCHAR},
+            </if>
+            <if test="parentDeptName != null">
+                #{parentDeptName,jdbcType=VARCHAR},
+            </if>
+            <if test="authorCode != null">
+                #{authorCode,jdbcType=VARCHAR},
+            </if>
+            <if test="authorName != null">
+                #{authorName,jdbcType=VARCHAR},
+            </if>
+            <if test="authorDeptId != null">
+                #{authorDeptId,jdbcType=VARCHAR},
+            </if>
+            <if test="authorDeptName != null">
+                #{authorDeptName,jdbcType=VARCHAR},
+            </if>
+            <if test="authorDeptContactPerson != null">
+                #{authorDeptContactPerson,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="hiupStatus != null">
+                #{hiupStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="hiupInfo != null">
+                #{hiupInfo,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateBySelective" parameterType="map">
+        update DEPT
+        <set>
+            <if test="msgId != null">
+                MSG_ID = #{msgId,jdbcType=VARCHAR},
+            </if>
+            <if test="msgCreationTime != null">
+                MSG_CREATION_TIME = #{msgCreationTime,jdbcType=VARCHAR},
+            </if>
+            <if test="receiveId != null">
+                RECEIVE_ID = #{receiveId,jdbcType=VARCHAR},
+            </if>
+            <if test="sendId != null">
+                SEND_ID = #{sendId,jdbcType=VARCHAR},
+            </if>
+            <if test="statusCode != null">
+                STATUS_CODE = #{statusCode,jdbcType=VARCHAR},
+            </if>
+            <if test="deptId != null">
+                DEPT_ID = #{deptId,jdbcType=VARCHAR},
+            </if>
+            <if test="deptTypeId != null">
+                DEPT_TYPE_ID = #{deptTypeId,jdbcType=VARCHAR},
+            </if>
+            <if test="deptTypeName != null">
+                DEPT_TYPE_NAME = #{deptTypeName,jdbcType=VARCHAR},
+            </if>
+            <if test="roleName != null">
+                ROLE_NAME = #{roleName,jdbcType=VARCHAR},
+            </if>
+            <if test="companyAddr != null">
+                COMPANY_ADDR = #{companyAddr,jdbcType=VARCHAR},
+            </if>
+            <if test="companyContactPhone != null">
+                COMPANY_CONTACT_PHONE = #{companyContactPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="roleEffectiveTimeLow != null">
+                ROLE_EFFECTIVE_TIME_LOW = #{roleEffectiveTimeLow,jdbcType=VARCHAR},
+            </if>
+            <if test="roleEffectiveTimeHigh != null">
+                ROLE_EFFECTIVE_TIME_HIGH = #{roleEffectiveTimeHigh,jdbcType=VARCHAR},
+            </if>
+            <if test="deptEntityName != null">
+                DEPT_ENTITY_NAME = #{deptEntityName,jdbcType=VARCHAR},
+            </if>
+            <if test="deptEntityId != null">
+                DEPT_ENTITY_ID = #{deptEntityId,jdbcType=VARCHAR},
+            </if>
+            <if test="parentDeptName != null">
+                PARENT_DEPT_NAME = #{parentDeptName,jdbcType=VARCHAR},
+            </if>
+            <if test="authorCode != null">
+                AUTHOR_CODE = #{authorCode,jdbcType=VARCHAR},
+            </if>
+            <if test="authorName != null">
+                AUTHOR_NAME = #{authorName,jdbcType=VARCHAR},
+            </if>
+            <if test="authorDeptId != null">
+                AUTHOR_DEPT_ID = #{authorDeptId,jdbcType=VARCHAR},
+            </if>
+            <if test="authorDeptName != null">
+                AUTHOR_DEPT_NAME = #{authorDeptName,jdbcType=VARCHAR},
+            </if>
+            <if test="authorDeptContactPerson != null">
+                AUTHOR_DEPT_CONTACT_PERSON = #{authorDeptContactPerson,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="hiupStatus != null">
+                HIUP_STATUS = #{hiupStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="hiupInfo != null">
+                HIUP_INFO = #{hiupInfo,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where SEND_ID = #{sendId,jdbcType=VARCHAR} AND
+        DEPT_ID = #{deptId,jdbcType=VARCHAR} AND
+        DEPT_TYPE_ID = #{deptTypeId,jdbcType=VARCHAR}
+    </update>
+
+    <select id="selectBySelective" parameterType="map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from dept
+        where 1=1
+        <if test="deptId != null ">
+            and DEPT_ID = #{deptId,jdbcType=VARCHAR}
+        </if>
+        <if test="deptEntityName != null ">
+            and DEPT_ENTITY_NAME = #{deptEntityName,jdbcType=VARCHAR}
+        </if>
+        <if test="statusCode != null ">
+            and STATUS_CODE = #{statusCode,jdbcType=VARCHAR}
+        </if>
+    </select>
+</mapper>

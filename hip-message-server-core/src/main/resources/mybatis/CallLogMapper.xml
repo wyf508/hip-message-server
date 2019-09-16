@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djhu.hiup.message.server.core.dao.ICallLogDao" >
+  <resultMap id="BaseResultMap" type="com.djhu.hiup.message.server.core.model.CallLog" >
+    <id column="PK" property="pk" jdbcType="DECIMAL" />
+    <result column="SENDER_ID" property="senderId" jdbcType="VARCHAR" />
+    <result column="RECEIVER_ID" property="receiverId" jdbcType="VARCHAR" />
+    <result column="MSG_ID" property="msgId" jdbcType="VARCHAR" />
+    <result column="SYSTEM_DIR_PK" property="systemDirPk" jdbcType="DECIMAL" />
+    <result column="MSG_PATH" property="msgPath" jdbcType="VARCHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="SERVICE_CODE" property="serviceCode" jdbcType="VARCHAR" />
+    <result column="SERVICE_COMMENT" property="serviceComment" jdbcType="VARCHAR" />
+    <result column="RESPONSE_CODE" property="responseCode" jdbcType="VARCHAR" />
+    <result column="RESPONSE_MSG" property="responseMsg" jdbcType="VARCHAR" />
+    <result column="MSG_CREATE_DATE" property="msgCreateDate" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    PK, SENDER_ID, RECEIVER_ID, MSG_ID, SYSTEM_DIR_PK, MSG_PATH, CREATE_DATE, UPDATE_DATE,
+    SERVICE_CODE, SERVICE_COMMENT, RESPONSE_CODE, RESPONSE_MSG,MSG_CREATE_DATE
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    select
+    <include refid="Base_Column_List" />
+    from CALL_LOG
+    where PK = #{pk,jdbcType=DECIMAL}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from CALL_LOG
+    where PK = #{pk,jdbcType=DECIMAL}
+  </delete>
+
+  <insert id="insertCallLog" parameterType="com.djhu.hiup.message.server.core.model.CallLog" >
+    <selectKey resultType="java.math.BigDecimal" order="BEFORE" keyProperty="pk">
+      select CALL_LOG_SEQ.Nextval as pk from dual
+    </selectKey>
+    insert into CALL_LOG
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      PK,
+      <if test="senderId != null" >
+        SENDER_ID,
+      </if>
+      <if test="receiverId != null" >
+        RECEIVER_ID,
+      </if>
+      <if test="msgId != null" >
+        MSG_ID,
+      </if>
+      <if test="systemDirPk != null" >
+        SYSTEM_DIR_PK,
+      </if>
+      <if test="msgPath != null" >
+        MSG_PATH,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+      <if test="updateDate != null" >
+        UPDATE_DATE,
+      </if>
+      <if test="serviceCode != null" >
+        SERVICE_CODE,
+      </if>
+      <if test="serviceComment != null" >
+        SERVICE_COMMENT,
+      </if>
+      <if test="responseCode != null" >
+        RESPONSE_CODE,
+      </if>
+      <if test="responseMsg != null" >
+        RESPONSE_MSG,
+      </if>
+      <if test="msgCreateDate != null" >
+        MSG_CREATE_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{pk,jdbcType=DECIMAL},
+      <if test="senderId != null" >
+        #{senderId,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverId != null" >
+        #{receiverId,jdbcType=VARCHAR},
+      </if>
+      <if test="msgId != null" >
+        #{msgId,jdbcType=VARCHAR},
+      </if>
+      <if test="systemDirPk != null" >
+        #{systemDirPk,jdbcType=DECIMAL},
+      </if>
+      <if test="msgPath != null" >
+        #{msgPath,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="serviceCode != null" >
+        #{serviceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceComment != null" >
+        #{serviceComment,jdbcType=VARCHAR},
+      </if>
+      <if test="responseCode != null" >
+        #{responseCode,jdbcType=VARCHAR},
+      </if>
+      <if test="responseMsg != null" >
+        #{responseMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="msgCreateDate != null" >
+        #{msgCreateDate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateCallLog" parameterType="com.djhu.hiup.message.server.core.model.CallLog" >
+    update CALL_LOG
+    <set >
+      <if test="senderId != null" >
+        SENDER_ID = #{senderId,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverId != null" >
+        RECEIVER_ID = #{receiverId,jdbcType=VARCHAR},
+      </if>
+      <if test="msgId != null" >
+        MSG_ID = #{msgId,jdbcType=VARCHAR},
+      </if>
+      <if test="systemDirPk != null" >
+        SYSTEM_DIR_PK = #{systemDirPk,jdbcType=DECIMAL},
+      </if>
+      <if test="msgPath != null" >
+        MSG_PATH = #{msgPath,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="serviceCode != null" >
+        SERVICE_CODE = #{serviceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceComment != null" >
+        SERVICE_COMMENT = #{serviceComment,jdbcType=VARCHAR},
+      </if>
+      <if test="responseCode != null" >
+        RESPONSE_CODE = #{responseCode,jdbcType=VARCHAR},
+      </if>
+      <if test="responseMsg != null" >
+        RESPONSE_MSG = #{responseMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="msgCreateDate != null" >
+        MSG_CREATE_DATE = #{msgCreateDate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PK = #{pk,jdbcType=DECIMAL}
+  </update>
+
+</mapper>

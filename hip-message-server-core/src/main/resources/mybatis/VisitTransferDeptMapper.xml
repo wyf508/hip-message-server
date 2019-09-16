@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djhu.hiup.message.server.core.dao.IVisitTransferDeptDao" >
+  <resultMap id="BaseResultMap" type="com.djhu.hiup.message.server.core.model.VisitTransferDept" >
+    <id column="PK" property="pk" jdbcType="DECIMAL" />
+    <result column="MSG_ID" property="msgId" jdbcType="VARCHAR" />
+    <result column="MSG_CREATION_TIME" property="msgCreationTime" jdbcType="VARCHAR" />
+    <result column="RECEIVE_ID" property="receiveId" jdbcType="VARCHAR" />
+    <result column="SEND_ID" property="sendId" jdbcType="VARCHAR" />
+    <result column="INPATIENT_NO" property="inpatientNo" jdbcType="VARCHAR" />
+    <result column="VISIT_NUMBER" property="visitNumber" jdbcType="VARCHAR" />
+    <result column="VISIT_FLOW_NO" property="visitFlowNo" jdbcType="VARCHAR" />
+    <result column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
+    <result column="TURN_IN_TIME" property="turnInTime" jdbcType="VARCHAR" />
+    <result column="TURN_IN_DEPT_ID" property="turnInDeptId" jdbcType="VARCHAR" />
+    <result column="TURN_IN_DEPT_NAME" property="turnInDeptName" jdbcType="VARCHAR" />
+    <result column="TURN_IN_INPATIENT_AREA_ID" property="turnInInpatientAreaId" jdbcType="VARCHAR" />
+    <result column="TURN_IN_INPATIENT_AREA_DEPICT" property="turnInInpatientAreaDepict" jdbcType="VARCHAR" />
+    <result column="TURN_IN_WARD_ID" property="turnInWardId" jdbcType="VARCHAR" />
+    <result column="TURN_IN_WARD_DEPICT" property="turnInWardDepict" jdbcType="VARCHAR" />
+    <result column="TURN_IN_HOSITAL_BED_ID" property="turnInHositalBedId" jdbcType="VARCHAR" />
+    <result column="TURN_IN_HOSITAL_BED_DEPICT" property="turnInHositalBedDepict" jdbcType="VARCHAR" />
+    <result column="TURN_OUT_TIME" property="turnOutTime" jdbcType="VARCHAR" />
+    <result column="TURN_OUT_DEPT_ID" property="turnOutDeptId" jdbcType="VARCHAR" />
+    <result column="TURN_OUT_DEPT_NAME" property="turnOutDeptName" jdbcType="VARCHAR" />
+    <result column="TURN_OUT_INPATIENT_AREA_ID" property="turnOutInpatientAreaId" jdbcType="VARCHAR" />
+    <result column="TURN_OUT_INPATIENT_AREA_DEPICT" property="turnOutInpatientAreaDepict" jdbcType="VARCHAR" />
+    <result column="TURN_OUT_WARD_ID" property="turnOutWardId" jdbcType="VARCHAR" />
+    <result column="TURN_OUT_WARD_DEPICT" property="turnOutWardDepict" jdbcType="VARCHAR" />
+    <result column="TURN_OUT_HOSITAL_BED_ID" property="turnOutHositalBedId" jdbcType="VARCHAR" />
+    <result column="TURN_OUT_HOSITAL_BED_DEPICT" property="turnOutHositalBedDepict" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="HIUP_STATUS" property="hiupStatus" jdbcType="VARCHAR" />
+    <result column="HIUP_INFO" property="hiupInfo" jdbcType="VARCHAR" />
+    <association property="visitInpatientVisit" javaType="com.djhu.hiup.message.server.core.model.VisitInpatientVisit">
+      <result column="INPATIENT_NO" property="inpatientNo" jdbcType="VARCHAR" />
+      <result column="VISIT_TYPE_CODE" property="visitTypeCode" jdbcType="VARCHAR" />
+      <result column="VISIT_TYPE_DEPICT" property="visitTypeDepict" jdbcType="VARCHAR" />
+      <result column="ADMISSION_DATE" property="admissionDate" jdbcType="VARCHAR" />
+      <result column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
+      <result column="IDENTITY_NO" property="identityNo" jdbcType="VARCHAR" />
+      <result column="NAME" property="name" jdbcType="VARCHAR" />
+      <result column="DOCTOR_ID" property="doctorId" jdbcType="VARCHAR" />
+      <result column="DOCTOR_NAME" property="doctorName" jdbcType="VARCHAR" />
+    </association>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PK, MSG_ID, MSG_CREATION_TIME, RECEIVE_ID, SEND_ID, INPATIENT_NO, VISIT_NUMBER, VISIT_FLOW_NO, 
+    PATIENT_ID, TURN_IN_TIME, TURN_IN_DEPT_ID, TURN_IN_DEPT_NAME, TURN_IN_INPATIENT_AREA_ID, 
+    TURN_IN_INPATIENT_AREA_DEPICT, TURN_IN_WARD_ID, TURN_IN_WARD_DEPICT, TURN_IN_HOSITAL_BED_ID, 
+    TURN_IN_HOSITAL_BED_DEPICT, TURN_OUT_TIME, TURN_OUT_DEPT_ID, TURN_OUT_DEPT_NAME, 
+    TURN_OUT_INPATIENT_AREA_ID, TURN_OUT_INPATIENT_AREA_DEPICT, TURN_OUT_WARD_ID, TURN_OUT_WARD_DEPICT, 
+    TURN_OUT_HOSITAL_BED_ID, TURN_OUT_HOSITAL_BED_DEPICT, CREATE_TIME, UPDATE_TIME, HIUP_STATUS, 
+    HIUP_INFO
+  </sql>
+
+  <select id="selectCountBySelective" resultType="java.lang.Integer" parameterType="map" >
+     select count(*) from VISIT_TRANSFER_DEPT
+      where INPATIENT_NO = #{inpatientNo,jdbcType=VARCHAR} AND
+      VISIT_NUMBER = #{visitNumber,jdbcType=VARCHAR} AND
+      VISIT_FLOW_NO = #{visitFlowNo,jdbcType=VARCHAR} AND
+      PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from VISIT_TRANSFER_DEPT
+    where PK = #{pk,jdbcType=DECIMAL}
+  </delete>
+
+  <insert id="insertSelective" parameterType="map"  >
+    insert into VISIT_TRANSFER_DEPT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      PK,
+      <if test="msgId != null" >
+        MSG_ID,
+      </if>
+      <if test="msgCreationTime != null" >
+        MSG_CREATION_TIME,
+      </if>
+      <if test="receiveId != null" >
+        RECEIVE_ID,
+      </if>
+      <if test="sendId != null" >
+        SEND_ID,
+      </if>
+      <if test="inpatientNo != null" >
+        INPATIENT_NO,
+      </if>
+      <if test="visitNumber != null" >
+        VISIT_NUMBER,
+      </if>
+      <if test="visitFlowNo != null" >
+        VISIT_FLOW_NO,
+      </if>
+      <if test="patientId != null" >
+        PATIENT_ID,
+      </if>
+      <if test="turnInTime != null" >
+        TURN_IN_TIME,
+      </if>
+      <if test="turnInDeptId != null" >
+        TURN_IN_DEPT_ID,
+      </if>
+      <if test="turnInDeptName != null" >
+        TURN_IN_DEPT_NAME,
+      </if>
+      <if test="turnInInpatientAreaId != null" >
+        TURN_IN_INPATIENT_AREA_ID,
+      </if>
+      <if test="turnInInpatientAreaDepict != null" >
+        TURN_IN_INPATIENT_AREA_DEPICT,
+      </if>
+      <if test="turnInWardId != null" >
+        TURN_IN_WARD_ID,
+      </if>
+      <if test="turnInWardDepict != null" >
+        TURN_IN_WARD_DEPICT,
+      </if>
+      <if test="turnInHositalBedId != null" >
+        TURN_IN_HOSITAL_BED_ID,
+      </if>
+      <if test="turnInHositalBedDepict != null" >
+        TURN_IN_HOSITAL_BED_DEPICT,
+      </if>
+      <if test="turnOutTime != null" >
+        TURN_OUT_TIME,
+      </if>
+      <if test="turnOutDeptId != null" >
+        TURN_OUT_DEPT_ID,
+      </if>
+      <if test="turnOutDeptName != null" >
+        TURN_OUT_DEPT_NAME,
+      </if>
+      <if test="turnOutInpatientAreaId != null" >
+        TURN_OUT_INPATIENT_AREA_ID,
+      </if>
+      <if test="turnOutInpatientAreaDepict != null" >
+        TURN_OUT_INPATIENT_AREA_DEPICT,
+      </if>
+      <if test="turnOutWardId != null" >
+        TURN_OUT_WARD_ID,
+      </if>
+      <if test="turnOutWardDepict != null" >
+        TURN_OUT_WARD_DEPICT,
+      </if>
+      <if test="turnOutHositalBedId != null" >
+        TURN_OUT_HOSITAL_BED_ID,
+      </if>
+      <if test="turnOutHositalBedDepict != null" >
+        TURN_OUT_HOSITAL_BED_DEPICT,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="hiupStatus != null" >
+        HIUP_STATUS,
+      </if>
+      <if test="hiupInfo != null" >
+        HIUP_INFO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      VISIT_TRANSFER_DEPT_SEQ.NEXTVAL,
+      <if test="msgId != null" >
+        #{msgId,jdbcType=VARCHAR},
+      </if>
+      <if test="msgCreationTime != null" >
+        #{msgCreationTime,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveId != null" >
+        #{receiveId,jdbcType=VARCHAR},
+      </if>
+      <if test="sendId != null" >
+        #{sendId,jdbcType=VARCHAR},
+      </if>
+      <if test="inpatientNo != null" >
+        #{inpatientNo,jdbcType=VARCHAR},
+      </if>
+      <if test="visitNumber != null" >
+        #{visitNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="visitFlowNo != null" >
+        #{visitFlowNo,jdbcType=VARCHAR},
+      </if>
+      <if test="patientId != null" >
+        #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="turnInTime != null" >
+        #{turnInTime,jdbcType=VARCHAR},
+      </if>
+      <if test="turnInDeptId != null" >
+        #{turnInDeptId,jdbcType=VARCHAR},
+      </if>
+      <if test="turnInDeptName != null" >
+        #{turnInDeptName,jdbcType=VARCHAR},
+      </if>
+      <if test="turnInInpatientAreaId != null" >
+        #{turnInInpatientAreaId,jdbcType=VARCHAR},
+      </if>
+      <if test="turnInInpatientAreaDepict != null" >
+        #{turnInInpatientAreaDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="turnInWardId != null" >
+        #{turnInWardId,jdbcType=VARCHAR},
+      </if>
+      <if test="turnInWardDepict != null" >
+        #{turnInWardDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="turnInHositalBedId != null" >
+        #{turnInHositalBedId,jdbcType=VARCHAR},
+      </if>
+      <if test="turnInHositalBedDepict != null" >
+        #{turnInHositalBedDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="turnOutTime != null" >
+        #{turnOutTime,jdbcType=VARCHAR},
+      </if>
+      <if test="turnOutDeptId != null" >
+        #{turnOutDeptId,jdbcType=VARCHAR},
+      </if>
+      <if test="turnOutDeptName != null" >
+        #{turnOutDeptName,jdbcType=VARCHAR},
+      </if>
+      <if test="turnOutInpatientAreaId != null" >
+        #{turnOutInpatientAreaId,jdbcType=VARCHAR},
+      </if>
+      <if test="turnOutInpatientAreaDepict != null" >
+        #{turnOutInpatientAreaDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="turnOutWardId != null" >
+        #{turnOutWardId,jdbcType=VARCHAR},
+      </if>
+      <if test="turnOutWardDepict != null" >
+        #{turnOutWardDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="turnOutHositalBedId != null" >
+        #{turnOutHositalBedId,jdbcType=VARCHAR},
+      </if>
+      <if test="turnOutHositalBedDepict != null" >
+        #{turnOutHositalBedDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hiupStatus != null" >
+        #{hiupStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="hiupInfo != null" >
+        #{hiupInfo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateBySelective" parameterType="map"  >
+    update VISIT_TRANSFER_DEPT
+    <set >
+      <if test="msgId != null" >
+        MSG_ID = #{msgId,jdbcType=VARCHAR},
+      </if>
+      <if test="msgCreationTime != null" >
+        MSG_CREATION_TIME = #{msgCreationTime,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveId != null" >
+        RECEIVE_ID = #{receiveId,jdbcType=VARCHAR},
+      </if>
+      <if test="sendId != null" >
+        SEND_ID = #{sendId,jdbcType=VARCHAR},
+      </if>
+      <if test="inpatientNo != null" >
+        INPATIENT_NO = #{inpatientNo,jdbcType=VARCHAR},
+      </if>
+      <if test="visitNumber != null" >
+        VISIT_NUMBER = #{visitNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="visitFlowNo != null" >
+        VISIT_FLOW_NO = #{visitFlowNo,jdbcType=VARCHAR},
+      </if>
+      <if test="patientId != null" >
+        PATIENT_ID = #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="turnInTime != null" >
+        TURN_IN_TIME = #{turnInTime,jdbcType=VARCHAR},
+      </if>
+      <if test="turnInDeptId != null" >
+        TURN_IN_DEPT_ID = #{turnInDeptId,jdbcType=VARCHAR},
+      </if>
+      <if test="turnInDeptName != null" >
+        TURN_IN_DEPT_NAME = #{turnInDeptName,jdbcType=VARCHAR},
+      </if>
+      <if test="turnInInpatientAreaId != null" >
+        TURN_IN_INPATIENT_AREA_ID = #{turnInInpatientAreaId,jdbcType=VARCHAR},
+      </if>
+      <if test="turnInInpatientAreaDepict != null" >
+        TURN_IN_INPATIENT_AREA_DEPICT = #{turnInInpatientAreaDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="turnInWardId != null" >
+        TURN_IN_WARD_ID = #{turnInWardId,jdbcType=VARCHAR},
+      </if>
+      <if test="turnInWardDepict != null" >
+        TURN_IN_WARD_DEPICT = #{turnInWardDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="turnInHositalBedId != null" >
+        TURN_IN_HOSITAL_BED_ID = #{turnInHositalBedId,jdbcType=VARCHAR},
+      </if>
+      <if test="turnInHositalBedDepict != null" >
+        TURN_IN_HOSITAL_BED_DEPICT = #{turnInHositalBedDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="turnOutTime != null" >
+        TURN_OUT_TIME = #{turnOutTime,jdbcType=VARCHAR},
+      </if>
+      <if test="turnOutDeptId != null" >
+        TURN_OUT_DEPT_ID = #{turnOutDeptId,jdbcType=VARCHAR},
+      </if>
+      <if test="turnOutDeptName != null" >
+        TURN_OUT_DEPT_NAME = #{turnOutDeptName,jdbcType=VARCHAR},
+      </if>
+      <if test="turnOutInpatientAreaId != null" >
+        TURN_OUT_INPATIENT_AREA_ID = #{turnOutInpatientAreaId,jdbcType=VARCHAR},
+      </if>
+      <if test="turnOutInpatientAreaDepict != null" >
+        TURN_OUT_INPATIENT_AREA_DEPICT = #{turnOutInpatientAreaDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="turnOutWardId != null" >
+        TURN_OUT_WARD_ID = #{turnOutWardId,jdbcType=VARCHAR},
+      </if>
+      <if test="turnOutWardDepict != null" >
+        TURN_OUT_WARD_DEPICT = #{turnOutWardDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="turnOutHositalBedId != null" >
+        TURN_OUT_HOSITAL_BED_ID = #{turnOutHositalBedId,jdbcType=VARCHAR},
+      </if>
+      <if test="turnOutHositalBedDepict != null" >
+        TURN_OUT_HOSITAL_BED_DEPICT = #{turnOutHositalBedDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hiupStatus != null" >
+        HIUP_STATUS = #{hiupStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="hiupInfo != null" >
+        HIUP_INFO = #{hiupInfo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where  INPATIENT_NO = #{inpatientNo,jdbcType=VARCHAR} AND
+    VISIT_NUMBER = #{visitNumber,jdbcType=VARCHAR} AND
+    VISIT_FLOW_NO = #{visitFlowNo,jdbcType=VARCHAR} AND
+    PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectBySelective" parameterType="map" resultMap="BaseResultMap">
+    select
+    vtd.PK, vtd.MSG_ID, vtd.MSG_CREATION_TIME, vtd.RECEIVE_ID, vtd.SEND_ID, vtd.INPATIENT_NO, vtd.VISIT_NUMBER, vtd.VISIT_FLOW_NO,
+    vtd.PATIENT_ID, vtd.TURN_IN_TIME, vtd.TURN_IN_DEPT_ID, vtd.TURN_IN_DEPT_NAME, vtd.TURN_IN_INPATIENT_AREA_ID,
+    vtd.TURN_IN_INPATIENT_AREA_DEPICT, vtd.TURN_IN_WARD_ID, vtd.TURN_IN_WARD_DEPICT, vtd.TURN_IN_HOSITAL_BED_ID,
+    vtd.TURN_IN_HOSITAL_BED_DEPICT, vtd.TURN_OUT_TIME, vtd.TURN_OUT_DEPT_ID, vtd.TURN_OUT_DEPT_NAME,
+    vtd.TURN_OUT_INPATIENT_AREA_ID, vtd.TURN_OUT_INPATIENT_AREA_DEPICT, vtd.TURN_OUT_WARD_ID, vtd.TURN_OUT_WARD_DEPICT,
+    vtd.TURN_OUT_HOSITAL_BED_ID, vtd.TURN_OUT_HOSITAL_BED_DEPICT, vtd.CREATE_TIME, vtd.UPDATE_TIME, vtd.HIUP_STATUS,
+    vtd.HIUP_INFO,
+
+    viv.INPATIENT_NO,viv.VISIT_TYPE_CODE, viv.VISIT_TYPE_DEPICT, viv.ADMISSION_DATE, viv.PATIENT_ID,
+    viv.IDENTITY_NO, viv.NAME, viv.DOCTOR_ID,viv.DOCTOR_NAME
+    from VISIT_TRANSFER_DEPT vtd left join VISIT_INPATIENT_VISIT viv on (vtd.INPATIENT_NO=viv.INPATIENT_NO and vtd.PATIENT_ID=viv.PATIENT_ID)
+    where 1=1
+    <if test="inpatientNo != null">
+      and vtd.INPATIENT_NO = #{inpatientNo,jdbcType=VARCHAR}
+    </if>
+    <if test="visitNumber != null">
+      and  vtd.VISIT_NUMBER = #{visitNumber,jdbcType=VARCHAR}
+    </if>
+    <if test="visitFlowNo != null">
+      and  vtd.VISIT_FLOW_NO = #{visitFlowNo,jdbcType=VARCHAR}
+    </if>
+    <if test="turnInTimeLow != null">
+      and <![CDATA[ vtd.TURN_IN_TIME >= #{turnInTimeLow,jdbcType=VARCHAR}]]>
+    </if>
+    <if test="turnInTimeHigh != null">
+      and  <![CDATA[ vtd.TURN_IN_TIME <= #{turnInTimeHigh,jdbcType=VARCHAR}]]>
+    </if>
+    <if test="patientId != null">
+      and  vtd.PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+    </if>
+
+    <if test="identityNo != null">
+      and  viv.IDENTITY_NO = #{identityNo,jdbcType=VARCHAR}
+    </if>
+    <if test="providerOrganizationId != null">
+      and viv.SERVICE_ORGANIZATION_CODE = #{providerOrganizationId,jdbcType=VARCHAR}
+    </if>
+    <if test="visitTypeCode != null">
+      and  viv.VISIT_TYPE_CODE = #{visitTypeCode,jdbcType=VARCHAR}
+    </if>
+    <if test="visitTypeDepict != null">
+      and  viv.VISIT_TYPE_DEPICT = #{visitTypeDepict,jdbcType=VARCHAR}
+    </if>
+  </select>
+</mapper>

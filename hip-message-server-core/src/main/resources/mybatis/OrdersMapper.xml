@@ -1,0 +1,841 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djhu.hiup.message.server.core.dao.IOrdersDao">
+    <resultMap id="BaseResultMap" type="com.djhu.hiup.message.server.core.model.Orders">
+        <id column="PK" property="pk" jdbcType="DECIMAL"/>
+        <result column="MSG_ID" property="msgId" jdbcType="VARCHAR"/>
+        <result column="MSG_CREATION_TIME" property="msgCreationTime" jdbcType="VARCHAR"/>
+        <result column="RECEIVE_ID" property="receiveId" jdbcType="VARCHAR"/>
+        <result column="SEND_ID" property="sendId" jdbcType="VARCHAR"/>
+        <result column="ORDER_OPEN_TIME" property="orderOpenTime" jdbcType="VARCHAR"/>
+        <result column="ORDER_OPEN_PERSON_AUTOGRAPH" property="orderOpenPersonAutograph" jdbcType="VARCHAR"/>
+        <result column="ORDER_OPEN_PERSON_ID" property="orderOpenPersonId" jdbcType="VARCHAR"/>
+        <result column="ORDER_OPEN_PERSON_NAME" property="orderOpenPersonName" jdbcType="VARCHAR"/>
+        <result column="ORDER_OPEN_DEPT_ID" property="orderOpenDeptId" jdbcType="VARCHAR"/>
+        <result column="ORDER_OPEN_DEPT_NAME" property="orderOpenDeptName" jdbcType="VARCHAR"/>
+        <result column="ORDER_AUDITOR_TIME" property="orderAuditorTime" jdbcType="VARCHAR"/>
+        <result column="ORDER_AUDITOR_PERSON_AUTOGRAPH" property="orderAuditorPersonAutograph" jdbcType="VARCHAR"/>
+        <result column="ORDER_AUDITOR_PERSON_ID" property="orderAuditorPersonId" jdbcType="VARCHAR"/>
+        <result column="ORDER_AUDITOR_PERSON_NAME" property="orderAuditorPersonName" jdbcType="VARCHAR"/>
+        <result column="ORDER_INFO_ROOT" property="orderInfoRoot" jdbcType="VARCHAR"/>
+        <result column="ORDER_SEQUENCE" property="orderSequence" jdbcType="VARCHAR"/>
+        <result column="ORDER_ID" property="orderId" jdbcType="VARCHAR"/>
+        <result column="ORDER_ITEM_TYPE_CODE" property="orderItemTypeCode" jdbcType="VARCHAR"/>
+        <result column="CHECK_TYPE_NAME" property="checkTypeName" jdbcType="VARCHAR"/>
+        <result column="ORDER_ITEM_CONTENT" property="orderItemContent" jdbcType="VARCHAR"/>
+        <result column="STATUS_CODE" property="statusCode" jdbcType="VARCHAR"/>
+        <result column="ORDER_START_TIME" property="orderStartTime" jdbcType="VARCHAR"/>
+        <result column="ORDER_END_TIME" property="orderEndTime" jdbcType="VARCHAR"/>
+        <result column="ORDER_EXEC_RATE_CODE" property="orderExecRateCode" jdbcType="VARCHAR"/>
+        <result column="ORDER_EXEC_RATE_NAME" property="orderExecRateName" jdbcType="VARCHAR"/>
+        <result column="DRUG_CHANNEL" property="drugChannel" jdbcType="VARCHAR"/>
+        <result column="DRUG_CHANNEL_DEPICT" property="drugChannelDepict" jdbcType="VARCHAR"/>
+        <result column="DRUG_ONE_DOSE" property="drugOneDose" jdbcType="VARCHAR"/>
+        <result column="DRUG_ONE_DOSE_UNIT" property="drugOneDoseUnit" jdbcType="VARCHAR"/>
+        <result column="DRUG_TOTAL_DOSE" property="drugTotalDose" jdbcType="VARCHAR"/>
+        <result column="DRUG_TOTAL_DOSE_UNIT" property="drugTotalDoseUnit" jdbcType="VARCHAR"/>
+        <result column="DRUG_TOTAL_DOSE_DAYS" property="drugTotalDoseDays" jdbcType="VARCHAR"/>
+        <result column="DRUG_DOSAGE_FORM" property="drugDosageForm" jdbcType="VARCHAR"/>
+        <result column="DRUG_DOSAGE_FORM_DEPICT" property="drugDosageFormDepict" jdbcType="VARCHAR"/>
+        <result column="DRUG_CODE" property="drugCode" jdbcType="VARCHAR"/>
+        <result column="DRUG_NAME" property="drugName" jdbcType="VARCHAR"/>
+        <result column="DRUG_SPEC" property="drugSpec" jdbcType="VARCHAR"/>
+        <result column="DRUG_SPEC_UNIT" property="drugSpecUnit" jdbcType="VARCHAR"/>
+        <result column="DRUG_MEDICAL_TYPE_CODE" property="drugMedicalTypeCode" jdbcType="VARCHAR"/>
+        <result column="DRUG_MEDICAL_TYPE_NAME" property="drugMedicalTypeName" jdbcType="VARCHAR"/>
+        <result column="EXEC_DEPT_CODE" property="execDeptCode" jdbcType="VARCHAR"/>
+        <result column="EXEC_DEPT_NAME" property="execDeptName" jdbcType="VARCHAR"/>
+        <result column="PARENT_ORDER_NO" property="parentOrderNo" jdbcType="VARCHAR"/>
+        <result column="ORDER_TIME_TYPE_CODE" property="orderTimeTypeCode" jdbcType="VARCHAR"/>
+        <result column="ORDER_TIME_TYPE_NAME" property="orderTimeTypeName" jdbcType="VARCHAR"/>
+        <result column="COLLAR_DRUG_AMOUNT" property="collarDrugAmount" jdbcType="VARCHAR"/>
+        <result column="COLLAR_DRUG_AMOUNT_UNIT" property="collarDrugAmountUnit" jdbcType="VARCHAR"/>
+        <result column="ORDER_REMARKS_INFO" property="orderRemarksInfo" jdbcType="VARCHAR"/>
+        <result column="ORDER_REMARKS_INFO_STATUS" property="orderRemarksInfoStatus" jdbcType="VARCHAR"/>
+        <result column="VISIT_NUMBER" property="visitNumber" jdbcType="VARCHAR"/>
+        <result column="VISIT_FLOW_NO" property="visitFlowNo" jdbcType="VARCHAR"/>
+        <result column="VISIT_TYPE_CODE" property="visitTypeCode" jdbcType="VARCHAR"/>
+        <result column="VISIT_TYPE_NAME" property="visitTypeName" jdbcType="VARCHAR"/>
+        <result column="VISIT_ID" property="visitId" jdbcType="VARCHAR"/>
+        <result column="INPATIENT_NO" property="inpatientNo" jdbcType="VARCHAR"/>
+        <result column="PATIENT_ID" property="patientId" jdbcType="VARCHAR"/>
+        <result column="CONTACT_PHONE" property="contactPhone" jdbcType="VARCHAR"/>
+        <result column="IDENTITY_NO" property="identityNo" jdbcType="VARCHAR"/>
+        <result column="NAME" property="name" jdbcType="VARCHAR"/>
+        <result column="GENDER_ID" property="genderId" jdbcType="VARCHAR"/>
+        <result column="GENDER_DEPICT" property="genderDepict" jdbcType="VARCHAR"/>
+        <result column="DATE_OF_BIRTH" property="dateOfBirth" jdbcType="VARCHAR"/>
+        <result column="HEALTH_FILE_NUMBER" property="healthFileNumber" jdbcType="VARCHAR"/>
+        <result column="HEALTH_CARD_NUMBER" property="healthCardNumber" jdbcType="VARCHAR"/>
+        <result column="HOSITAL_BED_NO" property="hositalBedNo" jdbcType="VARCHAR"/>
+        <result column="HOSITAL_BED_NAME" property="hositalBedName" jdbcType="VARCHAR"/>
+        <result column="WARD_NO" property="wardNo" jdbcType="VARCHAR"/>
+        <result column="WARD_NAME" property="wardName" jdbcType="VARCHAR"/>
+        <result column="DEPT_CODE" property="deptCode" jdbcType="VARCHAR"/>
+        <result column="DEPT_NAME" property="deptName" jdbcType="VARCHAR"/>
+        <result column="INPATIENT_AREA" property="inpatientArea" jdbcType="VARCHAR"/>
+        <result column="INPATIENT_AREA_NAME" property="inpatientAreaName" jdbcType="VARCHAR"/>
+        <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="HIUP_STATUS" property="hiupStatus" jdbcType="VARCHAR"/>
+        <result column="HIUP_INFO" property="hiupInfo" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    PK, MSG_ID, MSG_CREATION_TIME, RECEIVE_ID, SEND_ID, ORDER_OPEN_TIME, ORDER_OPEN_PERSON_AUTOGRAPH, 
+    ORDER_OPEN_PERSON_ID, ORDER_OPEN_PERSON_NAME, ORDER_OPEN_DEPT_ID, ORDER_OPEN_DEPT_NAME, 
+    ORDER_AUDITOR_TIME, ORDER_AUDITOR_PERSON_AUTOGRAPH, ORDER_AUDITOR_PERSON_ID, ORDER_AUDITOR_PERSON_NAME, 
+    ORDER_INFO_ROOT, ORDER_SEQUENCE, ORDER_ID, ORDER_ITEM_TYPE_CODE, CHECK_TYPE_NAME, 
+    ORDER_ITEM_CONTENT, STATUS_CODE,ORDER_START_TIME, ORDER_END_TIME, ORDER_EXEC_RATE_CODE, ORDER_EXEC_RATE_NAME,
+    DRUG_CHANNEL, DRUG_CHANNEL_DEPICT, DRUG_ONE_DOSE, DRUG_ONE_DOSE_UNIT, DRUG_TOTAL_DOSE, 
+    DRUG_TOTAL_DOSE_UNIT, DRUG_TOTAL_DOSE_DAYS, DRUG_DOSAGE_FORM, DRUG_DOSAGE_FORM_DEPICT, 
+    DRUG_CODE, DRUG_NAME, DRUG_SPEC, DRUG_SPEC_UNIT, DRUG_MEDICAL_TYPE_CODE, DRUG_MEDICAL_TYPE_NAME, 
+    EXEC_DEPT_CODE, EXEC_DEPT_NAME, PARENT_ORDER_NO, ORDER_TIME_TYPE_CODE, ORDER_TIME_TYPE_NAME, 
+    COLLAR_DRUG_AMOUNT, COLLAR_DRUG_AMOUNT_UNIT, ORDER_REMARKS_INFO, ORDER_REMARKS_INFO_STATUS, 
+    VISIT_NUMBER, VISIT_FLOW_NO, VISIT_TYPE_CODE, VISIT_TYPE_NAME, VISIT_ID, INPATIENT_NO, 
+    PATIENT_ID, CONTACT_PHONE, IDENTITY_NO, NAME, GENDER_ID, GENDER_DEPICT, DATE_OF_BIRTH, 
+    HEALTH_FILE_NUMBER, HEALTH_CARD_NUMBER, HOSITAL_BED_NO, HOSITAL_BED_NAME, WARD_NO, 
+    WARD_NAME, DEPT_CODE, DEPT_NAME, INPATIENT_AREA, INPATIENT_AREA_NAME, CREATE_TIME, 
+    UPDATE_TIME, HIUP_STATUS, HIUP_INFO
+  </sql>
+
+    <select id="selectCountBySelective" resultType="java.lang.Integer" parameterType="map">
+        select count(*) from ORDERS1
+        where 1= 1
+        <if test="orderId != null and orderId != ''">
+            AND ORDER_ID = #{orderId,jdbcType=VARCHAR}
+        </if>
+        <if test="orderSequence != null">
+            AND ORDER_SEQUENCE = #{orderSequence,jdbcType=VARCHAR}
+        </if>
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal">
+    delete from ORDERS1
+    where PK = #{pk,jdbcType=DECIMAL}
+  </delete>
+
+    <insert id="insertSelective" parameterType="map">
+        insert into ORDERS1
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            PK,
+            <if test="msgId != null">
+                MSG_ID,
+            </if>
+            <if test="msgCreationTime != null">
+                MSG_CREATION_TIME,
+            </if>
+            <if test="receiveId != null">
+                RECEIVE_ID,
+            </if>
+            <if test="sendId != null">
+                SEND_ID,
+            </if>
+            <if test="orderOpenTime != null">
+                ORDER_OPEN_TIME,
+            </if>
+            <if test="orderOpenPersonAutograph != null">
+                ORDER_OPEN_PERSON_AUTOGRAPH,
+            </if>
+            <if test="orderOpenPersonId != null">
+                ORDER_OPEN_PERSON_ID,
+            </if>
+            <if test="orderOpenPersonName != null">
+                ORDER_OPEN_PERSON_NAME,
+            </if>
+            <if test="orderOpenDeptId != null">
+                ORDER_OPEN_DEPT_ID,
+            </if>
+            <if test="orderOpenDeptName != null">
+                ORDER_OPEN_DEPT_NAME,
+            </if>
+            <if test="orderAuditorTime != null">
+                ORDER_AUDITOR_TIME,
+            </if>
+            <if test="orderAuditorPersonAutograph != null">
+                ORDER_AUDITOR_PERSON_AUTOGRAPH,
+            </if>
+            <if test="orderAuditorPersonId != null">
+                ORDER_AUDITOR_PERSON_ID,
+            </if>
+            <if test="orderAuditorPersonName != null">
+                ORDER_AUDITOR_PERSON_NAME,
+            </if>
+            <if test="orderInfoRoot != null">
+                ORDER_INFO_ROOT,
+            </if>
+            <if test="orderSequence != null">
+                ORDER_SEQUENCE,
+            </if>
+            <if test="orderId != null">
+                ORDER_ID,
+            </if>
+            <if test="orderItemTypeCode != null">
+                ORDER_ITEM_TYPE_CODE,
+            </if>
+            <if test="checkTypeName != null">
+                CHECK_TYPE_NAME,
+            </if>
+            <if test="orderItemContent != null">
+                ORDER_ITEM_CONTENT,
+            </if>
+            <if test="statusCode != null">
+                STATUS_CODE,
+            </if>
+            <if test="orderStartTime != null">
+                ORDER_START_TIME,
+            </if>
+            <if test="orderEndTime != null">
+                ORDER_END_TIME,
+            </if>
+            <if test="orderExecRateCode != null">
+                ORDER_EXEC_RATE_CODE,
+            </if>
+            <if test="orderExecRateName != null">
+                ORDER_EXEC_RATE_NAME,
+            </if>
+            <if test="drugChannel != null">
+                DRUG_CHANNEL,
+            </if>
+            <if test="drugChannelDepict != null">
+                DRUG_CHANNEL_DEPICT,
+            </if>
+            <if test="drugOneDose != null">
+                DRUG_ONE_DOSE,
+            </if>
+            <if test="drugOneDoseUnit != null">
+                DRUG_ONE_DOSE_UNIT,
+            </if>
+            <if test="drugTotalDose != null">
+                DRUG_TOTAL_DOSE,
+            </if>
+            <if test="drugTotalDoseUnit != null">
+                DRUG_TOTAL_DOSE_UNIT,
+            </if>
+            <if test="drugTotalDoseDays != null">
+                DRUG_TOTAL_DOSE_DAYS,
+            </if>
+            <if test="drugDosageForm != null">
+                DRUG_DOSAGE_FORM,
+            </if>
+            <if test="drugDosageFormDepict != null">
+                DRUG_DOSAGE_FORM_DEPICT,
+            </if>
+            <if test="drugCode != null">
+                DRUG_CODE,
+            </if>
+            <if test="drugName != null">
+                DRUG_NAME,
+            </if>
+            <if test="drugSpec != null">
+                DRUG_SPEC,
+            </if>
+            <if test="drugSpecUnit != null">
+                DRUG_SPEC_UNIT,
+            </if>
+            <if test="drugMedicalTypeCode != null">
+                DRUG_MEDICAL_TYPE_CODE,
+            </if>
+            <if test="drugMedicalTypeName != null">
+                DRUG_MEDICAL_TYPE_NAME,
+            </if>
+            <if test="execDeptCode != null">
+                EXEC_DEPT_CODE,
+            </if>
+            <if test="execDeptName != null">
+                EXEC_DEPT_NAME,
+            </if>
+            <if test="parentOrderNo != null">
+                PARENT_ORDER_NO,
+            </if>
+            <if test="orderTimeTypeCode != null">
+                ORDER_TIME_TYPE_CODE,
+            </if>
+            <if test="orderTimeTypeName != null">
+                ORDER_TIME_TYPE_NAME,
+            </if>
+            <if test="collarDrugAmount != null">
+                COLLAR_DRUG_AMOUNT,
+            </if>
+            <if test="collarDrugAmountUnit != null">
+                COLLAR_DRUG_AMOUNT_UNIT,
+            </if>
+            <if test="orderRemarksInfo != null">
+                ORDER_REMARKS_INFO,
+            </if>
+            <if test="orderRemarksInfoStatus != null">
+                ORDER_REMARKS_INFO_STATUS,
+            </if>
+            <if test="visitNumber != null">
+                VISIT_NUMBER,
+            </if>
+            <if test="visitFlowNo != null">
+                VISIT_FLOW_NO,
+            </if>
+            <if test="visitTypeCode != null">
+                VISIT_TYPE_CODE,
+            </if>
+            <if test="visitTypeName != null">
+                VISIT_TYPE_NAME,
+            </if>
+            <if test="visitId != null">
+                VISIT_ID,
+            </if>
+            <if test="inpatientNo != null">
+                INPATIENT_NO,
+            </if>
+            <if test="patientId != null">
+                PATIENT_ID,
+            </if>
+            <if test="contactPhone != null">
+                CONTACT_PHONE,
+            </if>
+            <if test="identityNo != null">
+                IDENTITY_NO,
+            </if>
+            <if test="name != null">
+                NAME,
+            </if>
+            <if test="genderId != null">
+                GENDER_ID,
+            </if>
+            <if test="genderDepict != null">
+                GENDER_DEPICT,
+            </if>
+            <if test="dateOfBirth != null">
+                DATE_OF_BIRTH,
+            </if>
+            <if test="healthFileNumber != null">
+                HEALTH_FILE_NUMBER,
+            </if>
+            <if test="healthCardNumber != null">
+                HEALTH_CARD_NUMBER,
+            </if>
+            <if test="hositalBedNo != null">
+                HOSITAL_BED_NO,
+            </if>
+            <if test="hositalBedName != null">
+                HOSITAL_BED_NAME,
+            </if>
+            <if test="wardNo != null">
+                WARD_NO,
+            </if>
+            <if test="wardName != null">
+                WARD_NAME,
+            </if>
+            <if test="deptCode != null">
+                DEPT_CODE,
+            </if>
+            <if test="deptName != null">
+                DEPT_NAME,
+            </if>
+            <if test="inpatientArea != null">
+                INPATIENT_AREA,
+            </if>
+            <if test="inpatientAreaName != null">
+                INPATIENT_AREA_NAME,
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME,
+            </if>
+            <if test="updateTime != null">
+                UPDATE_TIME,
+            </if>
+            <if test="hiupStatus != null">
+                HIUP_STATUS,
+            </if>
+            <if test="hiupInfo != null">
+                HIUP_INFO,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            ORDERS1_SEQ.NEXTVAL,
+            <if test="msgId != null">
+                #{msgId,jdbcType=VARCHAR},
+            </if>
+            <if test="msgCreationTime != null">
+                #{msgCreationTime,jdbcType=VARCHAR},
+            </if>
+            <if test="receiveId != null">
+                #{receiveId,jdbcType=VARCHAR},
+            </if>
+            <if test="sendId != null">
+                #{sendId,jdbcType=VARCHAR},
+            </if>
+            <if test="orderOpenTime != null">
+                #{orderOpenTime,jdbcType=VARCHAR},
+            </if>
+            <if test="orderOpenPersonAutograph != null">
+                #{orderOpenPersonAutograph,jdbcType=VARCHAR},
+            </if>
+            <if test="orderOpenPersonId != null">
+                #{orderOpenPersonId,jdbcType=VARCHAR},
+            </if>
+            <if test="orderOpenPersonName != null">
+                #{orderOpenPersonName,jdbcType=VARCHAR},
+            </if>
+            <if test="orderOpenDeptId != null">
+                #{orderOpenDeptId,jdbcType=VARCHAR},
+            </if>
+            <if test="orderOpenDeptName != null">
+                #{orderOpenDeptName,jdbcType=VARCHAR},
+            </if>
+            <if test="orderAuditorTime != null">
+                #{orderAuditorTime,jdbcType=VARCHAR},
+            </if>
+            <if test="orderAuditorPersonAutograph != null">
+                #{orderAuditorPersonAutograph,jdbcType=VARCHAR},
+            </if>
+            <if test="orderAuditorPersonId != null">
+                #{orderAuditorPersonId,jdbcType=VARCHAR},
+            </if>
+            <if test="orderAuditorPersonName != null">
+                #{orderAuditorPersonName,jdbcType=VARCHAR},
+            </if>
+            <if test="orderInfoRoot != null">
+                #{orderInfoRoot,jdbcType=VARCHAR},
+            </if>
+            <if test="orderSequence != null">
+                #{orderSequence,jdbcType=VARCHAR},
+            </if>
+            <if test="orderId != null">
+                #{orderId,jdbcType=VARCHAR},
+            </if>
+            <if test="orderItemTypeCode != null">
+                #{orderItemTypeCode,jdbcType=VARCHAR},
+            </if>
+            <if test="checkTypeName != null">
+                #{checkTypeName,jdbcType=VARCHAR},
+            </if>
+            <if test="orderItemContent != null">
+                #{orderItemContent,jdbcType=VARCHAR},
+            </if>
+            <if test="statusCode != null">
+                #{statusCode,jdbcType=VARCHAR},
+            </if>
+            <if test="orderStartTime != null">
+                #{orderStartTime,jdbcType=VARCHAR},
+            </if>
+            <if test="orderEndTime != null">
+                #{orderEndTime,jdbcType=VARCHAR},
+            </if>
+            <if test="orderExecRateCode != null">
+                #{orderExecRateCode,jdbcType=VARCHAR},
+            </if>
+            <if test="orderExecRateName != null">
+                #{orderExecRateName,jdbcType=VARCHAR},
+            </if>
+            <if test="drugChannel != null">
+                #{drugChannel,jdbcType=VARCHAR},
+            </if>
+            <if test="drugChannelDepict != null">
+                #{drugChannelDepict,jdbcType=VARCHAR},
+            </if>
+            <if test="drugOneDose != null">
+                #{drugOneDose,jdbcType=VARCHAR},
+            </if>
+            <if test="drugOneDoseUnit != null">
+                #{drugOneDoseUnit,jdbcType=VARCHAR},
+            </if>
+            <if test="drugTotalDose != null">
+                #{drugTotalDose,jdbcType=VARCHAR},
+            </if>
+            <if test="drugTotalDoseUnit != null">
+                #{drugTotalDoseUnit,jdbcType=VARCHAR},
+            </if>
+            <if test="drugTotalDoseDays != null">
+                #{drugTotalDoseDays,jdbcType=VARCHAR},
+            </if>
+            <if test="drugDosageForm != null">
+                #{drugDosageForm,jdbcType=VARCHAR},
+            </if>
+            <if test="drugDosageFormDepict != null">
+                #{drugDosageFormDepict,jdbcType=VARCHAR},
+            </if>
+            <if test="drugCode != null">
+                #{drugCode,jdbcType=VARCHAR},
+            </if>
+            <if test="drugName != null">
+                #{drugName,jdbcType=VARCHAR},
+            </if>
+            <if test="drugSpec != null">
+                #{drugSpec,jdbcType=VARCHAR},
+            </if>
+            <if test="drugSpecUnit != null">
+                #{drugSpecUnit,jdbcType=VARCHAR},
+            </if>
+            <if test="drugMedicalTypeCode != null">
+                #{drugMedicalTypeCode,jdbcType=VARCHAR},
+            </if>
+            <if test="drugMedicalTypeName != null">
+                #{drugMedicalTypeName,jdbcType=VARCHAR},
+            </if>
+            <if test="execDeptCode != null">
+                #{execDeptCode,jdbcType=VARCHAR},
+            </if>
+            <if test="execDeptName != null">
+                #{execDeptName,jdbcType=VARCHAR},
+            </if>
+            <if test="parentOrderNo != null">
+                #{parentOrderNo,jdbcType=VARCHAR},
+            </if>
+            <if test="orderTimeTypeCode != null">
+                #{orderTimeTypeCode,jdbcType=VARCHAR},
+            </if>
+            <if test="orderTimeTypeName != null">
+                #{orderTimeTypeName,jdbcType=VARCHAR},
+            </if>
+            <if test="collarDrugAmount != null">
+                #{collarDrugAmount,jdbcType=VARCHAR},
+            </if>
+            <if test="collarDrugAmountUnit != null">
+                #{collarDrugAmountUnit,jdbcType=VARCHAR},
+            </if>
+            <if test="orderRemarksInfo != null">
+                #{orderRemarksInfo,jdbcType=VARCHAR},
+            </if>
+            <if test="orderRemarksInfoStatus != null">
+                #{orderRemarksInfoStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="visitNumber != null">
+                #{visitNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="visitFlowNo != null">
+                #{visitFlowNo,jdbcType=VARCHAR},
+            </if>
+            <if test="visitTypeCode != null">
+                #{visitTypeCode,jdbcType=VARCHAR},
+            </if>
+            <if test="visitTypeName != null">
+                #{visitTypeName,jdbcType=VARCHAR},
+            </if>
+            <if test="visitId != null">
+                #{visitId,jdbcType=VARCHAR},
+            </if>
+            <if test="inpatientNo != null">
+                #{inpatientNo,jdbcType=VARCHAR},
+            </if>
+            <if test="patientId != null">
+                #{patientId,jdbcType=VARCHAR},
+            </if>
+            <if test="contactPhone != null">
+                #{contactPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="identityNo != null">
+                #{identityNo,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="genderId != null">
+                #{genderId,jdbcType=VARCHAR},
+            </if>
+            <if test="genderDepict != null">
+                #{genderDepict,jdbcType=VARCHAR},
+            </if>
+            <if test="dateOfBirth != null">
+                #{dateOfBirth,jdbcType=VARCHAR},
+            </if>
+            <if test="healthFileNumber != null">
+                #{healthFileNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="healthCardNumber != null">
+                #{healthCardNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="hositalBedNo != null">
+                #{hositalBedNo,jdbcType=VARCHAR},
+            </if>
+            <if test="hositalBedName != null">
+                #{hositalBedName,jdbcType=VARCHAR},
+            </if>
+            <if test="wardNo != null">
+                #{wardNo,jdbcType=VARCHAR},
+            </if>
+            <if test="wardName != null">
+                #{wardName,jdbcType=VARCHAR},
+            </if>
+            <if test="deptCode != null">
+                #{deptCode,jdbcType=VARCHAR},
+            </if>
+            <if test="deptName != null">
+                #{deptName,jdbcType=VARCHAR},
+            </if>
+            <if test="inpatientArea != null">
+                #{inpatientArea,jdbcType=VARCHAR},
+            </if>
+            <if test="inpatientAreaName != null">
+                #{inpatientAreaName,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="hiupStatus != null">
+                #{hiupStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="hiupInfo != null">
+                #{hiupInfo,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateBySelective" parameterType="map">
+        update ORDERS1
+        <set>
+            <if test="msgId != null">
+                MSG_ID = #{msgId,jdbcType=VARCHAR},
+            </if>
+            <if test="msgCreationTime != null">
+                MSG_CREATION_TIME = #{msgCreationTime,jdbcType=VARCHAR},
+            </if>
+            <if test="receiveId != null">
+                RECEIVE_ID = #{receiveId,jdbcType=VARCHAR},
+            </if>
+            <if test="sendId != null">
+                SEND_ID = #{sendId,jdbcType=VARCHAR},
+            </if>
+            <if test="orderOpenTime != null">
+                ORDER_OPEN_TIME = #{orderOpenTime,jdbcType=VARCHAR},
+            </if>
+            <if test="orderOpenPersonAutograph != null">
+                ORDER_OPEN_PERSON_AUTOGRAPH = #{orderOpenPersonAutograph,jdbcType=VARCHAR},
+            </if>
+            <if test="orderOpenPersonId != null">
+                ORDER_OPEN_PERSON_ID = #{orderOpenPersonId,jdbcType=VARCHAR},
+            </if>
+            <if test="orderOpenPersonName != null">
+                ORDER_OPEN_PERSON_NAME = #{orderOpenPersonName,jdbcType=VARCHAR},
+            </if>
+            <if test="orderOpenDeptId != null">
+                ORDER_OPEN_DEPT_ID = #{orderOpenDeptId,jdbcType=VARCHAR},
+            </if>
+            <if test="orderOpenDeptName != null">
+                ORDER_OPEN_DEPT_NAME = #{orderOpenDeptName,jdbcType=VARCHAR},
+            </if>
+            <if test="orderAuditorTime != null">
+                ORDER_AUDITOR_TIME = #{orderAuditorTime,jdbcType=VARCHAR},
+            </if>
+            <if test="orderAuditorPersonAutograph != null">
+                ORDER_AUDITOR_PERSON_AUTOGRAPH = #{orderAuditorPersonAutograph,jdbcType=VARCHAR},
+            </if>
+            <if test="orderAuditorPersonId != null">
+                ORDER_AUDITOR_PERSON_ID = #{orderAuditorPersonId,jdbcType=VARCHAR},
+            </if>
+            <if test="orderAuditorPersonName != null">
+                ORDER_AUDITOR_PERSON_NAME = #{orderAuditorPersonName,jdbcType=VARCHAR},
+            </if>
+            <if test="orderInfoRoot != null">
+                ORDER_INFO_ROOT = #{orderInfoRoot,jdbcType=VARCHAR},
+            </if>
+            <if test="orderSequence != null">
+                ORDER_SEQUENCE = #{orderSequence,jdbcType=VARCHAR},
+            </if>
+            <if test="orderId != null">
+                ORDER_ID = #{orderId,jdbcType=VARCHAR},
+            </if>
+            <if test="orderItemTypeCode != null">
+                ORDER_ITEM_TYPE_CODE = #{orderItemTypeCode,jdbcType=VARCHAR},
+            </if>
+            <if test="checkTypeName != null">
+                CHECK_TYPE_NAME = #{checkTypeName,jdbcType=VARCHAR},
+            </if>
+            <if test="orderItemContent != null">
+                ORDER_ITEM_CONTENT = #{orderItemContent,jdbcType=VARCHAR},
+            </if>
+            <if test="statusCode != null">
+                STATUS_CODE = #{statusCode,jdbcType=VARCHAR},
+            </if>
+            <if test="orderStartTime != null">
+                ORDER_START_TIME = #{orderStartTime,jdbcType=VARCHAR},
+            </if>
+            <if test="orderEndTime != null">
+                ORDER_END_TIME = #{orderEndTime,jdbcType=VARCHAR},
+            </if>
+            <if test="orderExecRateCode != null">
+                ORDER_EXEC_RATE_CODE = #{orderExecRateCode,jdbcType=VARCHAR},
+            </if>
+            <if test="orderExecRateName != null">
+                ORDER_EXEC_RATE_NAME = #{orderExecRateName,jdbcType=VARCHAR},
+            </if>
+            <if test="drugChannel != null">
+                DRUG_CHANNEL = #{drugChannel,jdbcType=VARCHAR},
+            </if>
+            <if test="drugChannelDepict != null">
+                DRUG_CHANNEL_DEPICT = #{drugChannelDepict,jdbcType=VARCHAR},
+            </if>
+            <if test="drugOneDose != null">
+                DRUG_ONE_DOSE = #{drugOneDose,jdbcType=VARCHAR},
+            </if>
+            <if test="drugOneDoseUnit != null">
+                DRUG_ONE_DOSE_UNIT = #{drugOneDoseUnit,jdbcType=VARCHAR},
+            </if>
+            <if test="drugTotalDose != null">
+                DRUG_TOTAL_DOSE = #{drugTotalDose,jdbcType=VARCHAR},
+            </if>
+            <if test="drugTotalDoseUnit != null">
+                DRUG_TOTAL_DOSE_UNIT = #{drugTotalDoseUnit,jdbcType=VARCHAR},
+            </if>
+            <if test="drugTotalDoseDays != null">
+                DRUG_TOTAL_DOSE_DAYS = #{drugTotalDoseDays,jdbcType=VARCHAR},
+            </if>
+            <if test="drugDosageForm != null">
+                DRUG_DOSAGE_FORM = #{drugDosageForm,jdbcType=VARCHAR},
+            </if>
+            <if test="drugDosageFormDepict != null">
+                DRUG_DOSAGE_FORM_DEPICT = #{drugDosageFormDepict,jdbcType=VARCHAR},
+            </if>
+            <if test="drugCode != null">
+                DRUG_CODE = #{drugCode,jdbcType=VARCHAR},
+            </if>
+            <if test="drugName != null">
+                DRUG_NAME = #{drugName,jdbcType=VARCHAR},
+            </if>
+            <if test="drugSpec != null">
+                DRUG_SPEC = #{drugSpec,jdbcType=VARCHAR},
+            </if>
+            <if test="drugSpecUnit != null">
+                DRUG_SPEC_UNIT = #{drugSpecUnit,jdbcType=VARCHAR},
+            </if>
+            <if test="drugMedicalTypeCode != null">
+                DRUG_MEDICAL_TYPE_CODE = #{drugMedicalTypeCode,jdbcType=VARCHAR},
+            </if>
+            <if test="drugMedicalTypeName != null">
+                DRUG_MEDICAL_TYPE_NAME = #{drugMedicalTypeName,jdbcType=VARCHAR},
+            </if>
+            <if test="execDeptCode != null">
+                EXEC_DEPT_CODE = #{execDeptCode,jdbcType=VARCHAR},
+            </if>
+            <if test="execDeptName != null">
+                EXEC_DEPT_NAME = #{execDeptName,jdbcType=VARCHAR},
+            </if>
+            <if test="parentOrderNo != null">
+                PARENT_ORDER_NO = #{parentOrderNo,jdbcType=VARCHAR},
+            </if>
+            <if test="orderTimeTypeCode != null">
+                ORDER_TIME_TYPE_CODE = #{orderTimeTypeCode,jdbcType=VARCHAR},
+            </if>
+            <if test="orderTimeTypeName != null">
+                ORDER_TIME_TYPE_NAME = #{orderTimeTypeName,jdbcType=VARCHAR},
+            </if>
+            <if test="collarDrugAmount != null">
+                COLLAR_DRUG_AMOUNT = #{collarDrugAmount,jdbcType=VARCHAR},
+            </if>
+            <if test="collarDrugAmountUnit != null">
+                COLLAR_DRUG_AMOUNT_UNIT = #{collarDrugAmountUnit,jdbcType=VARCHAR},
+            </if>
+            <if test="orderRemarksInfo != null">
+                ORDER_REMARKS_INFO = #{orderRemarksInfo,jdbcType=VARCHAR},
+            </if>
+            <if test="orderRemarksInfoStatus != null">
+                ORDER_REMARKS_INFO_STATUS = #{orderRemarksInfoStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="visitNumber != null">
+                VISIT_NUMBER = #{visitNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="visitFlowNo != null">
+                VISIT_FLOW_NO = #{visitFlowNo,jdbcType=VARCHAR},
+            </if>
+            <if test="visitTypeCode != null">
+                VISIT_TYPE_CODE = #{visitTypeCode,jdbcType=VARCHAR},
+            </if>
+            <if test="visitTypeName != null">
+                VISIT_TYPE_NAME = #{visitTypeName,jdbcType=VARCHAR},
+            </if>
+            <if test="visitId != null">
+                VISIT_ID = #{visitId,jdbcType=VARCHAR},
+            </if>
+            <if test="inpatientNo != null">
+                INPATIENT_NO = #{inpatientNo,jdbcType=VARCHAR},
+            </if>
+            <if test="patientId != null">
+                PATIENT_ID = #{patientId,jdbcType=VARCHAR},
+            </if>
+            <if test="contactPhone != null">
+                CONTACT_PHONE = #{contactPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="identityNo != null">
+                IDENTITY_NO = #{identityNo,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                NAME = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="genderId != null">
+                GENDER_ID = #{genderId,jdbcType=VARCHAR},
+            </if>
+            <if test="genderDepict != null">
+                GENDER_DEPICT = #{genderDepict,jdbcType=VARCHAR},
+            </if>
+            <if test="dateOfBirth != null">
+                DATE_OF_BIRTH = #{dateOfBirth,jdbcType=VARCHAR},
+            </if>
+            <if test="healthFileNumber != null">
+                HEALTH_FILE_NUMBER = #{healthFileNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="healthCardNumber != null">
+                HEALTH_CARD_NUMBER = #{healthCardNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="hositalBedNo != null">
+                HOSITAL_BED_NO = #{hositalBedNo,jdbcType=VARCHAR},
+            </if>
+            <if test="hositalBedName != null">
+                HOSITAL_BED_NAME = #{hositalBedName,jdbcType=VARCHAR},
+            </if>
+            <if test="wardNo != null">
+                WARD_NO = #{wardNo,jdbcType=VARCHAR},
+            </if>
+            <if test="wardName != null">
+                WARD_NAME = #{wardName,jdbcType=VARCHAR},
+            </if>
+            <if test="deptCode != null">
+                DEPT_CODE = #{deptCode,jdbcType=VARCHAR},
+            </if>
+            <if test="deptName != null">
+                DEPT_NAME = #{deptName,jdbcType=VARCHAR},
+            </if>
+            <if test="inpatientArea != null">
+                INPATIENT_AREA = #{inpatientArea,jdbcType=VARCHAR},
+            </if>
+            <if test="inpatientAreaName != null">
+                INPATIENT_AREA_NAME = #{inpatientAreaName,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="hiupStatus != null">
+                HIUP_STATUS = #{hiupStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="hiupInfo != null">
+                HIUP_INFO = #{hiupInfo,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where ORDER_SEQUENCE = #{orderSequence,jdbcType=VARCHAR} and
+        ORDER_ID = #{orderId,jdbcType=VARCHAR}
+    </update>
+
+    <select id="selectBySelective" parameterType="map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from orders1
+        where 1=1
+
+        <if test="orderId != null">
+            and ORDER_ID = #{orderId,jdbcType=VARCHAR}
+        </if>
+        <if test="orderOpenPersonId != null">
+            and ORDER_OPEN_PERSON_ID = #{orderOpenPersonId,jdbcType=VARCHAR}
+        </if>
+        <if test="orderStartTime != null">
+            and ORDER_START_TIME = #{orderStartTime,jdbcType=VARCHAR}
+        </if>
+        <if test="orderEndTime != null">
+            and ORDER_END_TIME = #{orderEndTime,jdbcType=VARCHAR}
+        </if>
+        <if test="patientId != null">
+            and PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+        </if>
+    </select>
+</mapper>

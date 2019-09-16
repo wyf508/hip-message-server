@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <bean id="callLogDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface"   value="com.djhu.hiup.message.server.core.dao.ICallLogDao"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactoryHlht"/>
+    </bean>
+
+    <bean id="deptDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface"   value="com.djhu.hiup.message.server.core.dao.IDeptDao"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactoryHlht"/>
+    </bean>
+
+    <bean id="docDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface"   value="com.djhu.hiup.message.server.core.dao.IDocDao"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactoryHlht"/>
+    </bean>
+
+    <bean id="ordersDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface"   value="com.djhu.hiup.message.server.core.dao.IOrdersDao"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactoryHlht"/>
+    </bean>
+
+    <bean id="patientDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface"   value="com.djhu.hiup.message.server.core.dao.IPatientDao"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactoryHlht"/>
+    </bean>
+
+    <bean id="personnelDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface"   value="com.djhu.hiup.message.server.core.dao.IPersonnelDao"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactoryHlht"/>
+    </bean>
+
+    <bean id="requestBloodTransfusionDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface"   value="com.djhu.hiup.message.server.core.dao.IRequestBloodTransfusionDao"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactoryHlht"/>
+    </bean>
+
+    <bean id="requestLisDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface"   value="com.djhu.hiup.message.server.core.dao.IRequestLisDao"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactoryHlht"/>
+    </bean>
+
+    <bean id="requestOperationDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface"   value="com.djhu.hiup.message.server.core.dao.IRequestOperationDao"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactoryHlht"/>
+    </bean>
+
+    <bean id="requestPisDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface"   value="com.djhu.hiup.message.server.core.dao.IRequestPisDao"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactoryHlht"/>
+    </bean>
+
+    <bean id="requestRisDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface"   value="com.djhu.hiup.message.server.core.dao.IRequestRisDao"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactoryHlht"/>
+    </bean>
+
+    <bean id="reserveOutpatientDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface"   value="com.djhu.hiup.message.server.core.dao.IReserveOutpatientDao"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactoryHlht"/>
+    </bean>
+
+    <bean id="reserveRisDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface"   value="com.djhu.hiup.message.server.core.dao.IReserveRisDao"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactoryHlht"/>
+    </bean>
+
+    <bean id="statusLisDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface"   value="com.djhu.hiup.message.server.core.dao.IStatusLisDao"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactoryHlht"/>
+    </bean>
+
+    <bean id="statusOperationDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface"   value="com.djhu.hiup.message.server.core.dao.IStatusOperationDao"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactoryHlht"/>
+    </bean>
+
+    <bean id="statusOperationSchedulingDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface"   value="com.djhu.hiup.message.server.core.dao.IStatusOperationSchedulingDao"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactoryHlht"/>
+    </bean>
+
+    <bean id="statusOrderExecDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface"   value="com.djhu.hiup.message.server.core.dao.IStatusOrderExecDao"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactoryHlht"/>
+    </bean>
+
+    <bean id="statusRisDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface"   value="com.djhu.hiup.message.server.core.dao.IStatusRisDao"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactoryHlht"/>
+    </bean>
+
+    <bean id="termDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface"   value="com.djhu.hiup.message.server.core.dao.ITermDao"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactoryHlht"/>
+    </bean>
+
+    <bean id="visitInpatientVisitDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface"   value="com.djhu.hiup.message.server.core.dao.IVisitInpatientVisitDao"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactoryHlht"/>
+    </bean>
+
+    <bean id="visitLeaveHospitalDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface"   value="com.djhu.hiup.message.server.core.dao.IVisitLeaveHospitalDao"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactoryHlht"/>
+    </bean>
+
+    <bean id="visitMedicalCardDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface"   value="com.djhu.hiup.message.server.core.dao.IVisitMedicalCardDao"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactoryHlht"/>
+    </bean>
+
+    <bean id="visitNumberSourceDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface"   value="com.djhu.hiup.message.server.core.dao.IVisitNumberSourceDao"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactoryHlht"/>
+    </bean>
+
+    <bean id="visitOutpatientRegisterDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface"   value="com.djhu.hiup.message.server.core.dao.IVisitOutpatientRegisterDao"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactoryHlht"/>
+    </bean>
+
+    <bean id="visitTransferDeptDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface"   value="com.djhu.hiup.message.server.core.dao.IVisitTransferDeptDao"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactoryHlht"/>
+    </bean>
+
+
+    <bean id="inpatientVisitDiagnosisDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface"   value="com.djhu.hiup.message.server.core.dao.IInpatientVisitDiagnosisDao"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactoryHlht"/>
+    </bean>
+
+    <bean id="leaveHospitalDiagnosisDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface"   value="com.djhu.hiup.message.server.core.dao.ILeaveHospitalDiagnosisDao"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactoryHlht"/>
+    </bean>
+
+    <bean id="lisInspectionItemDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface"   value="com.djhu.hiup.message.server.core.dao.ILisInspectionItemDao"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactoryHlht"/>
+    </bean>
+
+    <bean id="operationCheckItemDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface"   value="com.djhu.hiup.message.server.core.dao.IOperationCheckItemDao"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactoryHlht"/>
+    </bean>
+
+    <bean id="operationCheckStatusDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface"   value="com.djhu.hiup.message.server.core.dao.IOperationCheckStatusDao"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactoryHlht"/>
+    </bean>
+
+    <bean id="pisCheckItemDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface"   value="com.djhu.hiup.message.server.core.dao.IPisCheckItemDao"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactoryHlht"/>
+    </bean>
+
+    <bean id="pisContactPersonDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface"   value="com.djhu.hiup.message.server.core.dao.IPisContactPersonDao"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactoryHlht"/>
+    </bean>
+
+    <bean id="pisDrawingPartsDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface"   value="com.djhu.hiup.message.server.core.dao.IPisDrawingPartsDao"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactoryHlht"/>
+    </bean>
+
+    <bean id="risCheckItemDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface"   value="com.djhu.hiup.message.server.core.dao.IRisCheckItemDao"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactoryHlht"/>
+    </bean>
+
+    <bean id="risCheckStatusDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface"   value="com.djhu.hiup.message.server.core.dao.IRisCheckStatusDao"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactoryHlht"/>
+    </bean>
+
+    <bean id="systemDirDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface"   value="com.djhu.hiup.message.server.core.dao.ISystemDirDao"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactoryHlht"/>
+    </bean>
+
+    <bean id="tableColumnAndMetaDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface"   value="com.djhu.hiup.message.server.core.dao.ITableColumnAndMetaDao"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactoryHlht"/>
+    </bean>
+
+    <bean id="empiDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface"   value="com.djhu.hiup.message.server.core.dao.IEmpiDao"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactoryHlht"/>
+    </bean>
+    
+    <bean id="visitOutpatientVisitDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface"   value="com.djhu.hiup.message.server.core.dao.VisitOutpatientVisitDao"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactoryHlht"/>
+    </bean>
+
+    <bean id="hlhtDictDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface"   value="com.djhu.hiup.message.server.core.dao.IHlhtDictDao"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactoryHlht"/>
+    </bean>
+</beans>

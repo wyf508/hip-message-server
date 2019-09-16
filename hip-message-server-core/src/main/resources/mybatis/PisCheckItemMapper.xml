@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djhu.hiup.message.server.core.dao.IPisCheckItemDao" >
+  <resultMap id="BaseResultMap" type="com.djhu.hiup.message.server.core.model.PisCheckItem" >
+    <id column="PK" property="pk" jdbcType="DECIMAL" />
+    <result column="REQUEST_PIS_PK" property="requestPisPk" jdbcType="DECIMAL" />
+    <result column="CHECK_ITEM_CODE" property="checkItemCode" jdbcType="VARCHAR" />
+    <result column="CHECK_ITEM_NAME" property="checkItemName" jdbcType="VARCHAR" />
+    <result column="CHECK_METHOD_CODE" property="checkMethodCode" jdbcType="VARCHAR" />
+    <result column="CHECK_METHOD_NAME" property="checkMethodName" jdbcType="VARCHAR" />
+    <result column="CHECK_BODY_CODE" property="checkBodyCode" jdbcType="VARCHAR" />
+    <result column="CHECK_BODY_NAME" property="checkBodyName" jdbcType="VARCHAR" />
+    <result column="EXEC_TIME" property="execTime" jdbcType="VARCHAR" />
+    <result column="EXEC_DEPT_CODE" property="execDeptCode" jdbcType="VARCHAR" />
+    <result column="EXEC_DEPT_NAME" property="execDeptName" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PK, REQUEST_PIS_PK, CHECK_ITEM_CODE, CHECK_ITEM_NAME, CHECK_METHOD_CODE, CHECK_METHOD_NAME, 
+    CHECK_BODY_CODE, CHECK_BODY_NAME, EXEC_TIME, EXEC_DEPT_CODE, EXEC_DEPT_NAME, CREATE_TIME
+  </sql>
+
+  <select id="selectByRequestPisPk" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List" />
+    from PIS_CHECK_ITEM
+    where REQUEST_PIS_PK = #{requestPisPk,jdbcType=DECIMAL}
+  </select>
+
+  <delete id="deleteByRequestPisPk" parameterType="java.math.BigDecimal" >
+    delete from PIS_CHECK_ITEM
+   where REQUEST_PIS_PK = #{requestPisPk,jdbcType=DECIMAL}
+  </delete>
+
+  <insert id="insertPisCheckItem" parameterType="map"  >
+    insert into PIS_CHECK_ITEM
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      PK,
+      <if test="requestPisPk != null" >
+        REQUEST_PIS_PK,
+      </if>
+      <if test="checkItemCode != null" >
+        CHECK_ITEM_CODE,
+      </if>
+      <if test="checkItemName != null" >
+        CHECK_ITEM_NAME,
+      </if>
+      <if test="checkMethodCode != null" >
+        CHECK_METHOD_CODE,
+      </if>
+      <if test="checkMethodName != null" >
+        CHECK_METHOD_NAME,
+      </if>
+      <if test="checkBodyCode != null" >
+        CHECK_BODY_CODE,
+      </if>
+      <if test="checkBodyName != null" >
+        CHECK_BODY_NAME,
+      </if>
+      <if test="execTime != null" >
+        EXEC_TIME,
+      </if>
+      <if test="execDeptCode != null" >
+        EXEC_DEPT_CODE,
+      </if>
+      <if test="execDeptName != null" >
+        EXEC_DEPT_NAME,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      PIS_CHECK_ITEM_SEQ.NEXTVAL,
+      <if test="requestPisPk != null" >
+        #{requestPisPk,jdbcType=DECIMAL},
+      </if>
+      <if test="checkItemCode != null" >
+        #{checkItemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="checkItemName != null" >
+        #{checkItemName,jdbcType=VARCHAR},
+      </if>
+      <if test="checkMethodCode != null" >
+        #{checkMethodCode,jdbcType=VARCHAR},
+      </if>
+      <if test="checkMethodName != null" >
+        #{checkMethodName,jdbcType=VARCHAR},
+      </if>
+      <if test="checkBodyCode != null" >
+        #{checkBodyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="checkBodyName != null" >
+        #{checkBodyName,jdbcType=VARCHAR},
+      </if>
+      <if test="execTime != null" >
+        #{execTime,jdbcType=VARCHAR},
+      </if>
+      <if test="execDeptCode != null" >
+        #{execDeptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="execDeptName != null" >
+        #{execDeptName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+<insert id="insertPisCheckItemList" parameterType="java.util.List" useGeneratedKeys="false">
+        begin
+        <foreach collection="list" item="item" index="index" separator=";">
+           insert into PIS_CHECK_ITEM
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      PK,
+      <if test="item.requestPisPk != null" >
+        REQUEST_PIS_PK,
+      </if>
+      <if test="item.checkItemCode != null" >
+        CHECK_ITEM_CODE,
+      </if>
+      <if test="item.checkItemName != null" >
+        CHECK_ITEM_NAME,
+      </if>
+      <if test="item.checkMethodCode != null" >
+        CHECK_METHOD_CODE,
+      </if>
+      <if test="item.checkMethodName != null" >
+        CHECK_METHOD_NAME,
+      </if>
+      <if test="item.checkBodyCode != null" >
+        CHECK_BODY_CODE,
+      </if>
+      <if test="item.checkBodyName != null" >
+        CHECK_BODY_NAME,
+      </if>
+      <if test="item.execTime != null" >
+        EXEC_TIME,
+      </if>
+      <if test="item.execDeptCode != null" >
+        EXEC_DEPT_CODE,
+      </if>
+      <if test="item.execDeptName != null" >
+        EXEC_DEPT_NAME,
+      </if>
+      <if test="item.createTime != null" >
+        CREATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      PIS_CHECK_ITEM_SEQ.NEXTVAL,
+      <if test="item.requestPisPk != null" >
+        #{item.requestPisPk,jdbcType=DECIMAL},
+      </if>
+      <if test="item.checkItemCode != null" >
+        #{item.checkItemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="item.checkItemName != null" >
+        #{item.checkItemName,jdbcType=VARCHAR},
+      </if>
+      <if test="item.checkMethodCode != null" >
+        #{item.checkMethodCode,jdbcType=VARCHAR},
+      </if>
+      <if test="item.checkMethodName != null" >
+        #{item.checkMethodName,jdbcType=VARCHAR},
+      </if>
+      <if test="item.checkBodyCode != null" >
+        #{item.checkBodyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="item.checkBodyName != null" >
+        #{item.checkBodyName,jdbcType=VARCHAR},
+      </if>
+      <if test="item.execTime != null" >
+        #{item.execTime,jdbcType=VARCHAR},
+      </if>
+      <if test="item.execDeptCode != null" >
+        #{item.execDeptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="item.execDeptName != null" >
+        #{item.execDeptName,jdbcType=VARCHAR},
+      </if>
+      <if test="item.createTime != null" >
+        #{item.createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+		
+        </foreach>
+        ;end;
+    </insert>
+</mapper>

@@ -1,0 +1,49 @@
+package com.djhu.hiup.message.server.core.dao;
+
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.Map;
+
+import com.djhu.hiup.message.server.core.model.RequestPis;
+
+/**
+ * 申请单信息_病理申请单信息表
+ */
+public interface IRequestPisDao {
+
+    /**
+     * 查询记录数量
+     * @param paramsMap
+     * @return
+     */
+    int selectCountBySelective(Map<String,Object> paramsMap)throws RuntimeException;
+
+    BigDecimal selectPkBySelective(Map<String,Object> paramsMap)throws RuntimeException;
+
+    /**
+     * 保存信息
+     * @param paramsMap
+     * @return
+     */
+    int insertSelective(Map<String,Object> paramsMap)throws RuntimeException;
+
+    /**
+     * 更新信息
+     * @param paramsMap
+     * @return
+     */
+    int updateBySelective(Map<String,Object> paramsMap)throws RuntimeException;
+
+    /**
+     * 查询列表
+     * @param paramsMap
+     * @return
+     */
+    List selectBySelective(Map<String,Object> paramsMap)throws RuntimeException;
+    /**
+     * 查询列表
+     * @param paramsMap
+     * @return
+     */
+	List<RequestPis> selectBySelectiveWithC(Map<String, Object> keyAndXmlValMap)throws RuntimeException;
+}

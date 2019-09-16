@@ -1,0 +1,67 @@
+<PRPM_IN403011UV01 xmlns="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ITSVersion="XML_1.0"  xsi:schemaLocation="urn:hl7-org:v3 ../multicacheschemas/PRPM_IN403011UV01.xsd">
+    <id th:attr="extension=${returnMsgId}"/>
+    <creationTime th:attr="value=${#dates.format(#dates.createNow(), 'yyyyMMddHHmmss')}"/>
+    <interactionId root="2.16.840.1.113883.1.6" extension="PRPM_IN403011UV01"/>
+    <processingCode code="P"/>
+    <processingModeCode code="I"/>
+    <acceptAckCode code="AL"/>
+    <receiver typeCode="RCV">
+        <device classCode="DEV" determinerCode="INSTANCE">
+            <id  th:attr="root=${sendId}"/>
+        </device>
+    </receiver>
+    <sender typeCode="SND">
+        <device classCode="DEV" determinerCode="INSTANCE">
+            <id  th:attr="root=${receiveId}"/>
+        </device>
+    </sender>
+    <acknowledgement th:attr="typeCode=${returnStatusCode}">
+        <!--请求消息ID-->
+        <targetMessage>
+            <id th:attr="extension=${msgId}"/>
+        </targetMessage>
+        <acknowledgementDetail>
+            <text th:text="${returnStatusExplain}"/>
+        </acknowledgementDetail>
+    </acknowledgement>
+    <controlActProcess classCode="CACT" moodCode="EVN">
+		<code code="PRPM_TE401011UV01" codeSystem="2.16.840.1.113883.1.6"/>
+		<subject typeCode="SUBJ">
+			<registrationRequest classCode="REG" moodCode="RQO">
+				<statusCode code="active"/>
+				<subject1 typeCode="SBJ">
+					<assignedEntity classCode="ASSIGNED ">
+						<!--医疗卫生机构（科室）标识OID未知-->
+						<id root="2.16.156.10011.1.26" th:attr="extension=${deptId}"/>
+						<!--科室类别-->
+						<code th:attr="code=${deptTypeId},displayName=${deptTypeName}" codeSystem="2.16.156.10011.2.3.2.62"  codeSystemName="医疗卫生机构业务科室分类与代码表"/>
+						<!--科室名称-->
+						<name th:text="${roleName}"/>
+						<assignedPrincipalOrganization classCode="ORG" determinerCode="INSTANCE">
+							<name th:text="${deptEntityName}"/>
+						</assignedPrincipalOrganization>
+					</assignedEntity>
+				</subject1>
+				<author typeCode="AUT">
+					<assignedEntity classCode="ASSIGNED">
+						<!--医务人员ID-->
+						<id root="2.16.156.10011.1.4" th:attr="extension=${authorCode}"/>
+						<assignedPerson classCode="PSN" determinerCode="INSTANCE">
+							<name th:text="${authorName}" />
+						</assignedPerson>
+						<representedOrganization classCode="ORG" determinerCode="INSTANCE">
+							<!--科室号标识-->
+							<id root="2.16.156.10011.1.26" th:attr="extension=${authorDeptId}"/>
+							<name th:text="${authorDeptName}"/>
+							<contactParty classCode="CON">
+								<contactPerson classCode="PSN" determinerCode="INSTANCE">
+									<name th:text="${authorDeptContactPerson}"/>
+								</contactPerson>
+							</contactParty>
+						</representedOrganization>
+					</assignedEntity>
+				</author>
+			</registrationRequest>
+		</subject>
+	</controlActProcess>
+</PRPM_IN403011UV01>

@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djhu.hiup.message.server.core.dao.IStatusLisDao" >
+  <resultMap id="BaseResultMap" type="com.djhu.hiup.message.server.core.model.StatusLis" >
+    <id column="PK" property="pk" jdbcType="DECIMAL" />
+    <result column="MSG_ID" property="msgId" jdbcType="VARCHAR" />
+    <result column="MSG_CREATION_TIME" property="msgCreationTime" jdbcType="VARCHAR" />
+    <result column="RECEIVE_ID" property="receiveId" jdbcType="VARCHAR" />
+    <result column="SEND_ID" property="sendId" jdbcType="VARCHAR" />
+    <result column="REQUEST_NO" property="requestNo" jdbcType="VARCHAR" />
+    <result column="REQUEST_DEPICT" property="requestDepict" jdbcType="VARCHAR" />
+    <result column="STATUS_CODE" property="statusCode" jdbcType="VARCHAR" />
+    <result column="SPECIMENT_ID" property="specimentId" jdbcType="VARCHAR" />
+    <result column="SPECIMENT_TYPE_CODE" property="specimentTypeCode" jdbcType="VARCHAR" />
+    <result column="SPECIMENT_TYPE_DEPICT" property="specimentTypeDepict" jdbcType="VARCHAR" />
+    <result column="OPERATION_TIME" property="operationTime" jdbcType="VARCHAR" />
+    <result column="OPERATION_CODE" property="operationCode" jdbcType="VARCHAR" />
+    <result column="OPERATION_NAME" property="operationName" jdbcType="VARCHAR" />
+    <result column="OPERATION_DEPICT" property="operationDepict" jdbcType="VARCHAR" />
+    <result column="OPERATION_PERSON_CODE" property="operationPersonCode" jdbcType="VARCHAR" />
+    <result column="OPERATION_PERSON_NAME" property="operationPersonName" jdbcType="VARCHAR" />
+    <result column="OPERATION_DEPT_CODE" property="operationDeptCode" jdbcType="VARCHAR" />
+    <result column="OPERATION_DEPT_NAME" property="operationDeptName" jdbcType="VARCHAR" />
+    <result column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
+    <result column="IDENTITY_NO" property="identityNo" jdbcType="VARCHAR" />
+    <result column="MEDICARE_CARD_NO" property="medicareCardNo" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="GENDER_ID" property="genderId" jdbcType="VARCHAR" />
+    <result column="GENDER_DEPICT" property="genderDepict" jdbcType="VARCHAR" />
+    <result column="DATE_OF_BIRTH" property="dateOfBirth" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="HIUP_STATUS" property="hiupStatus" jdbcType="VARCHAR" />
+    <result column="HIUP_INFO" property="hiupInfo" jdbcType="VARCHAR" />
+    <association property="requestLis" javaType="com.djhu.hiup.message.server.core.model.RequestLis">
+      <result column="STATUS_CODE" property="statusCode" jdbcType="VARCHAR" />
+      <result column="REQUEST_EFFECTIVE_TIME_HIGH" property="requestEffectiveTimeHigh" jdbcType="VARCHAR" />
+      <result column="REQUEST_EFFECTIVE_TIME_LOW" property="requestEffectiveTimeLow" jdbcType="VARCHAR" />
+      <result column="PRIORITY_LEVEL_CODE" property="priorityLevelCode" jdbcType="VARCHAR" />
+      <result column="PRIORITY_LEVEL_NAME" property="priorityLevelName" jdbcType="VARCHAR" />
+    </association>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PK, MSG_ID, MSG_CREATION_TIME, RECEIVE_ID, SEND_ID, REQUEST_NO, REQUEST_DEPICT, STATUS_CODE, 
+    SPECIMENT_ID, SPECIMENT_TYPE_CODE, SPECIMENT_TYPE_DEPICT, OPERATION_TIME, OPERATION_CODE, 
+    OPERATION_NAME, OPERATION_DEPICT, OPERATION_PERSON_CODE, OPERATION_PERSON_NAME, OPERATION_DEPT_CODE, 
+    OPERATION_DEPT_NAME, PATIENT_ID, IDENTITY_NO, MEDICARE_CARD_NO, NAME, GENDER_ID, 
+    GENDER_DEPICT, DATE_OF_BIRTH, CREATE_TIME, UPDATE_TIME, HIUP_STATUS, HIUP_INFO
+  </sql>
+
+  <select id="selectCountBySelective" resultType="java.lang.Integer" parameterType="map" >
+    select count(*) from STATUS_LIS
+      where REQUEST_NO = #{requestNo,jdbcType=VARCHAR}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from STATUS_LIS
+    where PK = #{pk,jdbcType=DECIMAL}
+  </delete>
+
+  <insert id="insertSelective" parameterType="map"  >
+    insert into STATUS_LIS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      PK,
+      <if test="msgId != null" >
+        MSG_ID,
+      </if>
+      <if test="msgCreationTime != null" >
+        MSG_CREATION_TIME,
+      </if>
+      <if test="receiveId != null" >
+        RECEIVE_ID,
+      </if>
+      <if test="sendId != null" >
+        SEND_ID,
+      </if>
+      <if test="requestNo != null" >
+        REQUEST_NO,
+      </if>
+      <if test="requestDepict != null" >
+        REQUEST_DEPICT,
+      </if>
+      <if test="statusCode != null" >
+        STATUS_CODE,
+      </if>
+      <if test="specimentId != null" >
+        SPECIMENT_ID,
+      </if>
+      <if test="specimentTypeCode != null" >
+        SPECIMENT_TYPE_CODE,
+      </if>
+      <if test="specimentTypeDepict != null" >
+        SPECIMENT_TYPE_DEPICT,
+      </if>
+      <if test="operationTime != null" >
+        OPERATION_TIME,
+      </if>
+      <if test="operationCode != null" >
+        OPERATION_CODE,
+      </if>
+      <if test="operationName != null" >
+        OPERATION_NAME,
+      </if>
+      <if test="operationDepict != null" >
+        OPERATION_DEPICT,
+      </if>
+      <if test="operationPersonCode != null" >
+        OPERATION_PERSON_CODE,
+      </if>
+      <if test="operationPersonName != null" >
+        OPERATION_PERSON_NAME,
+      </if>
+      <if test="operationDeptCode != null" >
+        OPERATION_DEPT_CODE,
+      </if>
+      <if test="operationDeptName != null" >
+        OPERATION_DEPT_NAME,
+      </if>
+      <if test="patientId != null" >
+        PATIENT_ID,
+      </if>
+      <if test="identityNo != null" >
+        IDENTITY_NO,
+      </if>
+      <if test="medicareCardNo != null" >
+        MEDICARE_CARD_NO,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="genderId != null" >
+        GENDER_ID,
+      </if>
+      <if test="genderDepict != null" >
+        GENDER_DEPICT,
+      </if>
+      <if test="dateOfBirth != null" >
+        DATE_OF_BIRTH,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="hiupStatus != null" >
+        HIUP_STATUS,
+      </if>
+      <if test="hiupInfo != null" >
+        HIUP_INFO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      STATUS_LIS_SEQ.NEXTVAL,
+      <if test="msgId != null" >
+        #{msgId,jdbcType=VARCHAR},
+      </if>
+      <if test="msgCreationTime != null" >
+        #{msgCreationTime,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveId != null" >
+        #{receiveId,jdbcType=VARCHAR},
+      </if>
+      <if test="sendId != null" >
+        #{sendId,jdbcType=VARCHAR},
+      </if>
+      <if test="requestNo != null" >
+        #{requestNo,jdbcType=VARCHAR},
+      </if>
+      <if test="requestDepict != null" >
+        #{requestDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="statusCode != null" >
+        #{statusCode,jdbcType=VARCHAR},
+      </if>
+      <if test="specimentId != null" >
+        #{specimentId,jdbcType=VARCHAR},
+      </if>
+      <if test="specimentTypeCode != null" >
+        #{specimentTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="specimentTypeDepict != null" >
+        #{specimentTypeDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="operationTime != null" >
+        #{operationTime,jdbcType=VARCHAR},
+      </if>
+      <if test="operationCode != null" >
+        #{operationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="operationName != null" >
+        #{operationName,jdbcType=VARCHAR},
+      </if>
+      <if test="operationDepict != null" >
+        #{operationDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="operationPersonCode != null" >
+        #{operationPersonCode,jdbcType=VARCHAR},
+      </if>
+      <if test="operationPersonName != null" >
+        #{operationPersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="operationDeptCode != null" >
+        #{operationDeptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="operationDeptName != null" >
+        #{operationDeptName,jdbcType=VARCHAR},
+      </if>
+      <if test="patientId != null" >
+        #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="identityNo != null" >
+        #{identityNo,jdbcType=VARCHAR},
+      </if>
+      <if test="medicareCardNo != null" >
+        #{medicareCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="genderId != null" >
+        #{genderId,jdbcType=VARCHAR},
+      </if>
+      <if test="genderDepict != null" >
+        #{genderDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="dateOfBirth != null" >
+        #{dateOfBirth,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hiupStatus != null" >
+        #{hiupStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="hiupInfo != null" >
+        #{hiupInfo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateBySelective" parameterType="map"  >
+    update STATUS_LIS
+    <set >
+      <if test="msgId != null" >
+        MSG_ID = #{msgId,jdbcType=VARCHAR},
+      </if>
+      <if test="msgCreationTime != null" >
+        MSG_CREATION_TIME = #{msgCreationTime,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveId != null" >
+        RECEIVE_ID = #{receiveId,jdbcType=VARCHAR},
+      </if>
+      <if test="sendId != null" >
+        SEND_ID = #{sendId,jdbcType=VARCHAR},
+      </if>
+      <if test="requestNo != null" >
+        REQUEST_NO = #{requestNo,jdbcType=VARCHAR},
+      </if>
+      <if test="requestDepict != null" >
+        REQUEST_DEPICT = #{requestDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="statusCode != null" >
+        STATUS_CODE = #{statusCode,jdbcType=VARCHAR},
+      </if>
+      <if test="specimentId != null" >
+        SPECIMENT_ID = #{specimentId,jdbcType=VARCHAR},
+      </if>
+      <if test="specimentTypeCode != null" >
+        SPECIMENT_TYPE_CODE = #{specimentTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="specimentTypeDepict != null" >
+        SPECIMENT_TYPE_DEPICT = #{specimentTypeDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="operationTime != null" >
+        OPERATION_TIME = #{operationTime,jdbcType=VARCHAR},
+      </if>
+      <if test="operationCode != null" >
+        OPERATION_CODE = #{operationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="operationName != null" >
+        OPERATION_NAME = #{operationName,jdbcType=VARCHAR},
+      </if>
+      <if test="operationDepict != null" >
+        OPERATION_DEPICT = #{operationDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="operationPersonCode != null" >
+        OPERATION_PERSON_CODE = #{operationPersonCode,jdbcType=VARCHAR},
+      </if>
+      <if test="operationPersonName != null" >
+        OPERATION_PERSON_NAME = #{operationPersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="operationDeptCode != null" >
+        OPERATION_DEPT_CODE = #{operationDeptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="operationDeptName != null" >
+        OPERATION_DEPT_NAME = #{operationDeptName,jdbcType=VARCHAR},
+      </if>
+      <if test="patientId != null" >
+        PATIENT_ID = #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="identityNo != null" >
+        IDENTITY_NO = #{identityNo,jdbcType=VARCHAR},
+      </if>
+      <if test="medicareCardNo != null" >
+        MEDICARE_CARD_NO = #{medicareCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="genderId != null" >
+        GENDER_ID = #{genderId,jdbcType=VARCHAR},
+      </if>
+      <if test="genderDepict != null" >
+        GENDER_DEPICT = #{genderDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="dateOfBirth != null" >
+        DATE_OF_BIRTH = #{dateOfBirth,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hiupStatus != null" >
+        HIUP_STATUS = #{hiupStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="hiupInfo != null" >
+        HIUP_INFO = #{hiupInfo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where REQUEST_NO = #{requestNo,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectBySelective" parameterType="map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from STATUS_LIS
+    where 1=1
+    <if test="requestNo != null">
+      AND   REQUEST_NO = #{requestNo,jdbcType=VARCHAR}
+    </if>
+    <if test="specimentId != null">
+      AND   SPECIMENT_ID = #{specimentId,jdbcType=VARCHAR}
+    </if>
+    <if test="operationPersonCode != null">
+      AND   OPERATION_PERSON_CODE = #{operationPersonCode,jdbcType=VARCHAR}
+    </if>
+    <if test="identityNo != null">
+      AND    IDENTITY_NO = #{identityNo,jdbcType=VARCHAR}
+    </if>
+    <if test="medicareCardNo != null">
+      AND   MEDICARE_CARD_NO = #{medicareCardNo,jdbcType=VARCHAR}
+    </if>
+    <if test="patientId != null">
+      AND   PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+    </if>
+    <if test="statusCode != null">
+      AND   STATUS_CODE = #{statusCode,jdbcType=VARCHAR}
+    </if>
+    <if test="doorEmergencyNo != null or inpatientNo != null or requestEffectiveTimeHigh != null or requestEffectiveTimeLow != null">
+      and REQUEST_NO IN (
+      select REQUEST_NO from REQUEST_LIS where 1=1
+      <if test="doorEmergencyNo != null">
+        AND  DOOR_EMERGENCY_NO = #{doorEmergencyNo,jdbcType=VARCHAR}
+      </if>
+      <if test="inpatientNo != null">
+        AND INPATIENT_NO = #{inpatientNo,jdbcType=VARCHAR}
+      </if>
+      <if test="requestEffectiveTimeHigh != null">
+        <![CDATA[AND  REQUEST_EFFECTIVE_TIME_HIGH = #{requestEffectiveTimeHigh,jdbcType=VARCHAR}]]>
+      </if>
+      <if test="requestEffectiveTimeLow != null">
+        <![CDATA[AND  REQUEST_EFFECTIVE_TIME_LOW = #{requestEffectiveTimeLow,jdbcType=VARCHAR}]]>
+      </if>
+      )
+    </if>
+  </select>
+</mapper>

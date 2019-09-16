@@ -1,0 +1,119 @@
+<PRPA_IN900350UV xmlns="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ITSVersion="XML_1.0" xsi:schemaLocation="urn:hl7-org:v3 file:///E:/hl7/HL7/v3ballot_fullsite_2011MAY/v3ballot/html/processable/multicacheschemas/PRPA_IN900350UV.xsd">
+    <id root="2.16.156.10011.2.5.1.1" th:attr="extension=${returnMsgId}"/>
+    <creationTime  th:attr="value=${#dates.format(#dates.createNow(), 'yyyyMMddHHmmss')}"/>
+    <interactionId root="2.16.156.10011.2.5.1.2" extension="PRPA_IN900350UV"/>
+    <processingCode code="P"/>
+    <processingModeCode/>
+    <acceptAckCode code="AL"/>
+    <receiver typeCode="RCV">
+        <device classCode="DEV" determinerCode="INSTANCE">
+            <!-- 接受者ID -->
+            <id>
+                <item root="2.16.156.10011.2.5.1.3" th:attr="extension=${sendId}"/>
+            </id>
+        </device>
+    </receiver>
+    <!-- 发送者 -->
+    <sender typeCode="SND">
+        <device classCode="DEV" determinerCode="INSTANCE">
+            <!-- 发送者ID -->
+            <id>
+                <item root="2.16.156.10011.2.5.1.3" th:attr="extension=${receiveId}"/>
+            </id>
+        </device>
+    </sender>
+    <acknowledgement th:attr="typeCode=${returnStatusCode}">
+        <targetMessage>
+            <id root="2.16.156.10011.2.5.1.1"  th:attr="extension=${msgId}"/>
+        </targetMessage>
+        <acknowledgementDetail>
+            <!--处理结果说明-->
+            <text th:text="${returnStatusExplain}"/>
+        </acknowledgementDetail>
+    </acknowledgement>
+    <controlActProcess classCode="CACT" moodCode="EVN">
+        <!--可重复-->
+        <subject typeCode="SUBJ"  th:each="item:${resultsList}">
+            <encounterAppointment>
+                <!--预约标识符-->
+                <id>
+                    <item root="2.16.156.10011.2.5.1.29" th:attr="extension=${item.reserveId}"/>
+                </id>
+                <code/>
+                <statusCode  th:attr="code=${item.reserveStatusCode}" />
+                <!--预约日期时间-->
+                <effectiveTime>
+                    <low th:attr="value=${item.reserveTime}"/>
+                </effectiveTime>
+                <subject>
+                    <patient classCode="PAT">
+                        <!--患者ID -->
+                        <id>
+                            <item root="2.16.156.10011.2.5.1.4" th:attr="extension=${item.patientId}"/>
+                        </id>
+                        <patientPerson>
+                            <!--身份证号-->
+                            <id>
+                                <item root="2.16.156.10011.1.3" th:attr="extension=${item.identityNo}"/>
+                            </id>
+                            <!--姓名-->
+                            <name xsi:type="LIST_EN">
+                                <item>
+                                    <part th:attr="value=${item.name}"/>
+                                </item>
+                            </name>
+                        </patientPerson>
+                    </patient>
+                </subject>
+                <reusableDevice>
+                    <!--系统预约日期时间-->
+                    <time>
+                        <low th:attr="value=${item.systemReserveTime}"/>
+                    </time>
+                    <assignedDevice classCode="ASSIGNED">
+                        <!--系统id-->
+                        <id>
+                            <item root="2.16.156.10011.2.5.1.3" th:attr="extension=${item.systemId}"/>
+                        </id>
+                        <code th:attr="code=${item.reserveStatusCode}" codeSystem="2.16.156.10011.2.5.1.30" codeSystemName="门诊预约状态代码表">
+                            <displayName th:attr="value=${item.reserveStatusDepict}"/>
+                        </code>
+                    </assignedDevice>
+                </reusableDevice>
+                <!--预约医务人员-->
+                <performer typeCode="PRF">
+                    <!--医务人员预约日期时间-->
+                    <time>
+                        <low th:attr="value=${item.medicalStaffReserveTime}"/>
+                    </time>
+                    <assignedPerson classCode="ASSIGNED">
+                        <!--医务人员标识-->
+                        <id>
+                            <item root="2.16.156.10011.1.4" th:attr="extension=${item.reserveMedicalStaffCode}"/>
+                        </id>
+                    </assignedPerson>
+                </performer>
+                <!--资源信息-->
+                <arrivedBy>
+                    <transportationIntent moodCode="PRP">
+                        <!--资源ID-->
+                        <id>
+                            <item root="2.16.156.10011.2.5.1.20" th:attr="extension=${item.resourceId}"/>
+                        </id>
+                        <code/>
+                        <!--资源时段-->
+                        <effectiveTime>
+                            <low th:attr="value=${item.resourceStartTime}"/>
+                            <high th:attr="value=${item.resourceEndTime}"/>
+                        </effectiveTime>
+                    </transportationIntent>
+                </arrivedBy>
+            </encounterAppointment>
+        </subject>
+        <queryAck>
+            <queryId th:attr="extension=${queryId}"/>
+            <!--AE 系统错误、NF 未找到数据、OK 找到数据、QE 查询参数错误-->
+            <queryResponseCode th:attr="code=${queryResponseCode}"/>
+        </queryAck>
+    </controlActProcess>
+</PRPA_IN900350UV>

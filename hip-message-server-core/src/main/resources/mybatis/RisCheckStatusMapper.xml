@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djhu.hiup.message.server.core.dao.IRisCheckStatusDao" >
+  <resultMap id="BaseResultMap" type="com.djhu.hiup.message.server.core.model.RisCheckStatus" >
+    <id column="PK" property="pk" jdbcType="DECIMAL" />
+    <result column="STATUS_RIS_PK" property="statusRisPk" jdbcType="DECIMAL" />
+    <result column="REQUEST_NO" property="requestNo" jdbcType="VARCHAR" />
+    <result column="OPERATION_DATE" property="operationDate" jdbcType="VARCHAR" />
+    <result column="OPERATION_PERSON_CODE" property="operationPersonCode" jdbcType="VARCHAR" />
+    <result column="OPERATION_PERSON_NAME" property="operationPersonName" jdbcType="VARCHAR" />
+    <result column="EXEC_DEPT_CODE" property="execDeptCode" jdbcType="VARCHAR" />
+    <result column="EXEC_DEPT_NAME" property="execDeptName" jdbcType="VARCHAR" />
+    <result column="CHECK_STATUS_CODE" property="checkStatusCode" jdbcType="VARCHAR" />
+    <result column="CHECK_STATUS_NAME" property="checkStatusName" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    PK, STATUS_RIS_PK, REQUEST_NO, OPERATION_DATE, OPERATION_PERSON_CODE, OPERATION_PERSON_NAME, 
+    EXEC_DEPT_CODE, EXEC_DEPT_NAME, CHECK_STATUS_CODE, CHECK_STATUS_NAME, CREATE_TIME
+  </sql>
+
+  <select id="selectByStatusRisPk" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List" />
+    from RIS_CHECK_STATUS
+    where STATUS_RIS_PK = #{statusRisPk,jdbcType=DECIMAL}
+  </select>
+
+  <delete id="deleteByStatusRisPk" parameterType="java.math.BigDecimal" >
+    delete from RIS_CHECK_STATUS
+     where STATUS_RIS_PK = #{statusRisPk,jdbcType=DECIMAL}
+  </delete>
+
+  <insert id="insertRisCheckStatus" parameterType="map"  >
+    insert into RIS_CHECK_STATUS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      PK,
+      <if test="statusRisPk != null" >
+        STATUS_RIS_PK,
+      </if>
+      <if test="requestNo != null" >
+        REQUEST_NO,
+      </if>
+      <if test="operationDate != null" >
+        OPERATION_DATE,
+      </if>
+      <if test="operationPersonCode != null" >
+        OPERATION_PERSON_CODE,
+      </if>
+      <if test="operationPersonName != null" >
+        OPERATION_PERSON_NAME,
+      </if>
+      <if test="execDeptCode != null" >
+        EXEC_DEPT_CODE,
+      </if>
+      <if test="execDeptName != null" >
+        EXEC_DEPT_NAME,
+      </if>
+      <if test="checkStatusCode != null" >
+        CHECK_STATUS_CODE,
+      </if>
+      <if test="checkStatusName != null" >
+        CHECK_STATUS_NAME,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      RIS_CHECK_STATUS_SEQ.NEXTVAL,
+      <if test="statusRisPk != null" >
+        #{statusRisPk,jdbcType=VARCHAR},
+      </if>
+      <if test="requestNo != null" >
+        #{requestNo,jdbcType=VARCHAR},
+      </if>
+      <if test="operationDate != null" >
+        #{operationDate,jdbcType=VARCHAR},
+      </if>
+      <if test="operationPersonCode != null" >
+        #{operationPersonCode,jdbcType=VARCHAR},
+      </if>
+      <if test="operationPersonName != null" >
+        #{operationPersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="execDeptCode != null" >
+        #{execDeptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="execDeptName != null" >
+        #{execDeptName,jdbcType=VARCHAR},
+      </if>
+      <if test="checkStatusCode != null" >
+        #{checkStatusCode,jdbcType=VARCHAR},
+      </if>
+      <if test="checkStatusName != null" >
+        #{checkStatusName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  
+  
+  <insert id="insertRisCheckStatusList" parameterType="java.util.List" useGeneratedKeys="false">
+        begin
+        <foreach collection="list" item="item" index="index" separator=";">
+            insert into RIS_CHECK_STATUS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      PK,
+      <if test="item.statusRisPk != null" >
+        STATUS_RIS_PK,
+      </if>
+      <if test="item.requestNo != null" >
+        REQUEST_NO,
+      </if>
+      <if test="item.operationDate != null" >
+        OPERATION_DATE,
+      </if>
+      <if test="item.operationPersonCode != null" >
+        OPERATION_PERSON_CODE,
+      </if>
+      <if test="item.operationPersonName != null" >
+        OPERATION_PERSON_NAME,
+      </if>
+      <if test="item.execDeptCode != null" >
+        EXEC_DEPT_CODE,
+      </if>
+      <if test="item.execDeptName != null" >
+        EXEC_DEPT_NAME,
+      </if>
+      <if test="item.checkStatusCode != null" >
+        CHECK_STATUS_CODE,
+      </if>
+      <if test="item.checkStatusName != null" >
+        CHECK_STATUS_NAME,
+      </if>
+      <if test="item.createTime != null" >
+        CREATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      RIS_CHECK_STATUS_SEQ.NEXTVAL,
+      <if test="item.statusRisPk != null" >
+        #{item.statusRisPk,jdbcType=VARCHAR},
+      </if>
+      <if test="item.requestNo != null" >
+        #{item.requestNo,jdbcType=VARCHAR},
+      </if>
+      <if test="item.operationDate != null" >
+        #{item.operationDate,jdbcType=VARCHAR},
+      </if>
+      <if test="item.operationPersonCode != null" >
+        #{operationPersonCode,jdbcType=VARCHAR},
+      </if>
+      <if test="item.operationPersonName != null" >
+        #{item.operationPersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="item.execDeptCode != null" >
+        #{item.execDeptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="item.execDeptName != null" >
+        #{item.execDeptName,jdbcType=VARCHAR},
+      </if>
+      <if test="item.checkStatusCode != null" >
+        #{item.checkStatusCode,jdbcType=VARCHAR},
+      </if>
+      <if test="item.checkStatusName != null" >
+        #{item.checkStatusName,jdbcType=VARCHAR},
+      </if>
+      <if test="item.createTime != null" >
+        #{item.createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+        </foreach>
+        ;end;
+    </insert>
+
+</mapper>

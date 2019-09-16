@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djhu.hiup.message.server.core.dao.IVisitMedicalCardDao" >
+  <resultMap id="BaseResultMap" type="com.djhu.hiup.message.server.core.model.VisitMedicalCard" >
+    <id column="PK" property="pk" jdbcType="DECIMAL" />
+    <result column="MSG_ID" property="msgId" jdbcType="VARCHAR" />
+    <result column="MSG_CREATION_TIME" property="msgCreationTime" jdbcType="VARCHAR" />
+    <result column="RECEIVE_ID" property="receiveId" jdbcType="VARCHAR" />
+    <result column="SEND_ID" property="sendId" jdbcType="VARCHAR" />
+    <result column="MEDICAL_CARD_NO" property="medicalCardNo" jdbcType="VARCHAR" />
+    <result column="MEDICAL_CARD_STATUS" property="medicalCardStatus" jdbcType="VARCHAR" />
+    <result column="CREATE_CARD_TIME" property="createCardTime" jdbcType="VARCHAR" />
+    <result column="IDENTITY_NO" property="identityNo" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="CONTACT_PHONE" property="contactPhone" jdbcType="VARCHAR" />
+    <result column="GENDER_ID" property="genderId" jdbcType="VARCHAR" />
+    <result column="GENDER_DEPICT" property="genderDepict" jdbcType="VARCHAR" />
+    <result column="DATE_OF_BIRTH" property="dateOfBirth" jdbcType="VARCHAR" />
+    <result column="ADDR" property="addr" jdbcType="VARCHAR" />
+    <result column="ADDR_STATE" property="addrState" jdbcType="VARCHAR" />
+    <result column="ADDR_CITY" property="addrCity" jdbcType="VARCHAR" />
+    <result column="ADDR_COUNTY" property="addrCounty" jdbcType="VARCHAR" />
+    <result column="ADDR_STREET_NAME_BASE" property="addrStreetNameBase" jdbcType="VARCHAR" />
+    <result column="ADDR_STREET_NAME" property="addrStreetName" jdbcType="VARCHAR" />
+    <result column="HOUSE_NUMBER" property="houseNumber" jdbcType="VARCHAR" />
+    <result column="POSTAL_CODE" property="postalCode" jdbcType="VARCHAR" />
+    <result column="MARITAL_STATUS_ID" property="maritalStatusId" jdbcType="VARCHAR" />
+    <result column="MARITAL_STATUS_DEPICT" property="maritalStatusDepict" jdbcType="VARCHAR" />
+    <result column="ETHNIC_GROUP_ID" property="ethnicGroupId" jdbcType="VARCHAR" />
+    <result column="ETHNIC_GROUP_DESCRIVE" property="ethnicGroupDescrive" jdbcType="VARCHAR" />
+    <result column="OCCUPATION_ID" property="occupationId" jdbcType="VARCHAR" />
+    <result column="OCCUPATION_DEPICT" property="occupationDepict" jdbcType="VARCHAR" />
+    <result column="COMPANY" property="company" jdbcType="VARCHAR" />
+    <result column="COMPANY_CONTACT_PHONE" property="companyContactPhone" jdbcType="VARCHAR" />
+    <result column="CONTACT_RELATIONSHIP_CODE" property="contactRelationshipCode" jdbcType="VARCHAR" />
+    <result column="CONTACT_RELATIONSHIP_DEPICT" property="contactRelationshipDepict" jdbcType="VARCHAR" />
+    <result column="CONTACT_PERSON_PHONE" property="contactPersonPhone" jdbcType="VARCHAR" />
+    <result column="CONTACT_PERSON_NAME" property="contactPersonName" jdbcType="VARCHAR" />
+    <result column="ORGANIZATION_CODE" property="organizationCode" jdbcType="VARCHAR" />
+    <result column="ORGANIZATION_NAME" property="organizationName" jdbcType="VARCHAR" />
+    <result column="MEDICARE_TYPE_ID" property="medicareTypeId" jdbcType="VARCHAR" />
+    <result column="MEDICARE_TYPE_DEPICT" property="medicareTypeDepict" jdbcType="VARCHAR" />
+    <result column="AUTHOR_CODE" property="authorCode" jdbcType="VARCHAR" />
+    <result column="AUTHOR_NAME" property="authorName" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="HIUP_STATUS" property="hiupStatus" jdbcType="VARCHAR" />
+    <result column="HIUP_INFO" property="hiupInfo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PK, MSG_ID, MSG_CREATION_TIME, RECEIVE_ID, SEND_ID, MEDICAL_CARD_NO, MEDICAL_CARD_STATUS, 
+    CREATE_CARD_TIME, IDENTITY_NO, NAME, CONTACT_PHONE, GENDER_ID, GENDER_DEPICT, DATE_OF_BIRTH, 
+    ADDR, ADDR_STATE, ADDR_CITY, ADDR_COUNTY, ADDR_STREET_NAME_BASE, ADDR_STREET_NAME, 
+    HOUSE_NUMBER, POSTAL_CODE, MARITAL_STATUS_ID, MARITAL_STATUS_DEPICT, ETHNIC_GROUP_ID, 
+    ETHNIC_GROUP_DESCRIVE, OCCUPATION_ID, OCCUPATION_DEPICT, COMPANY, COMPANY_CONTACT_PHONE, 
+    CONTACT_RELATIONSHIP_CODE, CONTACT_RELATIONSHIP_DEPICT, CONTACT_PERSON_PHONE, CONTACT_PERSON_NAME, 
+    ORGANIZATION_CODE, ORGANIZATION_NAME, MEDICARE_TYPE_ID, MEDICARE_TYPE_DEPICT, AUTHOR_CODE, 
+    AUTHOR_NAME, CREATE_TIME, UPDATE_TIME, HIUP_STATUS, HIUP_INFO
+  </sql>
+
+  <select id="selectCountBySelective" resultType="java.lang.Integer" parameterType="map" >
+     select count(*) from VISIT_MEDICAL_CARD
+      where SEND_ID = #{sendId,jdbcType=VARCHAR} AND
+      MEDICAL_CARD_NO = #{medicalCardNo,jdbcType=VARCHAR}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from VISIT_MEDICAL_CARD
+    where PK = #{pk,jdbcType=DECIMAL}
+  </delete>
+
+  <insert id="insertSelective" parameterType="map"  >
+    insert into VISIT_MEDICAL_CARD
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      PK,
+      <if test="msgId != null" >
+        MSG_ID,
+      </if>
+      <if test="msgCreationTime != null" >
+        MSG_CREATION_TIME,
+      </if>
+      <if test="receiveId != null" >
+        RECEIVE_ID,
+      </if>
+      <if test="sendId != null" >
+        SEND_ID,
+      </if>
+      <if test="medicalCardNo != null" >
+        MEDICAL_CARD_NO,
+      </if>
+      <if test="medicalCardStatus != null" >
+        MEDICAL_CARD_STATUS,
+      </if>
+      <if test="createCardTime != null" >
+        CREATE_CARD_TIME,
+      </if>
+      <if test="identityNo != null" >
+        IDENTITY_NO,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="contactPhone != null" >
+        CONTACT_PHONE,
+      </if>
+      <if test="genderId != null" >
+        GENDER_ID,
+      </if>
+      <if test="genderDepict != null" >
+        GENDER_DEPICT,
+      </if>
+      <if test="dateOfBirth != null" >
+        DATE_OF_BIRTH,
+      </if>
+      <if test="addr != null" >
+        ADDR,
+      </if>
+      <if test="addrState != null" >
+        ADDR_STATE,
+      </if>
+      <if test="addrCity != null" >
+        ADDR_CITY,
+      </if>
+      <if test="addrCounty != null" >
+        ADDR_COUNTY,
+      </if>
+      <if test="addrStreetNameBase != null" >
+        ADDR_STREET_NAME_BASE,
+      </if>
+      <if test="addrStreetName != null" >
+        ADDR_STREET_NAME,
+      </if>
+      <if test="houseNumber != null" >
+        HOUSE_NUMBER,
+      </if>
+      <if test="postalCode != null" >
+        POSTAL_CODE,
+      </if>
+      <if test="maritalStatusId != null" >
+        MARITAL_STATUS_ID,
+      </if>
+      <if test="maritalStatusDepict != null" >
+        MARITAL_STATUS_DEPICT,
+      </if>
+      <if test="ethnicGroupId != null" >
+        ETHNIC_GROUP_ID,
+      </if>
+      <if test="ethnicGroupDescrive != null" >
+        ETHNIC_GROUP_DESCRIVE,
+      </if>
+      <if test="occupationId != null" >
+        OCCUPATION_ID,
+      </if>
+      <if test="occupationDepict != null" >
+        OCCUPATION_DEPICT,
+      </if>
+      <if test="company != null" >
+        COMPANY,
+      </if>
+      <if test="companyContactPhone != null" >
+        COMPANY_CONTACT_PHONE,
+      </if>
+      <if test="contactRelationshipCode != null" >
+        CONTACT_RELATIONSHIP_CODE,
+      </if>
+      <if test="contactRelationshipDepict != null" >
+        CONTACT_RELATIONSHIP_DEPICT,
+      </if>
+      <if test="contactPersonPhone != null" >
+        CONTACT_PERSON_PHONE,
+      </if>
+      <if test="contactPersonName != null" >
+        CONTACT_PERSON_NAME,
+      </if>
+      <if test="organizationCode != null" >
+        ORGANIZATION_CODE,
+      </if>
+      <if test="organizationName != null" >
+        ORGANIZATION_NAME,
+      </if>
+      <if test="medicareTypeId != null" >
+        MEDICARE_TYPE_ID,
+      </if>
+      <if test="medicareTypeDepict != null" >
+        MEDICARE_TYPE_DEPICT,
+      </if>
+      <if test="authorCode != null" >
+        AUTHOR_CODE,
+      </if>
+      <if test="authorName != null" >
+        AUTHOR_NAME,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="hiupStatus != null" >
+        HIUP_STATUS,
+      </if>
+      <if test="hiupInfo != null" >
+        HIUP_INFO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      VISIT_MEDICAL_CARD_SEQ.NEXTVAL,
+      <if test="msgId != null" >
+        #{msgId,jdbcType=VARCHAR},
+      </if>
+      <if test="msgCreationTime != null" >
+        #{msgCreationTime,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveId != null" >
+        #{receiveId,jdbcType=VARCHAR},
+      </if>
+      <if test="sendId != null" >
+        #{sendId,jdbcType=VARCHAR},
+      </if>
+      <if test="medicalCardNo != null" >
+        #{medicalCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="medicalCardStatus != null" >
+        #{medicalCardStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createCardTime != null" >
+        #{createCardTime,jdbcType=VARCHAR},
+      </if>
+      <if test="identityNo != null" >
+        #{identityNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null" >
+        #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="genderId != null" >
+        #{genderId,jdbcType=VARCHAR},
+      </if>
+      <if test="genderDepict != null" >
+        #{genderDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="dateOfBirth != null" >
+        #{dateOfBirth,jdbcType=VARCHAR},
+      </if>
+      <if test="addr != null" >
+        #{addr,jdbcType=VARCHAR},
+      </if>
+      <if test="addrState != null" >
+        #{addrState,jdbcType=VARCHAR},
+      </if>
+      <if test="addrCity != null" >
+        #{addrCity,jdbcType=VARCHAR},
+      </if>
+      <if test="addrCounty != null" >
+        #{addrCounty,jdbcType=VARCHAR},
+      </if>
+      <if test="addrStreetNameBase != null" >
+        #{addrStreetNameBase,jdbcType=VARCHAR},
+      </if>
+      <if test="addrStreetName != null" >
+        #{addrStreetName,jdbcType=VARCHAR},
+      </if>
+      <if test="houseNumber != null" >
+        #{houseNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="postalCode != null" >
+        #{postalCode,jdbcType=VARCHAR},
+      </if>
+      <if test="maritalStatusId != null" >
+        #{maritalStatusId,jdbcType=VARCHAR},
+      </if>
+      <if test="maritalStatusDepict != null" >
+        #{maritalStatusDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="ethnicGroupId != null" >
+        #{ethnicGroupId,jdbcType=VARCHAR},
+      </if>
+      <if test="ethnicGroupDescrive != null" >
+        #{ethnicGroupDescrive,jdbcType=VARCHAR},
+      </if>
+      <if test="occupationId != null" >
+        #{occupationId,jdbcType=VARCHAR},
+      </if>
+      <if test="occupationDepict != null" >
+        #{occupationDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null" >
+        #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="companyContactPhone != null" >
+        #{companyContactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="contactRelationshipCode != null" >
+        #{contactRelationshipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="contactRelationshipDepict != null" >
+        #{contactRelationshipDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPersonPhone != null" >
+        #{contactPersonPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPersonName != null" >
+        #{contactPersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationCode != null" >
+        #{organizationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationName != null" >
+        #{organizationName,jdbcType=VARCHAR},
+      </if>
+      <if test="medicareTypeId != null" >
+        #{medicareTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="medicareTypeDepict != null" >
+        #{medicareTypeDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="authorCode != null" >
+        #{authorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="authorName != null" >
+        #{authorName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hiupStatus != null" >
+        #{hiupStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="hiupInfo != null" >
+        #{hiupInfo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateBySelective" parameterType="map"  >
+    update VISIT_MEDICAL_CARD
+    <set >
+      <if test="msgId != null" >
+        MSG_ID = #{msgId,jdbcType=VARCHAR},
+      </if>
+      <if test="msgCreationTime != null" >
+        MSG_CREATION_TIME = #{msgCreationTime,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveId != null" >
+        RECEIVE_ID = #{receiveId,jdbcType=VARCHAR},
+      </if>
+      <if test="sendId != null" >
+        SEND_ID = #{sendId,jdbcType=VARCHAR},
+      </if>
+      <if test="medicalCardNo != null" >
+        MEDICAL_CARD_NO = #{medicalCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="medicalCardStatus != null" >
+        MEDICAL_CARD_STATUS = #{medicalCardStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createCardTime != null" >
+        CREATE_CARD_TIME = #{createCardTime,jdbcType=VARCHAR},
+      </if>
+      <if test="identityNo != null" >
+        IDENTITY_NO = #{identityNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null" >
+        CONTACT_PHONE = #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="genderId != null" >
+        GENDER_ID = #{genderId,jdbcType=VARCHAR},
+      </if>
+      <if test="genderDepict != null" >
+        GENDER_DEPICT = #{genderDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="dateOfBirth != null" >
+        DATE_OF_BIRTH = #{dateOfBirth,jdbcType=VARCHAR},
+      </if>
+      <if test="addr != null" >
+        ADDR = #{addr,jdbcType=VARCHAR},
+      </if>
+      <if test="addrState != null" >
+        ADDR_STATE = #{addrState,jdbcType=VARCHAR},
+      </if>
+      <if test="addrCity != null" >
+        ADDR_CITY = #{addrCity,jdbcType=VARCHAR},
+      </if>
+      <if test="addrCounty != null" >
+        ADDR_COUNTY = #{addrCounty,jdbcType=VARCHAR},
+      </if>
+      <if test="addrStreetNameBase != null" >
+        ADDR_STREET_NAME_BASE = #{addrStreetNameBase,jdbcType=VARCHAR},
+      </if>
+      <if test="addrStreetName != null" >
+        ADDR_STREET_NAME = #{addrStreetName,jdbcType=VARCHAR},
+      </if>
+      <if test="houseNumber != null" >
+        HOUSE_NUMBER = #{houseNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="postalCode != null" >
+        POSTAL_CODE = #{postalCode,jdbcType=VARCHAR},
+      </if>
+      <if test="maritalStatusId != null" >
+        MARITAL_STATUS_ID = #{maritalStatusId,jdbcType=VARCHAR},
+      </if>
+      <if test="maritalStatusDepict != null" >
+        MARITAL_STATUS_DEPICT = #{maritalStatusDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="ethnicGroupId != null" >
+        ETHNIC_GROUP_ID = #{ethnicGroupId,jdbcType=VARCHAR},
+      </if>
+      <if test="ethnicGroupDescrive != null" >
+        ETHNIC_GROUP_DESCRIVE = #{ethnicGroupDescrive,jdbcType=VARCHAR},
+      </if>
+      <if test="occupationId != null" >
+        OCCUPATION_ID = #{occupationId,jdbcType=VARCHAR},
+      </if>
+      <if test="occupationDepict != null" >
+        OCCUPATION_DEPICT = #{occupationDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null" >
+        COMPANY = #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="companyContactPhone != null" >
+        COMPANY_CONTACT_PHONE = #{companyContactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="contactRelationshipCode != null" >
+        CONTACT_RELATIONSHIP_CODE = #{contactRelationshipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="contactRelationshipDepict != null" >
+        CONTACT_RELATIONSHIP_DEPICT = #{contactRelationshipDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPersonPhone != null" >
+        CONTACT_PERSON_PHONE = #{contactPersonPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPersonName != null" >
+        CONTACT_PERSON_NAME = #{contactPersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationCode != null" >
+        ORGANIZATION_CODE = #{organizationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationName != null" >
+        ORGANIZATION_NAME = #{organizationName,jdbcType=VARCHAR},
+      </if>
+      <if test="medicareTypeId != null" >
+        MEDICARE_TYPE_ID = #{medicareTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="medicareTypeDepict != null" >
+        MEDICARE_TYPE_DEPICT = #{medicareTypeDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="authorCode != null" >
+        AUTHOR_CODE = #{authorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="authorName != null" >
+        AUTHOR_NAME = #{authorName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hiupStatus != null" >
+        HIUP_STATUS = #{hiupStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="hiupInfo != null" >
+        HIUP_INFO = #{hiupInfo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SEND_ID = #{sendId,jdbcType=VARCHAR} AND
+    MEDICAL_CARD_NO = #{medicalCardNo,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectBySelective" parameterType="map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from VISIT_MEDICAL_CARD
+    where 1=1
+    <if test="medicalCardNo != null">
+      and  MEDICAL_CARD_NO = #{medicalCardNo,jdbcType=VARCHAR}
+    </if>
+    <if test="genderId != null">
+      and GENDER_ID = #{genderId,jdbcType=VARCHAR}
+    </if>
+    <if test="genderDepict != null">
+      and GENDER_DEPICT = #{genderDepict,jdbcType=VARCHAR}
+    </if>
+    <if test="identityNo != null">
+      and  IDENTITY_NO = #{identityNo,jdbcType=VARCHAR}
+    </if>
+    <if test="name != null">
+      and NAME = #{name,jdbcType=VARCHAR}
+    </if>
+
+  </select>
+</mapper>

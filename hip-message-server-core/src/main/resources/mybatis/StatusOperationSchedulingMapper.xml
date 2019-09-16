@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djhu.hiup.message.server.core.dao.IStatusOperationSchedulingDao" >
+  <resultMap id="BaseResultMap" type="com.djhu.hiup.message.server.core.model.StatusOperationScheduling" >
+    <id column="PK" property="pk" jdbcType="DECIMAL" />
+    <result column="MSG_ID" property="msgId" jdbcType="VARCHAR" />
+    <result column="MSG_CREATION_TIME" property="msgCreationTime" jdbcType="VARCHAR" />
+    <result column="RECEIVE_ID" property="receiveId" jdbcType="VARCHAR" />
+    <result column="SEND_ID" property="sendId" jdbcType="VARCHAR" />
+    <result column="OPERATION_CLASS_NO" property="operationClassNo" jdbcType="VARCHAR" />
+    <result column="RESERVES_OPERATION_TIME" property="reservesOperationTime" jdbcType="VARCHAR" />
+    <result column="EXPECTED_DURATION" property="expectedDuration" jdbcType="VARCHAR" />
+    <result column="EXPECTED_DURATION_UNIT" property="expectedDurationUnit" jdbcType="VARCHAR" />
+    <result column="OUTPATIENT_NO" property="outpatientNo" jdbcType="VARCHAR" />
+    <result column="INPATIENT_NO" property="inpatientNo" jdbcType="VARCHAR" />
+    <result column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
+    <result column="VISIT_NUMBER" property="visitNumber" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="RESERVES_DEVICE_CODE" property="reservesDeviceCode" jdbcType="VARCHAR" />
+    <result column="RESERVE_DEVICE_NAME" property="reserveDeviceName" jdbcType="VARCHAR" />
+    <result column="MAIN_KNIFE_DOCTOR_CODE" property="mainKnifeDoctorCode" jdbcType="VARCHAR" />
+    <result column="MAIN_KNIFE_DOCTOR_NAME" property="mainKnifeDoctorName" jdbcType="VARCHAR" />
+    <result column="ASSISTANT_INFO" property="assistantInfo" jdbcType="VARCHAR" />
+    <result column="OPERATIVE_ASSISTANT_CODE" property="operativeAssistantCode" jdbcType="VARCHAR" />
+    <result column="OPERATIVE_ASSISTANT_NAME" property="operativeAssistantName" jdbcType="VARCHAR" />
+    <result column="EXEC_DEPT_CODE" property="execDeptCode" jdbcType="VARCHAR" />
+    <result column="EXEC_DEPT_NAME" property="execDeptName" jdbcType="VARCHAR" />
+    <result column="OPERATIVE_ROOM" property="operativeRoom" jdbcType="VARCHAR" />
+    <result column="OPERATIVE_REQUEST_NO" property="operativeRequestNo" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="HIUP_STATUS" property="hiupStatus" jdbcType="VARCHAR" />
+    <result column="HIUP_INFO" property="hiupInfo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PK, MSG_ID, MSG_CREATION_TIME, RECEIVE_ID, SEND_ID, OPERATION_CLASS_NO, RESERVES_OPERATION_TIME, 
+    EXPECTED_DURATION, EXPECTED_DURATION_UNIT, OUTPATIENT_NO, INPATIENT_NO, PATIENT_ID, 
+    VISIT_NUMBER, NAME, RESERVES_DEVICE_CODE, RESERVE_DEVICE_NAME, MAIN_KNIFE_DOCTOR_CODE, 
+    MAIN_KNIFE_DOCTOR_NAME, ASSISTANT_INFO, OPERATIVE_ASSISTANT_CODE, OPERATIVE_ASSISTANT_NAME, 
+    EXEC_DEPT_CODE, EXEC_DEPT_NAME, OPERATIVE_ROOM, OPERATIVE_REQUEST_NO, CREATE_TIME, 
+    UPDATE_TIME, HIUP_STATUS, HIUP_INFO
+  </sql>
+
+  <select id="selectCountBySelective" resultType="java.lang.Integer" parameterType="map" >
+    select count(*) from STATUS_OPERATION_SCHEDULING
+      where OPERATION_CLASS_NO = #{operationClassNo,jdbcType=VARCHAR}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from STATUS_OPERATION_SCHEDULING
+    where PK = #{pk,jdbcType=DECIMAL}
+  </delete>
+
+  <insert id="insertSelective" parameterType="map"  >
+    insert into STATUS_OPERATION_SCHEDULING
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      PK,
+      <if test="msgId != null" >
+        MSG_ID,
+      </if>
+      <if test="msgCreationTime != null" >
+        MSG_CREATION_TIME,
+      </if>
+      <if test="receiveId != null" >
+        RECEIVE_ID,
+      </if>
+      <if test="sendId != null" >
+        SEND_ID,
+      </if>
+      <if test="operationClassNo != null" >
+        OPERATION_CLASS_NO,
+      </if>
+      <if test="reservesOperationTime != null" >
+        RESERVES_OPERATION_TIME,
+      </if>
+      <if test="expectedDuration != null" >
+        EXPECTED_DURATION,
+      </if>
+      <if test="expectedDurationUnit != null" >
+        EXPECTED_DURATION_UNIT,
+      </if>
+      <if test="outpatientNo != null" >
+        OUTPATIENT_NO,
+      </if>
+      <if test="inpatientNo != null" >
+        INPATIENT_NO,
+      </if>
+      <if test="patientId != null" >
+        PATIENT_ID,
+      </if>
+      <if test="visitNumber != null" >
+        VISIT_NUMBER,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="reservesDeviceCode != null" >
+        RESERVES_DEVICE_CODE,
+      </if>
+      <if test="reserveDeviceName != null" >
+        RESERVE_DEVICE_NAME,
+      </if>
+      <if test="mainKnifeDoctorCode != null" >
+        MAIN_KNIFE_DOCTOR_CODE,
+      </if>
+      <if test="mainKnifeDoctorName != null" >
+        MAIN_KNIFE_DOCTOR_NAME,
+      </if>
+      <if test="assistantInfo != null" >
+        ASSISTANT_INFO,
+      </if>
+      <if test="operativeAssistantCode != null" >
+        OPERATIVE_ASSISTANT_CODE,
+      </if>
+      <if test="operativeAssistantName != null" >
+        OPERATIVE_ASSISTANT_NAME,
+      </if>
+      <if test="execDeptCode != null" >
+        EXEC_DEPT_CODE,
+      </if>
+      <if test="execDeptName != null" >
+        EXEC_DEPT_NAME,
+      </if>
+      <if test="operativeRoom != null" >
+        OPERATIVE_ROOM,
+      </if>
+      <if test="operativeRequestNo != null" >
+        OPERATIVE_REQUEST_NO,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="hiupStatus != null" >
+        HIUP_STATUS,
+      </if>
+      <if test="hiupInfo != null" >
+        HIUP_INFO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      OPERATION_SCHEDULING_SEQ.NEXTVAL,
+      <if test="msgId != null" >
+        #{msgId,jdbcType=VARCHAR},
+      </if>
+      <if test="msgCreationTime != null" >
+        #{msgCreationTime,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveId != null" >
+        #{receiveId,jdbcType=VARCHAR},
+      </if>
+      <if test="sendId != null" >
+        #{sendId,jdbcType=VARCHAR},
+      </if>
+      <if test="operationClassNo != null" >
+        #{operationClassNo,jdbcType=VARCHAR},
+      </if>
+      <if test="reservesOperationTime != null" >
+        #{reservesOperationTime,jdbcType=VARCHAR},
+      </if>
+      <if test="expectedDuration != null" >
+        #{expectedDuration,jdbcType=VARCHAR},
+      </if>
+      <if test="expectedDurationUnit != null" >
+        #{expectedDurationUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="outpatientNo != null" >
+        #{outpatientNo,jdbcType=VARCHAR},
+      </if>
+      <if test="inpatientNo != null" >
+        #{inpatientNo,jdbcType=VARCHAR},
+      </if>
+      <if test="patientId != null" >
+        #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="visitNumber != null" >
+        #{visitNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="reservesDeviceCode != null" >
+        #{reservesDeviceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="reserveDeviceName != null" >
+        #{reserveDeviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="mainKnifeDoctorCode != null" >
+        #{mainKnifeDoctorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="mainKnifeDoctorName != null" >
+        #{mainKnifeDoctorName,jdbcType=VARCHAR},
+      </if>
+      <if test="assistantInfo != null" >
+        #{assistantInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="operativeAssistantCode != null" >
+        #{operativeAssistantCode,jdbcType=VARCHAR},
+      </if>
+      <if test="operativeAssistantName != null" >
+        #{operativeAssistantName,jdbcType=VARCHAR},
+      </if>
+      <if test="execDeptCode != null" >
+        #{execDeptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="execDeptName != null" >
+        #{execDeptName,jdbcType=VARCHAR},
+      </if>
+      <if test="operativeRoom != null" >
+        #{operativeRoom,jdbcType=VARCHAR},
+      </if>
+      <if test="operativeRequestNo != null" >
+        #{operativeRequestNo,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hiupStatus != null" >
+        #{hiupStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="hiupInfo != null" >
+        #{hiupInfo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateBySelective" parameterType="map"  >
+    update STATUS_OPERATION_SCHEDULING
+    <set >
+      <if test="msgId != null" >
+        MSG_ID = #{msgId,jdbcType=VARCHAR},
+      </if>
+      <if test="msgCreationTime != null" >
+        MSG_CREATION_TIME = #{msgCreationTime,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveId != null" >
+        RECEIVE_ID = #{receiveId,jdbcType=VARCHAR},
+      </if>
+      <if test="sendId != null" >
+        SEND_ID = #{sendId,jdbcType=VARCHAR},
+      </if>
+      <if test="operationClassNo != null" >
+        OPERATION_CLASS_NO = #{operationClassNo,jdbcType=VARCHAR},
+      </if>
+      <if test="reservesOperationTime != null" >
+        RESERVES_OPERATION_TIME = #{reservesOperationTime,jdbcType=VARCHAR},
+      </if>
+      <if test="expectedDuration != null" >
+        EXPECTED_DURATION = #{expectedDuration,jdbcType=VARCHAR},
+      </if>
+      <if test="expectedDurationUnit != null" >
+        EXPECTED_DURATION_UNIT = #{expectedDurationUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="outpatientNo != null" >
+        OUTPATIENT_NO = #{outpatientNo,jdbcType=VARCHAR},
+      </if>
+      <if test="inpatientNo != null" >
+        INPATIENT_NO = #{inpatientNo,jdbcType=VARCHAR},
+      </if>
+      <if test="patientId != null" >
+        PATIENT_ID = #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="visitNumber != null" >
+        VISIT_NUMBER = #{visitNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="reservesDeviceCode != null" >
+        RESERVES_DEVICE_CODE = #{reservesDeviceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="reserveDeviceName != null" >
+        RESERVE_DEVICE_NAME = #{reserveDeviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="mainKnifeDoctorCode != null" >
+        MAIN_KNIFE_DOCTOR_CODE = #{mainKnifeDoctorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="mainKnifeDoctorName != null" >
+        MAIN_KNIFE_DOCTOR_NAME = #{mainKnifeDoctorName,jdbcType=VARCHAR},
+      </if>
+      <if test="assistantInfo != null" >
+        ASSISTANT_INFO = #{assistantInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="operativeAssistantCode != null" >
+        OPERATIVE_ASSISTANT_CODE = #{operativeAssistantCode,jdbcType=VARCHAR},
+      </if>
+      <if test="operativeAssistantName != null" >
+        OPERATIVE_ASSISTANT_NAME = #{operativeAssistantName,jdbcType=VARCHAR},
+      </if>
+      <if test="execDeptCode != null" >
+        EXEC_DEPT_CODE = #{execDeptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="execDeptName != null" >
+        EXEC_DEPT_NAME = #{execDeptName,jdbcType=VARCHAR},
+      </if>
+      <if test="operativeRoom != null" >
+        OPERATIVE_ROOM = #{operativeRoom,jdbcType=VARCHAR},
+      </if>
+      <if test="operativeRequestNo != null" >
+        OPERATIVE_REQUEST_NO = #{operativeRequestNo,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hiupStatus != null" >
+        HIUP_STATUS = #{hiupStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="hiupInfo != null" >
+        HIUP_INFO = #{hiupInfo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where OPERATION_CLASS_NO = #{operationClassNo,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectBySelective" parameterType="map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from STATUS_OPERATION_SCHEDULING
+    where 1=1
+    <if test="operationClassNo != null">
+      and  OPERATION_CLASS_NO = #{operationClassNo,jdbcType=VARCHAR}
+    </if>
+    <if test="reservesOperationTimeLow != null">
+      <![CDATA[and  RESERVES_OPERATION_TIME >= #{reservesOperationTimeLow,jdbcType=VARCHAR}]]>
+    </if>
+    <if test="reservesOperationTimeHigh != null">
+      and <![CDATA[ RESERVES_OPERATION_TIME< = #{reservesOperationTimeHigh,jdbcType=VARCHAR}]]>
+    </if>
+    <if test="patientId != null">
+      and  PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+    </if>
+    <if test="operativeRequestNo != null">
+      and OPERATIVE_REQUEST_NO = #{operativeRequestNo,jdbcType=VARCHAR}
+    </if>
+  </select>
+</mapper>

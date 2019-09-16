@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djhu.hiup.message.server.core.dao.ILisInspectionItemDao" >
+  <resultMap id="BaseResultMap" type="com.djhu.hiup.message.server.core.model.LisInspectionItem" >
+    <id column="PK" property="pk" jdbcType="DECIMAL" />
+    <result column="REQUEST_LIS_PK" property="requestLisPk" jdbcType="DECIMAL" />
+    <result column="INSPECTION_ITEM_NODE" property="inspectionItemNode" jdbcType="VARCHAR" />
+    <result column="ORDER_ID" property="orderId" jdbcType="VARCHAR" />
+    <result column="INSPECTION_ITEM_NO" property="inspectionItemNo" jdbcType="VARCHAR" />
+    <result column="INSPECTION_ITEM_NAME" property="inspectionItemName" jdbcType="VARCHAR" />
+    <result column="INSPECTION_METHOD_CODE" property="inspectionMethodCode" jdbcType="VARCHAR" />
+    <result column="INSPECTION_METHOD_NAME" property="inspectionMethodName" jdbcType="VARCHAR" />
+    <result column="EXEC_TIME" property="execTime" jdbcType="VARCHAR" />
+    <result column="EXEC_DEPT_CODE" property="execDeptCode" jdbcType="VARCHAR" />
+    <result column="EXEC_DEPT_NAME" property="execDeptName" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PK, REQUEST_LIS_PK, INSPECTION_ITEM_NODE, ORDER_ID, INSPECTION_ITEM_NO, INSPECTION_ITEM_NAME, 
+    INSPECTION_METHOD_CODE, INSPECTION_METHOD_NAME, EXEC_TIME, EXEC_DEPT_CODE, EXEC_DEPT_NAME, 
+    CREATE_TIME
+  </sql>
+  <select id="selectByRequestLisPk" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List" />
+    from LIS_INSPECTION_ITEM
+    where REQUEST_LIS_PK = #{requestLisPk,jdbcType=DECIMAL}
+  </select>
+
+  <delete id="deleteByRequestLisPk" parameterType="java.math.BigDecimal" >
+    delete from LIS_INSPECTION_ITEM
+    where REQUEST_LIS_PK = #{requestLisPk,jdbcType=DECIMAL}
+  </delete>
+
+  <insert id="insertLisInspectionItem" parameterType="map"  >
+    insert into LIS_INSPECTION_ITEM
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      PK,
+      <if test="requestLisPk != null" >
+        REQUEST_LIS_PK,
+      </if>
+      <if test="inspectionItemNode != null" >
+        INSPECTION_ITEM_NODE,
+      </if>
+      <if test="orderId != null" >
+        ORDER_ID,
+      </if>
+      <if test="inspectionItemNo != null" >
+        INSPECTION_ITEM_NO,
+      </if>
+      <if test="inspectionItemName != null" >
+        INSPECTION_ITEM_NAME,
+      </if>
+      <if test="inspectionMethodCode != null" >
+        INSPECTION_METHOD_CODE,
+      </if>
+      <if test="inspectionMethodName != null" >
+        INSPECTION_METHOD_NAME,
+      </if>
+      <if test="execTime != null" >
+        EXEC_TIME,
+      </if>
+      <if test="execDeptCode != null" >
+        EXEC_DEPT_CODE,
+      </if>
+      <if test="execDeptName != null" >
+        EXEC_DEPT_NAME,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      LIS_INSPECTION_ITEM_SEQ.NEXTVAL,
+      <if test="requestLisPk != null" >
+        #{requestLisPk,jdbcType=DECIMAL},
+      </if>
+      <if test="inspectionItemNode != null" >
+        #{inspectionItemNode,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="inspectionItemNo != null" >
+        #{inspectionItemNo,jdbcType=VARCHAR},
+      </if>
+      <if test="inspectionItemName != null" >
+        #{inspectionItemName,jdbcType=VARCHAR},
+      </if>
+      <if test="inspectionMethodCode != null" >
+        #{inspectionMethodCode,jdbcType=VARCHAR},
+      </if>
+      <if test="inspectionMethodName != null" >
+        #{inspectionMethodName,jdbcType=VARCHAR},
+      </if>
+      <if test="execTime != null" >
+        #{execTime,jdbcType=VARCHAR},
+      </if>
+      <if test="execDeptCode != null" >
+        #{execDeptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="execDeptName != null" >
+        #{execDeptName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+
+	<insert id="insertBatchDataElementRelation" parameterType="java.util.List" useGeneratedKeys="false">
+		begin
+		<foreach collection="list" item="item" index="index"
+			separator=";">
+			insert into LIS_INSPECTION_ITEM
+			<trim prefix="(" suffix=")" suffixOverrides=",">
+				PK,
+				<if test="item.requestLisPk != null">
+					REQUEST_LIS_PK,
+				</if>
+				<if test="item.inspectionItemNode != null">
+					INSPECTION_ITEM_NODE,
+				</if>
+				<if test="item.orderId != null">
+					ORDER_ID,
+				</if>
+				<if test="item.inspectionItemNo != null">
+					INSPECTION_ITEM_NO,
+				</if>
+				<if test="item.inspectionItemName != null">
+					INSPECTION_ITEM_NAME,
+				</if>
+				<if test="item.inspectionMethodCode != null">
+					INSPECTION_METHOD_CODE,
+				</if>
+				<if test="item.inspectionMethodName != null">
+					INSPECTION_METHOD_NAME,
+				</if>
+				<if test="item.execTime != null">
+					EXEC_TIME,
+				</if>
+				<if test="item.execDeptCode != null">
+					EXEC_DEPT_CODE,
+				</if>
+				<if test="item.execDeptName != null">
+					EXEC_DEPT_NAME,
+				</if>
+				<if test="item.createTime != null">
+					CREATE_TIME,
+				</if>
+			</trim>
+			<trim prefix="values (" suffix=")" suffixOverrides=",">
+				LIS_INSPECTION_ITEM_SEQ.NEXTVAL,
+				<if test="item.requestLisPk != null">
+					#{item.requestLisPk,jdbcType=DECIMAL},
+				</if>
+				<if test="item.inspectionItemNode != null">
+					#{item.inspectionItemNode,jdbcType=VARCHAR},
+				</if>
+				<if test="item.orderId != null">
+					#{item.orderId,jdbcType=VARCHAR},
+				</if>
+				<if test="item.inspectionItemNo != null">
+					#{item.inspectionItemNo,jdbcType=VARCHAR},
+				</if>
+				<if test="item.inspectionItemName != null">
+					#{item.inspectionItemName,jdbcType=VARCHAR},
+				</if>
+				<if test="item.inspectionMethodCode != null">
+					#{item.inspectionMethodCode,jdbcType=VARCHAR},
+				</if>
+				<if test="item.inspectionMethodName != null">
+					#{item.inspectionMethodName,jdbcType=VARCHAR},
+				</if>
+				<if test="item.execTime != null">
+					#{item.execTime,jdbcType=VARCHAR},
+				</if>
+				<if test="item.execDeptCode != null">
+					#{item.execDeptCode,jdbcType=VARCHAR},
+				</if>
+				<if test="item.execDeptName != null">
+					#{item.execDeptName,jdbcType=VARCHAR},
+				</if>
+				<if test="item.createTime != null">
+					#{item.createTime,jdbcType=TIMESTAMP},
+				</if>
+			</trim>
+		</foreach>
+		;end;
+	</insert>
+
+</mapper>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GetDocumentStroedInfoResponse xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:hl7-org:v3" xsi:schemaLocation="urn:hl7-org:v3 ../multicacheschemas/GetDocumentStroedInfoResponse.xsd" status="AA">
+	<Id root="响应消息OID" th:attr="extension=${returnMsgId}" />
+	<TargetId root="请求消息OID" th:attr="extension=${msgId}"/>
+	<DocumentSet th:each="item:${resultsList}">
+		<!--<DocumentUniqueId th:text="${item.docFlowNo}"/>-->
+		<DocumentUniqueId th:text="${item.documentId}"/>
+		<RepositoryUniqueId th:text="${item.repositoryUniqueId}"/>
+		<DocumentTitle th:text="${item.docTypeDepict}"/>
+		<CreateTime th:text="${item.docCreationTime}"/>
+		<AuthorName th:text="${item.authorName}"/>
+		<PatientID th:text="${item.patientId}"/>
+		<PatientName th:text="${item.name}"/>
+		<ServerOrganization th:text="${item.serverOrganization}"/>
+		<EpisodeID th:text="${item.episodeId}"/>
+		<InTime th:text="${item.inTime}"/>
+		<OutTime th:text="${item.outTime}"/>
+		<AdmissionDepart th:text="${item.admissionDepart}"/>
+		<AdmissionDoctor th:text="${item.admissionDoctor}"/>
+		<AdmissionType th:text="${item.admissionType}"/>
+		<DiagnosisResult th:text="${item.diagnosisResult}"/>
+		<DocUrl th:text="${item.docUrl}"/>
+	</DocumentSet>
+	<Detail th:text="${returnStatusExplain}" />
+</GetDocumentStroedInfoResponse>

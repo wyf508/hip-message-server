@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djhu.hiup.message.server.core.dao.IOperationCheckItemDao" >
+  <resultMap id="BaseResultMap" type="com.djhu.hiup.message.server.core.model.OperationCheckItem" >
+    <id column="PK" property="pk" jdbcType="DECIMAL" />
+    <result column="REQUEST_OPERATION_PK" property="requestOperationPk" jdbcType="DECIMAL" />
+    <result column="OPERATION_CODE" property="operationCode" jdbcType="VARCHAR" />
+    <result column="OPERATION_NAME" property="operationName" jdbcType="VARCHAR" />
+    <result column="OPERATION_GRADE_CODE" property="operationGradeCode" jdbcType="VARCHAR" />
+    <result column="OPERATION_GRADE_NAME" property="operationGradeName" jdbcType="VARCHAR" />
+    <result column="SCHEDULED_OPERATION_TIME" property="scheduledOperationTime" jdbcType="VARCHAR" />
+    <result column="OPERATION_PHSICIAN_CODE" property="operationPhsicianCode" jdbcType="VARCHAR" />
+    <result column="OPERATION_PHSICIAN_NAME" property="operationPhsicianName" jdbcType="VARCHAR" />
+    <result column="EXEC_DEPT_CODE" property="execDeptCode" jdbcType="VARCHAR" />
+    <result column="EXEC_DEPT_NAME" property="execDeptName" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PK, REQUEST_OPERATION_PK, OPERATION_CODE, OPERATION_NAME, OPERATION_GRADE_CODE, OPERATION_GRADE_NAME, 
+    SCHEDULED_OPERATION_TIME, OPERATION_PHSICIAN_CODE, OPERATION_PHSICIAN_NAME, EXEC_DEPT_CODE, 
+    EXEC_DEPT_NAME, CREATE_TIME
+  </sql>
+
+  <select id="selectByRequestOperationPk" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List" />
+    from OPERATION_CHECK_ITEM
+    where REQUEST_OPERATION_PK = #{requestOperationPk,jdbcType=DECIMAL}
+  </select>
+
+  <delete id="deleteByRequestOperationPk" parameterType="java.math.BigDecimal" >
+    delete from OPERATION_CHECK_ITEM
+    where REQUEST_OPERATION_PK = #{requestOperationPk,jdbcType=DECIMAL}
+  </delete>
+
+  <insert id="insertOperationCheckItem" parameterType="map" >
+    insert into OPERATION_CHECK_ITEM
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      PK,
+      <if test="requestOperationPk != null" >
+        REQUEST_OPERATION_PK,
+      </if>
+      <if test="operationCode != null" >
+        OPERATION_CODE,
+      </if>
+      <if test="operationName != null" >
+        OPERATION_NAME,
+      </if>
+      <if test="operationGradeCode != null" >
+        OPERATION_GRADE_CODE,
+      </if>
+      <if test="operationGradeName != null" >
+        OPERATION_GRADE_NAME,
+      </if>
+      <if test="scheduledOperationTime != null" >
+        SCHEDULED_OPERATION_TIME,
+      </if>
+      <if test="operationPhsicianCode != null" >
+        OPERATION_PHSICIAN_CODE,
+      </if>
+      <if test="operationPhsicianName != null" >
+        OPERATION_PHSICIAN_NAME,
+      </if>
+      <if test="execDeptCode != null" >
+        EXEC_DEPT_CODE,
+      </if>
+      <if test="execDeptName != null" >
+        EXEC_DEPT_NAME,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      OPERATION_CHECK_ITEM_SEQ.NEXTVAL,
+      <if test="requestOperationPk != null" >
+        #{requestOperationPk,jdbcType=DECIMAL},
+      </if>
+      <if test="operationCode != null" >
+        #{operationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="operationName != null" >
+        #{operationName,jdbcType=VARCHAR},
+      </if>
+      <if test="operationGradeCode != null" >
+        #{operationGradeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="operationGradeName != null" >
+        #{operationGradeName,jdbcType=VARCHAR},
+      </if>
+      <if test="scheduledOperationTime != null" >
+        #{scheduledOperationTime,jdbcType=VARCHAR},
+      </if>
+      <if test="operationPhsicianCode != null" >
+        #{operationPhsicianCode,jdbcType=VARCHAR},
+      </if>
+      <if test="operationPhsicianName != null" >
+        #{operationPhsicianName,jdbcType=VARCHAR},
+      </if>
+      <if test="execDeptCode != null" >
+        #{execDeptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="execDeptName != null" >
+        #{execDeptName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+</mapper>

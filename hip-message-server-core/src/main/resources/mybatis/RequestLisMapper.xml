@@ -1,0 +1,876 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djhu.hiup.message.server.core.dao.IRequestLisDao" >
+  <resultMap id="BaseResultMap" type="com.djhu.hiup.message.server.core.model.RequestLis" >
+    <id column="PK" property="pk" jdbcType="DECIMAL" />
+    <result column="MSG_ID" property="msgId" jdbcType="VARCHAR" />
+    <result column="MSG_CREATION_TIME" property="msgCreationTime" jdbcType="VARCHAR" />
+    <result column="RECEIVE_ID" property="receiveId" jdbcType="VARCHAR" />
+    <result column="SEND_ID" property="sendId" jdbcType="VARCHAR" />
+    <result column="REQUEST_NO" property="requestNo" jdbcType="VARCHAR" />
+    <result column="REQUEST_DEPICT" property="requestDepict" jdbcType="VARCHAR" />
+    <result column="STATUS_CODE" property="statusCode" jdbcType="VARCHAR" />
+    <result column="REQUEST_EFFECTIVE_TIME_HIGH" property="requestEffectiveTimeHigh" jdbcType="VARCHAR" />
+    <result column="REQUEST_EFFECTIVE_TIME_LOW" property="requestEffectiveTimeLow" jdbcType="VARCHAR" />
+    <result column="PRIORITY_LEVEL_CODE" property="priorityLevelCode" jdbcType="VARCHAR" />
+    <result column="PRIORITY_LEVEL_NAME" property="priorityLevelName" jdbcType="VARCHAR" />
+    <result column="SPECIMENT_ID" property="specimentId" jdbcType="VARCHAR" />
+    <result column="SPECIMENT_TYPE_CODE" property="specimentTypeCode" jdbcType="VARCHAR" />
+    <result column="SPECIMENT_TYPE_NAME" property="specimentTypeName" jdbcType="VARCHAR" />
+    <result column="OPEN_BILL_TIME" property="openBillTime" jdbcType="VARCHAR" />
+    <result column="FOUNDER_PERSON_AUTOGRAPH" property="founderPersonAutograph" jdbcType="VARCHAR" />
+    <result column="FOUNDER_PERSON_ID" property="founderPersonId" jdbcType="VARCHAR" />
+    <result column="FOUNDER_PERSON_NAME" property="founderPersonName" jdbcType="VARCHAR" />
+    <result column="OPEN_DEPT_ID" property="openDeptId" jdbcType="VARCHAR" />
+    <result column="OPEN_DEPT_NAME" property="openDeptName" jdbcType="VARCHAR" />
+    <result column="AUDIT_TIME" property="auditTime" jdbcType="VARCHAR" />
+    <result column="AUDIT_PERSON_ID" property="auditPersonId" jdbcType="VARCHAR" />
+    <result column="AUDIT_PERSON_NAME" property="auditPersonName" jdbcType="VARCHAR" />
+    <result column="PRECAUTIONS" property="precautions" jdbcType="VARCHAR" />
+    <result column="DOOR_EMERGENCY_NO" property="doorEmergencyNo" jdbcType="VARCHAR" />
+    <result column="INPATIENT_NO" property="inpatientNo" jdbcType="VARCHAR" />
+    <result column="VISIT_TYPE_CODE" property="visitTypeCode" jdbcType="VARCHAR" />
+    <result column="VISIT_TYPE_NAME" property="visitTypeName" jdbcType="VARCHAR" />
+    <result column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
+    <result column="IDENTITY_NO" property="identityNo" jdbcType="VARCHAR" />
+    <result column="MEDICARE_CARD_NO" property="medicareCardNo" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="CONTACT_PHONE" property="contactPhone" jdbcType="VARCHAR" />
+    <result column="GENDER_ID" property="genderId" jdbcType="VARCHAR" />
+    <result column="GENDER_NAME" property="genderName" jdbcType="VARCHAR" />
+    <result column="DATE_OF_BIRTH" property="dateOfBirth" jdbcType="VARCHAR" />
+    <result column="AGE" property="age" jdbcType="VARCHAR" />
+    <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+    <result column="HOSPITAL_BED_CODE" property="hospitalBedCode" jdbcType="VARCHAR" />
+    <result column="HOSPITAL_BED_NO" property="hospitalBedNo" jdbcType="VARCHAR" />
+    <result column="WARD_CODE" property="wardCode" jdbcType="VARCHAR" />
+    <result column="WARD_NO" property="wardNo" jdbcType="VARCHAR" />
+    <result column="DEPT_CODE" property="deptCode" jdbcType="VARCHAR" />
+    <result column="DEPT_NAME" property="deptName" jdbcType="VARCHAR" />
+    <result column="INPATIENT_AREA_CODE" property="inpatientAreaCode" jdbcType="VARCHAR" />
+    <result column="INPATIENT_AREA_NAME" property="inpatientAreaName" jdbcType="VARCHAR" />
+    <result column="DIAGNOSTIC_NODE" property="diagnosticNode" jdbcType="VARCHAR" />
+    <result column="DIAGNOSTIC_TYPE_CODE" property="diagnosticTypeCode" jdbcType="VARCHAR" />
+    <result column="DIAGNOSTIC_TYPE_NAME" property="diagnosticTypeName" jdbcType="VARCHAR" />
+    <result column="DIAGNOSTIC_TIME" property="diagnosticTime" jdbcType="VARCHAR" />
+    <result column="DISEASE_CODE" property="diseaseCode" jdbcType="VARCHAR" />
+    <result column="DISEASE_NAME" property="diseaseName" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="HIUP_STATUS" property="hiupStatus" jdbcType="VARCHAR" />
+    <result column="HIUP_INFO" property="hiupInfo" jdbcType="VARCHAR" />
+    
+    <result column="BINGSHI" property="bingshi" jdbcType="VARCHAR" />
+    <result column="ZHENGZHUANG" property="zhengzhuang" jdbcType="VARCHAR" />
+    <result column="SPECIMEN_CODE" property="specimenCode" jdbcType="VARCHAR" />
+    <result column="SPECIMEN_DESC" property="specimenDesc" jdbcType="VARCHAR" />
+    <result column="ADDITIVE" property="additive" jdbcType="VARCHAR" />
+    <result column="SPECIMEN_TIME" property="specimenTime" jdbcType="VARCHAR" />
+    <result column="SPECIMEN_EFFECTIVETIME" property="specimenEffectivetime" jdbcType="VARCHAR" />
+    <result column="HEALTH_CARD" property="healthCard" jdbcType="VARCHAR" />
+    <result column="HEALTH_SEQ" property="healthSeq" jdbcType="VARCHAR" />
+    <result column="OBSERVATION_EVENTCRITERION" property="observationEventcriterion" jdbcType="VARCHAR" />
+    
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PK, MSG_ID, MSG_CREATION_TIME, RECEIVE_ID, SEND_ID, REQUEST_NO, REQUEST_DEPICT, STATUS_CODE, 
+    REQUEST_EFFECTIVE_TIME_HIGH, REQUEST_EFFECTIVE_TIME_LOW, PRIORITY_LEVEL_CODE, PRIORITY_LEVEL_NAME, 
+    SPECIMENT_ID, SPECIMENT_TYPE_CODE, SPECIMENT_TYPE_NAME, OPEN_BILL_TIME, FOUNDER_PERSON_AUTOGRAPH, 
+    FOUNDER_PERSON_ID, FOUNDER_PERSON_NAME, OPEN_DEPT_ID, OPEN_DEPT_NAME, AUDIT_TIME, 
+    AUDIT_PERSON_ID, AUDIT_PERSON_NAME, PRECAUTIONS, DOOR_EMERGENCY_NO, INPATIENT_NO, 
+    VISIT_TYPE_CODE, VISIT_TYPE_NAME, PATIENT_ID, IDENTITY_NO, MEDICARE_CARD_NO, NAME, 
+    CONTACT_PHONE, GENDER_ID, GENDER_NAME, DATE_OF_BIRTH, AGE, ADDRESS, HOSPITAL_BED_CODE, 
+    HOSPITAL_BED_NO, WARD_CODE, WARD_NO, DEPT_CODE, DEPT_NAME, INPATIENT_AREA_CODE, INPATIENT_AREA_NAME, 
+    DIAGNOSTIC_NODE, DIAGNOSTIC_TYPE_CODE, DIAGNOSTIC_TYPE_NAME, DIAGNOSTIC_TIME, DISEASE_CODE, 
+    DISEASE_NAME, CREATE_TIME, UPDATE_TIME, HIUP_STATUS, HIUP_INFO, BINGSHI, ZHENGZHUANG, 
+    SPECIMEN_CODE, SPECIMEN_DESC, ADDITIVE, SPECIMEN_TIME, SPECIMEN_EFFECTIVETIME, HEALTH_CARD, 
+    HEALTH_SEQ,OBSERVATION_EVENTCRITERION
+  </sql>
+
+  <select id="selectCountBySelective" resultType="java.lang.Integer" parameterType="map" >
+     select count(*) from REQUEST_LIS
+      where REQUEST_NO = #{requestNo,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectPkBySelective" resultType="java.math.BigDecimal" parameterType="map" >
+    select
+    PK
+     from  REQUEST_LIS
+      where REQUEST_NO = #{requestNo,jdbcType=VARCHAR}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from REQUEST_LIS
+    where PK = #{pk,jdbcType=DECIMAL}
+  </delete>
+
+ <insert id="insertSelective" parameterType="map"  >
+   <selectKey resultType="java.math.BigDecimal" order="BEFORE" keyProperty="pk">
+     select REQUEST_LIS_SEQ.NEXTVAL as pk from dual
+   </selectKey>
+    insert into REQUEST_LIS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      PK,
+      <if test="msgId != null" >
+        MSG_ID,
+      </if>
+      <if test="msgCreationTime != null" >
+        MSG_CREATION_TIME,
+      </if>
+      <if test="receiveId != null" >
+        RECEIVE_ID,
+      </if>
+      <if test="sendId != null" >
+        SEND_ID,
+      </if>
+      <if test="requestNo != null" >
+        REQUEST_NO,
+      </if>
+      <if test="requestDepict != null" >
+        REQUEST_DEPICT,
+      </if>
+      <if test="statusCode != null" >
+        STATUS_CODE,
+      </if>
+      <if test="requestEffectiveTimeHigh != null" >
+        REQUEST_EFFECTIVE_TIME_HIGH,
+      </if>
+      <if test="requestEffectiveTimeLow != null" >
+        REQUEST_EFFECTIVE_TIME_LOW,
+      </if>
+      <if test="priorityLevelCode != null" >
+        PRIORITY_LEVEL_CODE,
+      </if>
+      <if test="priorityLevelName != null" >
+        PRIORITY_LEVEL_NAME,
+      </if>
+      <if test="specimentId != null" >
+        SPECIMENT_ID,
+      </if>
+      <if test="specimentTypeCode != null" >
+        SPECIMENT_TYPE_CODE,
+      </if>
+      <if test="specimentTypeName != null" >
+        SPECIMENT_TYPE_NAME,
+      </if>
+      <if test="openBillTime != null" >
+        OPEN_BILL_TIME,
+      </if>
+      <if test="founderPersonAutograph != null" >
+        FOUNDER_PERSON_AUTOGRAPH,
+      </if>
+      <if test="founderPersonId != null" >
+        FOUNDER_PERSON_ID,
+      </if>
+      <if test="founderPersonName != null" >
+        FOUNDER_PERSON_NAME,
+      </if>
+      <if test="openDeptId != null" >
+        OPEN_DEPT_ID,
+      </if>
+      <if test="openDeptName != null" >
+        OPEN_DEPT_NAME,
+      </if>
+      <if test="auditTime != null" >
+        AUDIT_TIME,
+      </if>
+      <if test="auditPersonId != null" >
+        AUDIT_PERSON_ID,
+      </if>
+      <if test="auditPersonName != null" >
+        AUDIT_PERSON_NAME,
+      </if>
+      <if test="precautions != null" >
+        PRECAUTIONS,
+      </if>
+      <if test="doorEmergencyNo != null" >
+        DOOR_EMERGENCY_NO,
+      </if>
+      <if test="inpatientNo != null" >
+        INPATIENT_NO,
+      </if>
+      <if test="visitTypeCode != null" >
+        VISIT_TYPE_CODE,
+      </if>
+      <if test="visitTypeName != null" >
+        VISIT_TYPE_NAME,
+      </if>
+      <if test="patientId != null" >
+        PATIENT_ID,
+      </if>
+      <if test="identityNo != null" >
+        IDENTITY_NO,
+      </if>
+      <if test="medicareCardNo != null" >
+        MEDICARE_CARD_NO,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="contactPhone != null" >
+        CONTACT_PHONE,
+      </if>
+      <if test="genderId != null" >
+        GENDER_ID,
+      </if>
+      <if test="genderName != null" >
+        GENDER_NAME,
+      </if>
+      <if test="dateOfBirth != null" >
+        DATE_OF_BIRTH,
+      </if>
+      <if test="age != null" >
+        AGE,
+      </if>
+      <if test="address != null" >
+        ADDRESS,
+      </if>
+      <if test="hospitalBedCode != null" >
+        HOSPITAL_BED_CODE,
+      </if>
+      <if test="hospitalBedNo != null" >
+        HOSPITAL_BED_NO,
+      </if>
+      <if test="wardCode != null" >
+        WARD_CODE,
+      </if>
+      <if test="wardNo != null" >
+        WARD_NO,
+      </if>
+      <if test="deptCode != null" >
+        DEPT_CODE,
+      </if>
+      <if test="deptName != null" >
+        DEPT_NAME,
+      </if>
+      <if test="inpatientAreaCode != null" >
+        INPATIENT_AREA_CODE,
+      </if>
+      <if test="inpatientAreaName != null" >
+        INPATIENT_AREA_NAME,
+      </if>
+      <if test="diagnosticNode != null" >
+        DIAGNOSTIC_NODE,
+      </if>
+      <if test="diagnosticTypeCode != null" >
+        DIAGNOSTIC_TYPE_CODE,
+      </if>
+      <if test="diagnosticTypeName != null" >
+        DIAGNOSTIC_TYPE_NAME,
+      </if>
+      <if test="diagnosticTime != null" >
+        DIAGNOSTIC_TIME,
+      </if>
+      <if test="diseaseCode != null" >
+        DISEASE_CODE,
+      </if>
+      <if test="diseaseName != null" >
+        DISEASE_NAME,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="hiupStatus != null" >
+        HIUP_STATUS,
+      </if>
+      <if test="hiupInfo != null" >
+        HIUP_INFO,
+      </if>
+      <if test="bingshi != null" >
+        BINGSHI,
+      </if>
+      <if test="zhengzhuang != null" >
+        ZHENGZHUANG,
+      </if>
+      <if test="specimenCode != null" >
+        SPECIMEN_CODE,
+      </if>
+      <if test="specimenDesc != null" >
+        SPECIMEN_DESC,
+      </if>
+      <if test="additive != null" >
+        ADDITIVE,
+      </if>
+      <if test="specimenTime != null" >
+        SPECIMEN_TIME,
+      </if>
+      <if test="specimenEffectivetime != null" >
+        SPECIMEN_EFFECTIVETIME,
+      </if>
+      <if test="healthCard != null" >
+        HEALTH_CARD,
+      </if>
+      <if test="healthSeq != null" >
+        HEALTH_SEQ,
+      </if>
+      <if test="observationEventcriterion != null" >
+        OBSERVATION_EVENTCRITERION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{pk,jdbcType=DECIMAL},
+      <if test="msgId != null" >
+        #{msgId,jdbcType=VARCHAR},
+      </if>
+      <if test="msgCreationTime != null" >
+        #{msgCreationTime,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveId != null" >
+        #{receiveId,jdbcType=VARCHAR},
+      </if>
+      <if test="sendId != null" >
+        #{sendId,jdbcType=VARCHAR},
+      </if>
+      <if test="requestNo != null" >
+        #{requestNo,jdbcType=VARCHAR},
+      </if>
+      <if test="requestDepict != null" >
+        #{requestDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="statusCode != null" >
+        #{statusCode,jdbcType=VARCHAR},
+      </if>
+      <if test="requestEffectiveTimeHigh != null" >
+        #{requestEffectiveTimeHigh,jdbcType=VARCHAR},
+      </if>
+      <if test="requestEffectiveTimeLow != null" >
+        #{requestEffectiveTimeLow,jdbcType=VARCHAR},
+      </if>
+      <if test="priorityLevelCode != null" >
+        #{priorityLevelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="priorityLevelName != null" >
+        #{priorityLevelName,jdbcType=VARCHAR},
+      </if>
+      <if test="specimentId != null" >
+        #{specimentId,jdbcType=VARCHAR},
+      </if>
+      <if test="specimentTypeCode != null" >
+        #{specimentTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="specimentTypeName != null" >
+        #{specimentTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="openBillTime != null" >
+        #{openBillTime,jdbcType=VARCHAR},
+      </if>
+      <if test="founderPersonAutograph != null" >
+        #{founderPersonAutograph,jdbcType=VARCHAR},
+      </if>
+      <if test="founderPersonId != null" >
+        #{founderPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="founderPersonName != null" >
+        #{founderPersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="openDeptId != null" >
+        #{openDeptId,jdbcType=VARCHAR},
+      </if>
+      <if test="openDeptName != null" >
+        #{openDeptName,jdbcType=VARCHAR},
+      </if>
+      <if test="auditTime != null" >
+        #{auditTime,jdbcType=VARCHAR},
+      </if>
+      <if test="auditPersonId != null" >
+        #{auditPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="auditPersonName != null" >
+        #{auditPersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="precautions != null" >
+        #{precautions,jdbcType=VARCHAR},
+      </if>
+      <if test="doorEmergencyNo != null" >
+        #{doorEmergencyNo,jdbcType=VARCHAR},
+      </if>
+      <if test="inpatientNo != null" >
+        #{inpatientNo,jdbcType=VARCHAR},
+      </if>
+      <if test="visitTypeCode != null" >
+        #{visitTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="visitTypeName != null" >
+        #{visitTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="patientId != null" >
+        #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="identityNo != null" >
+        #{identityNo,jdbcType=VARCHAR},
+      </if>
+      <if test="medicareCardNo != null" >
+        #{medicareCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null" >
+        #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="genderId != null" >
+        #{genderId,jdbcType=VARCHAR},
+      </if>
+      <if test="genderName != null" >
+        #{genderName,jdbcType=VARCHAR},
+      </if>
+      <if test="dateOfBirth != null" >
+        #{dateOfBirth,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+        #{age,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalBedCode != null" >
+        #{hospitalBedCode,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalBedNo != null" >
+        #{hospitalBedNo,jdbcType=VARCHAR},
+      </if>
+      <if test="wardCode != null" >
+        #{wardCode,jdbcType=VARCHAR},
+      </if>
+      <if test="wardNo != null" >
+        #{wardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="deptCode != null" >
+        #{deptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="deptName != null" >
+        #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="inpatientAreaCode != null" >
+        #{inpatientAreaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="inpatientAreaName != null" >
+        #{inpatientAreaName,jdbcType=VARCHAR},
+      </if>
+      <if test="diagnosticNode != null" >
+        #{diagnosticNode,jdbcType=VARCHAR},
+      </if>
+      <if test="diagnosticTypeCode != null" >
+        #{diagnosticTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="diagnosticTypeName != null" >
+        #{diagnosticTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="diagnosticTime != null" >
+        #{diagnosticTime,jdbcType=VARCHAR},
+      </if>
+      <if test="diseaseCode != null" >
+        #{diseaseCode,jdbcType=VARCHAR},
+      </if>
+      <if test="diseaseName != null" >
+        #{diseaseName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hiupStatus != null" >
+        #{hiupStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="hiupInfo != null" >
+        #{hiupInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="bingshi != null" >
+        #{bingshi,jdbcType=VARCHAR},
+      </if>
+      <if test="zhengzhuang != null" >
+        #{zhengzhuang,jdbcType=VARCHAR},
+      </if>
+      <if test="specimenCode != null" >
+        #{specimenCode,jdbcType=VARCHAR},
+      </if>
+      <if test="specimenDesc != null" >
+        #{specimenDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="additive != null" >
+        #{additive,jdbcType=VARCHAR},
+      </if>
+      <if test="specimenTime != null" >
+        #{specimenTime,jdbcType=VARCHAR},
+      </if>
+      <if test="specimenEffectivetime != null" >
+        #{specimenEffectivetime,jdbcType=VARCHAR},
+      </if>
+      <if test="healthCard != null" >
+        #{healthCard,jdbcType=VARCHAR},
+      </if>
+      <if test="healthSeq != null" >
+        #{healthSeq,jdbcType=VARCHAR},
+      </if>
+      <if test="observationEventcriterion != null" >
+        #{observationEventcriterion,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateBySelective" parameterType="map"  >
+    update REQUEST_LIS
+    <set >
+      <if test="msgId != null" >
+        MSG_ID = #{msgId,jdbcType=VARCHAR},
+      </if>
+      <if test="msgCreationTime != null" >
+        MSG_CREATION_TIME = #{msgCreationTime,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveId != null" >
+        RECEIVE_ID = #{receiveId,jdbcType=VARCHAR},
+      </if>
+      <if test="sendId != null" >
+        SEND_ID = #{sendId,jdbcType=VARCHAR},
+      </if>
+      <if test="requestNo != null" >
+        REQUEST_NO = #{requestNo,jdbcType=VARCHAR},
+      </if>
+      <if test="requestDepict != null" >
+        REQUEST_DEPICT = #{requestDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="statusCode != null" >
+        STATUS_CODE = #{statusCode,jdbcType=VARCHAR},
+      </if>
+      <if test="requestEffectiveTimeHigh != null" >
+        REQUEST_EFFECTIVE_TIME_HIGH = #{requestEffectiveTimeHigh,jdbcType=VARCHAR},
+      </if>
+      <if test="requestEffectiveTimeLow != null" >
+        REQUEST_EFFECTIVE_TIME_LOW = #{requestEffectiveTimeLow,jdbcType=VARCHAR},
+      </if>
+      <if test="priorityLevelCode != null" >
+        PRIORITY_LEVEL_CODE = #{priorityLevelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="priorityLevelName != null" >
+        PRIORITY_LEVEL_NAME = #{priorityLevelName,jdbcType=VARCHAR},
+      </if>
+      <if test="specimentId != null" >
+        SPECIMENT_ID = #{specimentId,jdbcType=VARCHAR},
+      </if>
+      <if test="specimentTypeCode != null" >
+        SPECIMENT_TYPE_CODE = #{specimentTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="specimentTypeName != null" >
+        SPECIMENT_TYPE_NAME = #{specimentTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="openBillTime != null" >
+        OPEN_BILL_TIME = #{openBillTime,jdbcType=VARCHAR},
+      </if>
+      <if test="founderPersonAutograph != null" >
+        FOUNDER_PERSON_AUTOGRAPH = #{founderPersonAutograph,jdbcType=VARCHAR},
+      </if>
+      <if test="founderPersonId != null" >
+        FOUNDER_PERSON_ID = #{founderPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="founderPersonName != null" >
+        FOUNDER_PERSON_NAME = #{founderPersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="openDeptId != null" >
+        OPEN_DEPT_ID = #{openDeptId,jdbcType=VARCHAR},
+      </if>
+      <if test="openDeptName != null" >
+        OPEN_DEPT_NAME = #{openDeptName,jdbcType=VARCHAR},
+      </if>
+      <if test="auditTime != null" >
+        AUDIT_TIME = #{auditTime,jdbcType=VARCHAR},
+      </if>
+      <if test="auditPersonId != null" >
+        AUDIT_PERSON_ID = #{auditPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="auditPersonName != null" >
+        AUDIT_PERSON_NAME = #{auditPersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="precautions != null" >
+        PRECAUTIONS = #{precautions,jdbcType=VARCHAR},
+      </if>
+      <if test="doorEmergencyNo != null" >
+        DOOR_EMERGENCY_NO = #{doorEmergencyNo,jdbcType=VARCHAR},
+      </if>
+      <if test="inpatientNo != null" >
+        INPATIENT_NO = #{inpatientNo,jdbcType=VARCHAR},
+      </if>
+      <if test="visitTypeCode != null" >
+        VISIT_TYPE_CODE = #{visitTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="visitTypeName != null" >
+        VISIT_TYPE_NAME = #{visitTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="patientId != null" >
+        PATIENT_ID = #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="identityNo != null" >
+        IDENTITY_NO = #{identityNo,jdbcType=VARCHAR},
+      </if>
+      <if test="medicareCardNo != null" >
+        MEDICARE_CARD_NO = #{medicareCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null" >
+        CONTACT_PHONE = #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="genderId != null" >
+        GENDER_ID = #{genderId,jdbcType=VARCHAR},
+      </if>
+      <if test="genderName != null" >
+        GENDER_NAME = #{genderName,jdbcType=VARCHAR},
+      </if>
+      <if test="dateOfBirth != null" >
+        DATE_OF_BIRTH = #{dateOfBirth,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+        AGE = #{age,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalBedCode != null" >
+        HOSPITAL_BED_CODE = #{hospitalBedCode,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalBedNo != null" >
+        HOSPITAL_BED_NO = #{hospitalBedNo,jdbcType=VARCHAR},
+      </if>
+      <if test="wardCode != null" >
+        WARD_CODE = #{wardCode,jdbcType=VARCHAR},
+      </if>
+      <if test="wardNo != null" >
+        WARD_NO = #{wardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="deptCode != null" >
+        DEPT_CODE = #{deptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="deptName != null" >
+        DEPT_NAME = #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="inpatientAreaCode != null" >
+        INPATIENT_AREA_CODE = #{inpatientAreaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="inpatientAreaName != null" >
+        INPATIENT_AREA_NAME = #{inpatientAreaName,jdbcType=VARCHAR},
+      </if>
+      <if test="diagnosticNode != null" >
+        DIAGNOSTIC_NODE = #{diagnosticNode,jdbcType=VARCHAR},
+      </if>
+      <if test="diagnosticTypeCode != null" >
+        DIAGNOSTIC_TYPE_CODE = #{diagnosticTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="diagnosticTypeName != null" >
+        DIAGNOSTIC_TYPE_NAME = #{diagnosticTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="diagnosticTime != null" >
+        DIAGNOSTIC_TIME = #{diagnosticTime,jdbcType=VARCHAR},
+      </if>
+      <if test="diseaseCode != null" >
+        DISEASE_CODE = #{diseaseCode,jdbcType=VARCHAR},
+      </if>
+      <if test="diseaseName != null" >
+        DISEASE_NAME = #{diseaseName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hiupStatus != null" >
+        HIUP_STATUS = #{hiupStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="hiupInfo != null" >
+        HIUP_INFO = #{hiupInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="bingshi != null" >
+        BINGSHI = #{bingshi,jdbcType=VARCHAR},
+      </if>
+      <if test="zhengzhuang != null" >
+        ZHENGZHUANG = #{zhengzhuang,jdbcType=VARCHAR},
+      </if>
+      <if test="specimenCode != null" >
+        SPECIMEN_CODE = #{specimenCode,jdbcType=VARCHAR},
+      </if>
+      <if test="specimenDesc != null" >
+        SPECIMEN_DESC = #{specimenDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="additive != null" >
+        ADDITIVE = #{additive,jdbcType=VARCHAR},
+      </if>
+      <if test="specimenTime != null" >
+        SPECIMEN_TIME = #{specimenTime,jdbcType=VARCHAR},
+      </if>
+      <if test="specimenEffectivetime != null" >
+        SPECIMEN_EFFECTIVETIME = #{specimenEffectivetime,jdbcType=VARCHAR},
+      </if>
+      <if test="healthCard != null" >
+        HEALTH_CARD = #{healthCard,jdbcType=VARCHAR},
+      </if>
+      <if test="healthSeq != null" >
+        HEALTH_SEQ = #{healthSeq,jdbcType=VARCHAR},
+      </if>
+      <if test="observationEventcriterion != null" >
+        OBSERVATION_EVENTCRITERION = #{observationEventcriterion,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where REQUEST_NO = #{requestNo,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectBySelective" parameterType="map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from REQUEST_LIS
+    where 1=1
+    <if test="requestNo != null">
+      AND REQUEST_NO = #{requestNo,jdbcType=VARCHAR}
+    </if>
+    <if test="doorEmergencyNo != null">
+      AND  DOOR_EMERGENCY_NO = #{doorEmergencyNo,jdbcType=VARCHAR}
+    </if>
+    <if test="inpatientNo != null">
+      AND INPATIENT_NO = #{inpatientNo,jdbcType=VARCHAR}
+    </if>
+    <if test="specimentId != null">
+      AND  SPECIMENT_ID = #{specimentId,jdbcType=VARCHAR}
+    </if>
+    <if test="founderPersonId != null">
+      AND  FOUNDER_PERSON_ID = #{founderPersonId,jdbcType=VARCHAR}
+    </if>
+    <if test="requestEffectiveTimeHigh != null">
+      <![CDATA[AND  REQUEST_EFFECTIVE_TIME_HIGH = #{requestEffectiveTimeHigh,jdbcType=VARCHAR}]]>
+    </if>
+    <if test="requestEffectiveTimeLow != null">
+      <![CDATA[AND  REQUEST_EFFECTIVE_TIME_LOW = #{requestEffectiveTimeLow,jdbcType=VARCHAR}]]>
+    </if>
+    <if test="identityNo != null">
+      AND IDENTITY_NO = #{identityNo,jdbcType=VARCHAR}
+    </if>
+    <if test="medicareCardNo != null">
+      AND MEDICARE_CARD_NO = #{medicareCardNo,jdbcType=VARCHAR}
+    </if>
+    <if test="patientId != null">
+      AND  PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+    </if>
+    <if test="statusCode != null">
+      AND STATUS_CODE = #{statusCode,jdbcType=VARCHAR}
+    </if>
+  </select>
+  
+  
+  
+  <resultMap id="BaseResultMapWithLisInspectionItem" type="com.djhu.hiup.message.server.core.model.RequestLis" >
+    <id column="PK" property="pk" jdbcType="DECIMAL" />
+    <result column="MSG_ID" property="msgId" jdbcType="VARCHAR" />
+    <result column="MSG_CREATION_TIME" property="msgCreationTime" jdbcType="VARCHAR" />
+    <result column="RECEIVE_ID" property="receiveId" jdbcType="VARCHAR" />
+    <result column="SEND_ID" property="sendId" jdbcType="VARCHAR" />
+    <result column="REQUEST_NO" property="requestNo" jdbcType="VARCHAR" />
+    <result column="REQUEST_DEPICT" property="requestDepict" jdbcType="VARCHAR" />
+    <result column="STATUS_CODE" property="statusCode" jdbcType="VARCHAR" />
+    <result column="REQUEST_EFFECTIVE_TIME_HIGH" property="requestEffectiveTimeHigh" jdbcType="VARCHAR" />
+    <result column="REQUEST_EFFECTIVE_TIME_LOW" property="requestEffectiveTimeLow" jdbcType="VARCHAR" />
+    <result column="PRIORITY_LEVEL_CODE" property="priorityLevelCode" jdbcType="VARCHAR" />
+    <result column="PRIORITY_LEVEL_NAME" property="priorityLevelName" jdbcType="VARCHAR" />
+    <result column="SPECIMENT_ID" property="specimentId" jdbcType="VARCHAR" />
+    <result column="SPECIMENT_TYPE_CODE" property="specimentTypeCode" jdbcType="VARCHAR" />
+    <result column="SPECIMENT_TYPE_NAME" property="specimentTypeName" jdbcType="VARCHAR" />
+    <result column="OPEN_BILL_TIME" property="openBillTime" jdbcType="VARCHAR" />
+    <result column="FOUNDER_PERSON_AUTOGRAPH" property="founderPersonAutograph" jdbcType="VARCHAR" />
+    <result column="FOUNDER_PERSON_ID" property="founderPersonId" jdbcType="VARCHAR" />
+    <result column="FOUNDER_PERSON_NAME" property="founderPersonName" jdbcType="VARCHAR" />
+    <result column="OPEN_DEPT_ID" property="openDeptId" jdbcType="VARCHAR" />
+    <result column="OPEN_DEPT_NAME" property="openDeptName" jdbcType="VARCHAR" />
+    <result column="AUDIT_TIME" property="auditTime" jdbcType="VARCHAR" />
+    <result column="AUDIT_PERSON_ID" property="auditPersonId" jdbcType="VARCHAR" />
+    <result column="AUDIT_PERSON_NAME" property="auditPersonName" jdbcType="VARCHAR" />
+    <result column="PRECAUTIONS" property="precautions" jdbcType="VARCHAR" />
+    <result column="DOOR_EMERGENCY_NO" property="doorEmergencyNo" jdbcType="VARCHAR" />
+    <result column="INPATIENT_NO" property="inpatientNo" jdbcType="VARCHAR" />
+    <result column="VISIT_TYPE_CODE" property="visitTypeCode" jdbcType="VARCHAR" />
+    <result column="VISIT_TYPE_NAME" property="visitTypeName" jdbcType="VARCHAR" />
+    <result column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
+    <result column="IDENTITY_NO" property="identityNo" jdbcType="VARCHAR" />
+    <result column="MEDICARE_CARD_NO" property="medicareCardNo" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="CONTACT_PHONE" property="contactPhone" jdbcType="VARCHAR" />
+    <result column="GENDER_ID" property="genderId" jdbcType="VARCHAR" />
+    <result column="GENDER_NAME" property="genderName" jdbcType="VARCHAR" />
+    <result column="DATE_OF_BIRTH" property="dateOfBirth" jdbcType="VARCHAR" />
+    <result column="AGE" property="age" jdbcType="VARCHAR" />
+    <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+    <result column="HOSPITAL_BED_CODE" property="hospitalBedCode" jdbcType="VARCHAR" />
+    <result column="HOSPITAL_BED_NO" property="hospitalBedNo" jdbcType="VARCHAR" />
+    <result column="WARD_CODE" property="wardCode" jdbcType="VARCHAR" />
+    <result column="WARD_NO" property="wardNo" jdbcType="VARCHAR" />
+    <result column="DEPT_CODE" property="deptCode" jdbcType="VARCHAR" />
+    <result column="DEPT_NAME" property="deptName" jdbcType="VARCHAR" />
+    <result column="INPATIENT_AREA_CODE" property="inpatientAreaCode" jdbcType="VARCHAR" />
+    <result column="INPATIENT_AREA_NAME" property="inpatientAreaName" jdbcType="VARCHAR" />
+    <result column="DIAGNOSTIC_NODE" property="diagnosticNode" jdbcType="VARCHAR" />
+    <result column="DIAGNOSTIC_TYPE_CODE" property="diagnosticTypeCode" jdbcType="VARCHAR" />
+    <result column="DIAGNOSTIC_TYPE_NAME" property="diagnosticTypeName" jdbcType="VARCHAR" />
+    <result column="DIAGNOSTIC_TIME" property="diagnosticTime" jdbcType="VARCHAR" />
+    <result column="DISEASE_CODE" property="diseaseCode" jdbcType="VARCHAR" />
+    <result column="DISEASE_NAME" property="diseaseName" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="HIUP_STATUS" property="hiupStatus" jdbcType="VARCHAR" />
+    <result column="HIUP_INFO" property="hiupInfo" jdbcType="VARCHAR" />
+    
+    <result column="BINGSHI" property="bingshi" jdbcType="VARCHAR" />
+    <result column="ZHENGZHUANG" property="zhengzhuang" jdbcType="VARCHAR" />
+    <result column="SPECIMEN_CODE" property="specimenCode" jdbcType="VARCHAR" />
+    <result column="SPECIMEN_DESC" property="specimenDesc" jdbcType="VARCHAR" />
+    <result column="ADDITIVE" property="additive" jdbcType="VARCHAR" />
+    <result column="SPECIMEN_TIME" property="specimenTime" jdbcType="VARCHAR" />
+    <result column="SPECIMEN_EFFECTIVETIME" property="specimenEffectivetime" jdbcType="VARCHAR" />
+    <result column="HEALTH_CARD" property="healthCard" jdbcType="VARCHAR" />
+    <result column="HEALTH_SEQ" property="healthSeq" jdbcType="VARCHAR" />
+    <result column="OBSERVATION_EVENTCRITERION" property="observationEventcriterion" jdbcType="VARCHAR" />
+    <collection property="lisInspectionItemList" column="pk" 
+		javaType="ArrayList" ofType="com.djhu.hiup.message.server.core.model.LisInspectionItem" select="com.djhu.hiup.message.server.core.dao.ILisInspectionItemDao.selectByRequestLisPk">
+	</collection>
+  </resultMap>
+  
+  <select id="selectBySelectiveWithLisInspectionItem" parameterType="map" resultMap="BaseResultMapWithLisInspectionItem">
+    select
+    <include refid="Base_Column_List"/>
+    from REQUEST_LIS
+    where 1=1
+    <if test="requestNo != null">
+      AND REQUEST_NO = #{requestNo,jdbcType=VARCHAR}
+    </if>
+    <if test="doorEmergencyNo != null">
+      AND  DOOR_EMERGENCY_NO = #{doorEmergencyNo,jdbcType=VARCHAR}
+    </if>
+    <if test="inpatientNo != null">
+      AND INPATIENT_NO = #{inpatientNo,jdbcType=VARCHAR}
+    </if>
+    <if test="specimentId != null">
+      AND  SPECIMENT_ID = #{specimentId,jdbcType=VARCHAR}
+    </if>
+    <if test="founderPersonId != null">
+      AND  FOUNDER_PERSON_ID = #{founderPersonId,jdbcType=VARCHAR}
+    </if>
+    <if test="requestEffectiveTimeHigh != null">
+      <![CDATA[AND  REQUEST_EFFECTIVE_TIME_HIGH = #{requestEffectiveTimeHigh,jdbcType=VARCHAR}]]>
+    </if>
+    <if test="requestEffectiveTimeLow != null">
+      <![CDATA[AND  REQUEST_EFFECTIVE_TIME_LOW = #{requestEffectiveTimeLow,jdbcType=VARCHAR}]]>
+    </if>
+    <if test="identityNo != null">
+      AND IDENTITY_NO = #{identityNo,jdbcType=VARCHAR}
+    </if>
+    <if test="medicareCardNo != null">
+      AND MEDICARE_CARD_NO = #{medicareCardNo,jdbcType=VARCHAR}
+    </if>
+    <if test="patientId != null">
+      AND  PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+    </if>
+    <if test="statusCode != null">
+      AND STATUS_CODE = #{statusCode,jdbcType=VARCHAR}
+    </if>
+  </select>
+</mapper>

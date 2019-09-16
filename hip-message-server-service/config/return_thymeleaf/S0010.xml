@@ -1,0 +1,121 @@
+<PRPM_IN306011UV01 xmlns="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ITSVersion="XML_1.0" xsi:schemaLocation="urn:hl7-org:v3 ../multicacheschemas/PRPM_IN306011UV01.xsd">
+    <id root="2.16.156.10011.2.5.1.1" th:attr="extension=${returnMsgId}"/>
+    <creationTime  th:attr="value=${#dates.format(#dates.createNow(), 'yyyyMMddHHmmss')}"/>
+    <interactionId root="2.16.840.1.113883.1.6" extension="PRPM_IN306011UV01"/>
+    <processingCode code="P"/>
+    <processingModeCode code="I"/>
+    <acceptAckCode code="AL"/>
+    <receiver typeCode="RCV">
+        <telecom/>
+        <device classCode="DEV" determinerCode="INSTANCE">
+            <id th:attr="root=${sendId}"/>
+        </device>
+    </receiver>
+    <sender typeCode="SND">
+        <telecom/>
+        <device classCode="DEV" determinerCode="INSTANCE">
+            <id th:attr="root=${receiveId}"/>
+        </device>
+    </sender>
+    <acknowledgement th:attr="typeCode=${returnStatusCode}">
+        <targetMessage>
+            <id root="2.16.156.10011.2.5.1.1" th:attr="extension=${msgId}"/>
+        </targetMessage>
+        <acknowledgementDetail>
+            <!--处理结果说明-->
+            <text th:text="${returnStatusExplain}"/>
+        </acknowledgementDetail>
+    </acknowledgement>
+    <controlActProcess classCode="CACT" moodCode="EVN" th:each="item:${resultsList}">
+        <subject typeCode="SUBJ">
+            <registrationEvent classCode="REG" moodCode="EVN">
+                <statusCode code="active"/>
+                <subject1 typeCode="SBJ">
+                    <healthCareProvider classCode="PROV">
+                        <!--医务人员ID-->
+                        <id root="2.16.156.10011.1.4" th:attr="extension=${item.healthCareProviderId}"/>
+                        <!--专业技术职务代码-->
+                        <code th:attr="code=${item.jobCategoryId},displayName=${item.jobCategoryName}" codeSystem="2.16.156.10011.2.3.3.10" codeSystemName="专业技术职务代码( GB/T 8561)"/>
+                        <!--工作地址-->
+                        <addr/>
+                        <!--工作联系方式：电话、邮箱地址等-->
+                        <telecom/>
+                        <!--角色状态RoleStatus-->
+                        <statusCode code="active"/>
+                        <!--角色有效期间-->
+                        <effectiveTime>
+                            <low th:attr="value=${item.roleEffectiveTimeLow}"/>
+                            <high th:attr="value=${item.roleEffectiveTimeHigh}"/>
+                        </effectiveTime>
+                        <healthCarePrincipalPerson classCode="PSN" determinerCode="INSTANCE">
+                            <!--身份证号-->
+                            <id root="2.16.156.10011.1.3" th:attr="extension=${item.identityNo}"/>
+                            
+                            <!--姓名-->
+                            <name th:text="${item.name}" />
+                            <!--性别-->
+                            <administrativeGenderCode th:attr="code=${item.genderId},displayName=${item.genderDepict}" codeSystem="2.16.156.10011.2.3.3.4" codeSystemName="生理性别代码表(GB/T 2261.1)" />
+                            <!--出生日期-->
+                            <birthTime th:attr="value=${item.dateOfBirth}"/>
+                            <!--隶属-->
+                            <asAffiliate classCode="AFFL">
+                                <code/>
+                                <effectiveTime/>
+                                <affiliatedPrincipalOrganization classCode="ORG" determinerCode="INSTANCE">
+                                    <!--科室号标识-->
+                                    <id root="2.16.156.10011.1.26" th:attr="extension=${item.deptId}"/>
+                                    <name th:text="${item.deptName}" />
+                                </affiliatedPrincipalOrganization>
+                            </asAffiliate>
+                            <!--出生地-->
+                            <birthplace classCode="BIRTHPL">
+                                <addr th:text="${item.birthplace}"/>
+                            </birthplace>
+                        </healthCarePrincipalPerson>
+                    </healthCareProvider>
+                </subject1>
+                <custodian typeCode="CST">
+                    <assignedEntity classCode="ASSIGNED">
+                        <!--医务人员ID-->
+                        <id root="2.16.156.10011.1.4" th:attr="extension=${item.authorCode}"/>
+                        <assignedPerson classCode="PSN" determinerCode="INSTANCE">
+                            <name  th:text="${item.authorName}"/>
+                        </assignedPerson>
+                        <representedOrganization classCode="ORG" determinerCode="INSTANCE">
+                            <!--科室号标识-->
+                            <id root="2.16.156.10011.1.26" th:attr="extension=${item.authorDeptId}"/>
+                            <name th:text="${item.authorDeptName}" />
+                            <contactParty classCode="CON">
+                                <contactPerson classCode="PSN" determinerCode="INSTANCE">
+                                    <name th:text="${item.authorDeptContactPerson}" />
+                                </contactPerson>
+                            </contactParty>
+                        </representedOrganization>
+                    </assignedEntity>
+                </custodian>
+            </registrationEvent>
+        </subject>
+        <queryAck>
+            <queryResponseCode code="OK"/>
+        </queryAck>
+        <queryByParameterPayload>
+            <statusCode code="new"/>
+            <administrativeGender>
+                <value code="1" codeSystem="2.16.156.10011.2.3.3.4" th:attr="displayName=${item.genderDepict}"/>
+                <semanticsText>PrincipalPerson.administrativeGenderCode</semanticsText>
+            </administrativeGender>
+            <dOB>
+                <value th:attr="value=${item.dateOfBirth}"/>
+                <semanticsText>PrincipalPerson.birthDate</semanticsText>
+            </dOB>
+            <providerID>
+                <value root="2.16.156.10011.1.4" th:attr="extension=${healthCareProviderId}"/>
+                <semanticsText>HealthCareProvider.id</semanticsText>
+            </providerID>
+            <providerName>
+                <value th:text="${name}"/>
+                <semanticsText>PrincipalPerson.name</semanticsText>
+            </providerName>
+        </queryByParameterPayload>
+    </controlActProcess>
+</PRPM_IN306011UV01>

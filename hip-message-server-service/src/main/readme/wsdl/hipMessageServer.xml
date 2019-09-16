@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://www.djhealthunion.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="HIPMessageServerWebService" targetNamespace="http://www.djhealthunion.com/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.djhealthunion.com/" version="1.0">
+
+  <xs:element name="HIPMessageServer">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="action" type="xs:string"/>
+        <xs:element minOccurs="0" name="message" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="HIPMessageServerResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="HIPMessageServerResult" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="HIPMessageServerResponse">
+    <wsdl:part element="tns:HIPMessageServerResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="HIPMessageServer">
+    <wsdl:part element="tns:HIPMessageServer" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="HIPMessageServerWebServiceSoap">
+    <wsdl:operation name="HIPMessageServer">
+      <wsdl:input message="tns:HIPMessageServer" name="HIPMessageServer">
+    </wsdl:input>
+      <wsdl:output message="tns:HIPMessageServerResponse" name="HIPMessageServerResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="HIPMessageServerWebServiceSoapBinding" type="tns:HIPMessageServerWebServiceSoap">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="HIPMessageServer">
+      <soap:operation soapAction="http://www.djhealthunion.com/HIPMessageServer" style="document"/>
+      <wsdl:input name="HIPMessageServer">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="HIPMessageServerResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="HIPMessageServerWebService">
+    <wsdl:port binding="tns:HIPMessageServerWebServiceSoapBinding" name="HIPMessageServerWebServiceSoap12">
+      <soap:address location="http://localhost:15555/services/hipMessageServer"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

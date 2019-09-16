@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djhu.hiup.message.server.core.dao.VisitOutpatientVisitDao">
+    <resultMap id="BaseResultMap" type="com.djhu.hiup.message.server.core.model.VisitOutpatientVisit">
+        <id column="PK" property="pk" jdbcType="DECIMAL"/>
+        <result column="MSG_ID" property="msgId" jdbcType="VARCHAR"/>
+        <result column="MSG_CREATION_TIME" property="msgCreationTime" jdbcType="VARCHAR"/>
+        <result column="RECEIVE_ID" property="receiveId" jdbcType="VARCHAR"/>
+        <result column="SEND_ID" property="sendId" jdbcType="VARCHAR"/>
+        <result column="OUTPATIENT_NO" property="outpatientNo" jdbcType="VARCHAR"/>
+        <result column="VISIT_TYPE_CODE" property="visitTypeCode" jdbcType="VARCHAR"/>
+        <result column="VISIT_TYPE_DEPICT" property="visitTypeDepict" jdbcType="VARCHAR"/>
+        <result column="STATUS_CODE" property="statusCode" jdbcType="VARCHAR"/>
+        <result column="VISIT_TIME" property="visitTime" jdbcType="VARCHAR"/>
+        <result column="VISIT_CAUSE_DEPICT" property="visitCauseDepict" jdbcType="VARCHAR"/>
+        <result column="PATIENT_ID" property="patientId" jdbcType="VARCHAR"/>
+        <result column="NAME" property="name" jdbcType="VARCHAR"/>
+        <result column="VISIT_PHYSICIAN_ID" property="visitPhysicianId" jdbcType="VARCHAR"/>
+        <result column="VISIT_PHYSICIAN_NAME" property="visitPhysicianName" jdbcType="VARCHAR"/>
+        <result column="DEPT_ID" property="deptId" jdbcType="VARCHAR"/>
+        <result column="DEPT_NAME" property="deptName" jdbcType="VARCHAR"/>
+        <result column="HOSPITAL_ID" property="hospitalId" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    PK, MSG_ID, MSG_CREATION_TIME, RECEIVE_ID, SEND_ID, OUTPATIENT_NO, VISIT_TYPE_CODE, 
+    VISIT_TYPE_DEPICT, STATUS_CODE, VISIT_TIME, VISIT_CAUSE_DEPICT, PATIENT_ID, NAME, 
+    VISIT_PHYSICIAN_ID, VISIT_PHYSICIAN_NAME, DEPT_ID, DEPT_NAME, HOSPITAL_ID
+  </sql>
+    <select id="selectCountBySelective" resultType="java.lang.Integer" parameterType="map">
+   select count(*) from VISIT_OUTPATIENT_VISIT
+      where MSG_ID = #{msgId,jdbcType=VARCHAR}
+  </select>
+
+    <select id="selectBySelective" parameterType="map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+
+        from  visit_outpatient_visit
+        where 1=1
+        <if test="outpatientNo != null">
+            and OUTPATIENT_NO = #{outpatientNo,jdbcType=VARCHAR}
+        </if>
+
+        <if test="visitTimeLow != null">
+            <![CDATA[ and VISIT_TIME >= #{visitTimeLow,jdbcType=VARCHAR}]]>
+        </if>
+        <if test="visitTimeHigh != null">
+            <![CDATA[and  VISIT_TIME <= #{visitTimeHigh,jdbcType=VARCHAR}]]>
+        </if>
+
+        <!--<if test="patientId != null and patientId != '' and patientId != '-'">-->
+            <!--and PATIENT_ID = #{patientId,jdbcType=VARCHAR}-->
+        <!--</if>-->
+        <if test="identityNo != null">
+            and IDENTITY_NO = #{identityNo,jdbcType=VARCHAR}
+        </if>
+        <if test="deptId != null">
+            and DEPT_ID = #{deptId,jdbcType=VARCHAR}
+        </if>
+
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal">
+      delete from VISIT_OUTPATIENT_VISIT
+      where PK = #{pk,jdbcType=DECIMAL}
+    </delete>
+
+    <insert id="insertSelective" parameterType="map">
+        <selectKey resultType="java.math.BigDecimal" order="BEFORE" keyProperty="pk">
+            select VISIT_INPATIENT_VISIT_SEQ.NEXTVAL as pk from dual
+        </selectKey>
+        insert into VISIT_OUTPATIENT_VISIT
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pk != null">
+                PK,
+            </if>
+            <if test="msgId != null">
+                MSG_ID,
+            </if>
+            <if test="msgCreationTime != null">
+                MSG_CREATION_TIME,
+            </if>
+            <if test="receiveId != null">
+                RECEIVE_ID,
+            </if>
+            <if test="sendId != null">
+                SEND_ID,
+            </if>
+            <if test="outpatientNo != null">
+                OUTPATIENT_NO,
+            </if>
+            <if test="visitTypeCode != null">
+                VISIT_TYPE_CODE,
+            </if>
+            <if test="visitTypeDepict != null">
+                VISIT_TYPE_DEPICT,
+            </if>
+            <if test="statusCode != null">
+                STATUS_CODE,
+            </if>
+            <if test="visitTime != null">
+                VISIT_TIME,
+            </if>
+            <if test="visitCauseDepict != null">
+                VISIT_CAUSE_DEPICT,
+            </if>
+            <if test="patientId != null">
+                PATIENT_ID,
+            </if>
+            <if test="name != null">
+                NAME,
+            </if>
+            <if test="visitPhysicianId != null">
+                VISIT_PHYSICIAN_ID,
+            </if>
+            <if test="visitPhysicianName != null">
+                VISIT_PHYSICIAN_NAME,
+            </if>
+            <if test="deptId != null">
+                DEPT_ID,
+            </if>
+            <if test="deptName != null">
+                DEPT_NAME,
+            </if>
+            <if test="hospitalId != null">
+                HOSPITAL_ID,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="pk != null">
+                #{pk,jdbcType=DECIMAL},
+            </if>
+            <if test="msgId != null">
+                #{msgId,jdbcType=VARCHAR},
+            </if>
+            <if test="msgCreationTime != null">
+                #{msgCreationTime,jdbcType=VARCHAR},
+            </if>
+            <if test="receiveId != null">
+                #{receiveId,jdbcType=VARCHAR},
+            </if>
+            <if test="sendId != null">
+                #{sendId,jdbcType=VARCHAR},
+            </if>
+            <if test="outpatientNo != null">
+                #{outpatientNo,jdbcType=VARCHAR},
+            </if>
+            <if test="visitTypeCode != null">
+                #{visitTypeCode,jdbcType=VARCHAR},
+            </if>
+            <if test="visitTypeDepict != null">
+                #{visitTypeDepict,jdbcType=VARCHAR},
+            </if>
+            <if test="statusCode != null">
+                #{statusCode,jdbcType=VARCHAR},
+            </if>
+            <if test="visitTime != null">
+                #{visitTime,jdbcType=VARCHAR},
+            </if>
+            <if test="visitCauseDepict != null">
+                #{visitCauseDepict,jdbcType=VARCHAR},
+            </if>
+            <if test="patientId != null">
+                #{patientId,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="visitPhysicianId != null">
+                #{visitPhysicianId,jdbcType=VARCHAR},
+            </if>
+            <if test="visitPhysicianName != null">
+                #{visitPhysicianName,jdbcType=VARCHAR},
+            </if>
+            <if test="deptId != null">
+                #{deptId,jdbcType=VARCHAR},
+            </if>
+            <if test="deptName != null">
+                #{deptName,jdbcType=VARCHAR},
+            </if>
+            <if test="hospitalId != null">
+                #{hospitalId,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateBySelective" parameterType="map">
+        update VISIT_OUTPATIENT_VISIT
+        <set>
+            <if test="msgId != null">
+                MSG_ID = #{msgId,jdbcType=VARCHAR},
+            </if>
+            <if test="msgCreationTime != null">
+                MSG_CREATION_TIME = #{msgCreationTime,jdbcType=VARCHAR},
+            </if>
+            <if test="receiveId != null">
+                RECEIVE_ID = #{receiveId,jdbcType=VARCHAR},
+            </if>
+            <if test="sendId != null">
+                SEND_ID = #{sendId,jdbcType=VARCHAR},
+            </if>
+            <if test="outpatientNo != null">
+                OUTPATIENT_NO = #{outpatientNo,jdbcType=VARCHAR},
+            </if>
+            <if test="visitTypeCode != null">
+                VISIT_TYPE_CODE = #{visitTypeCode,jdbcType=VARCHAR},
+            </if>
+            <if test="visitTypeDepict != null">
+                VISIT_TYPE_DEPICT = #{visitTypeDepict,jdbcType=VARCHAR},
+            </if>
+            <if test="statusCode != null">
+                STATUS_CODE = #{statusCode,jdbcType=VARCHAR},
+            </if>
+            <if test="visitTime != null">
+                VISIT_TIME = #{visitTime,jdbcType=VARCHAR},
+            </if>
+            <if test="visitCauseDepict != null">
+                VISIT_CAUSE_DEPICT = #{visitCauseDepict,jdbcType=VARCHAR},
+            </if>
+            <if test="patientId != null">
+                PATIENT_ID = #{patientId,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                NAME = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="visitPhysicianId != null">
+                VISIT_PHYSICIAN_ID = #{visitPhysicianId,jdbcType=VARCHAR},
+            </if>
+            <if test="visitPhysicianName != null">
+                VISIT_PHYSICIAN_NAME = #{visitPhysicianName,jdbcType=VARCHAR},
+            </if>
+            <if test="deptId != null">
+                DEPT_ID = #{deptId,jdbcType=VARCHAR},
+            </if>
+            <if test="deptName != null">
+                DEPT_NAME = #{deptName,jdbcType=VARCHAR},
+            </if>
+            <if test="hospitalId != null">
+                HOSPITAL_ID = #{hospitalId,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where PK = #{pk,jdbcType=DECIMAL}
+    </update>
+
+</mapper>

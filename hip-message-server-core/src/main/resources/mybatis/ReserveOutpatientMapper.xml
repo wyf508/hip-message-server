@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djhu.hiup.message.server.core.dao.IReserveOutpatientDao" >
+  <resultMap id="BaseResultMap" type="com.djhu.hiup.message.server.core.model.ReserveOutpatient" >
+    <id column="PK" property="pk" jdbcType="DECIMAL" />
+    <result column="MSG_ID" property="msgId" jdbcType="VARCHAR" />
+    <result column="MSG_CREATION_TIME" property="msgCreationTime" jdbcType="VARCHAR" />
+    <result column="RECEIVE_ID" property="receiveId" jdbcType="VARCHAR" />
+    <result column="SEND_ID" property="sendId" jdbcType="VARCHAR" />
+    <result column="RESERVE_ID" property="reserveId" jdbcType="VARCHAR" />
+    <result column="RESERVE_TIME" property="reserveTime" jdbcType="VARCHAR" />
+    <result column="PATIENT_ID" property="patientId" jdbcType="VARCHAR" />
+    <result column="IDENTITY_NO" property="identityNo" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="SYSTEM_RESERVE_TIME" property="systemReserveTime" jdbcType="VARCHAR" />
+    <result column="SYSTEM_ID" property="systemId" jdbcType="VARCHAR" />
+    <result column="RESERVE_STATUS_CODE" property="reserveStatusCode" jdbcType="VARCHAR" />
+    <result column="RESERVE_STATUS_DEPICT" property="reserveStatusDepict" jdbcType="VARCHAR" />
+    <result column="MEDICAL_STAFF_RESERVE_TIME" property="medicalStaffReserveTime" jdbcType="VARCHAR" />
+    <result column="RESERVE_MEDICAL_STAFF_CODE" property="reserveMedicalStaffCode" jdbcType="VARCHAR" />
+    <result column="RESOURCE_ID" property="resourceId" jdbcType="VARCHAR" />
+    <result column="RESOURCE_START_TIME" property="resourceStartTime" jdbcType="VARCHAR" />
+    <result column="RESOURCE_END_TIME" property="resourceEndTime" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="HIUP_STATUS" property="hiupStatus" jdbcType="VARCHAR" />
+    <result column="HIUP_INFO" property="hiupInfo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PK, MSG_ID, MSG_CREATION_TIME, RECEIVE_ID, SEND_ID, RESERVE_ID, RESERVE_TIME, PATIENT_ID, 
+    IDENTITY_NO, NAME, SYSTEM_RESERVE_TIME, SYSTEM_ID, RESERVE_STATUS_CODE, RESERVE_STATUS_DEPICT, 
+    MEDICAL_STAFF_RESERVE_TIME, RESERVE_MEDICAL_STAFF_CODE, RESOURCE_ID, RESOURCE_START_TIME, 
+    RESOURCE_END_TIME, CREATE_TIME, UPDATE_TIME, HIUP_STATUS, HIUP_INFO
+  </sql>
+
+  <select id="selectCountBySelective" resultType="java.lang.Integer" parameterType="map" >
+    select count(*) from RESERVE_OUTPATIENT
+      where  RESERVE_ID = #{reserveId,jdbcType=VARCHAR}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from RESERVE_OUTPATIENT
+    where PK = #{pk,jdbcType=DECIMAL}
+  </delete>
+
+  <insert id="insertSelective" parameterType="map"  >
+    insert into RESERVE_OUTPATIENT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      PK,
+      <if test="msgId != null" >
+        MSG_ID,
+      </if>
+      <if test="msgCreationTime != null" >
+        MSG_CREATION_TIME,
+      </if>
+      <if test="receiveId != null" >
+        RECEIVE_ID,
+      </if>
+      <if test="sendId != null" >
+        SEND_ID,
+      </if>
+      <if test="reserveId != null" >
+        RESERVE_ID,
+      </if>
+      <if test="reserveTime != null" >
+        RESERVE_TIME,
+      </if>
+      <if test="patientId != null" >
+        PATIENT_ID,
+      </if>
+      <if test="identityNo != null" >
+        IDENTITY_NO,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="systemReserveTime != null" >
+        SYSTEM_RESERVE_TIME,
+      </if>
+      <if test="systemId != null" >
+        SYSTEM_ID,
+      </if>
+      <if test="reserveStatusCode != null" >
+        RESERVE_STATUS_CODE,
+      </if>
+      <if test="reserveStatusDepict != null" >
+        RESERVE_STATUS_DEPICT,
+      </if>
+      <if test="medicalStaffReserveTime != null" >
+        MEDICAL_STAFF_RESERVE_TIME,
+      </if>
+      <if test="reserveMedicalStaffCode != null" >
+        RESERVE_MEDICAL_STAFF_CODE,
+      </if>
+      <if test="resourceId != null" >
+        RESOURCE_ID,
+      </if>
+      <if test="resourceStartTime != null" >
+        RESOURCE_START_TIME,
+      </if>
+      <if test="resourceEndTime != null" >
+        RESOURCE_END_TIME,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="hiupStatus != null" >
+        HIUP_STATUS,
+      </if>
+      <if test="hiupInfo != null" >
+        HIUP_INFO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      RESERVE_OUTPATIENT_SEQ.NEXTVAL,
+      <if test="msgId != null" >
+        #{msgId,jdbcType=VARCHAR},
+      </if>
+      <if test="msgCreationTime != null" >
+        #{msgCreationTime,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveId != null" >
+        #{receiveId,jdbcType=VARCHAR},
+      </if>
+      <if test="sendId != null" >
+        #{sendId,jdbcType=VARCHAR},
+      </if>
+      <if test="reserveId != null" >
+        #{reserveId,jdbcType=VARCHAR},
+      </if>
+      <if test="reserveTime != null" >
+        #{reserveTime,jdbcType=VARCHAR},
+      </if>
+      <if test="patientId != null" >
+        #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="identityNo != null" >
+        #{identityNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="systemReserveTime != null" >
+        #{systemReserveTime,jdbcType=VARCHAR},
+      </if>
+      <if test="systemId != null" >
+        #{systemId,jdbcType=VARCHAR},
+      </if>
+      <if test="reserveStatusCode != null" >
+        #{reserveStatusCode,jdbcType=VARCHAR},
+      </if>
+      <if test="reserveStatusDepict != null" >
+        #{reserveStatusDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="medicalStaffReserveTime != null" >
+        #{medicalStaffReserveTime,jdbcType=VARCHAR},
+      </if>
+      <if test="reserveMedicalStaffCode != null" >
+        #{reserveMedicalStaffCode,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceId != null" >
+        #{resourceId,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceStartTime != null" >
+        #{resourceStartTime,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceEndTime != null" >
+        #{resourceEndTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hiupStatus != null" >
+        #{hiupStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="hiupInfo != null" >
+        #{hiupInfo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateBySelective" parameterType="map"  >
+    update RESERVE_OUTPATIENT
+    <set >
+      <if test="msgId != null" >
+        MSG_ID = #{msgId,jdbcType=VARCHAR},
+      </if>
+      <if test="msgCreationTime != null" >
+        MSG_CREATION_TIME = #{msgCreationTime,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveId != null" >
+        RECEIVE_ID = #{receiveId,jdbcType=VARCHAR},
+      </if>
+      <if test="sendId != null" >
+        SEND_ID = #{sendId,jdbcType=VARCHAR},
+      </if>
+      <if test="reserveId != null" >
+        RESERVE_ID = #{reserveId,jdbcType=VARCHAR},
+      </if>
+      <if test="reserveTime != null" >
+        RESERVE_TIME = #{reserveTime,jdbcType=VARCHAR},
+      </if>
+      <if test="patientId != null" >
+        PATIENT_ID = #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="identityNo != null" >
+        IDENTITY_NO = #{identityNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="systemReserveTime != null" >
+        SYSTEM_RESERVE_TIME = #{systemReserveTime,jdbcType=VARCHAR},
+      </if>
+      <if test="systemId != null" >
+        SYSTEM_ID = #{systemId,jdbcType=VARCHAR},
+      </if>
+      <if test="reserveStatusCode != null" >
+        RESERVE_STATUS_CODE = #{reserveStatusCode,jdbcType=VARCHAR},
+      </if>
+      <if test="reserveStatusDepict != null" >
+        RESERVE_STATUS_DEPICT = #{reserveStatusDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="medicalStaffReserveTime != null" >
+        MEDICAL_STAFF_RESERVE_TIME = #{medicalStaffReserveTime,jdbcType=VARCHAR},
+      </if>
+      <if test="reserveMedicalStaffCode != null" >
+        RESERVE_MEDICAL_STAFF_CODE = #{reserveMedicalStaffCode,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceId != null" >
+        RESOURCE_ID = #{resourceId,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceStartTime != null" >
+        RESOURCE_START_TIME = #{resourceStartTime,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceEndTime != null" >
+        RESOURCE_END_TIME = #{resourceEndTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hiupStatus != null" >
+        HIUP_STATUS = #{hiupStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="hiupInfo != null" >
+        HIUP_INFO = #{hiupInfo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where  RESERVE_ID = #{reserveId,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectBySelective" parameterType="map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from RESERVE_OUTPATIENT
+    where 1=1
+    <if test="reserveStatusCode != null">
+      and RESERVE_STATUS_CODE = #{reserveStatusCode,jdbcType=VARCHAR}
+    </if>
+    <if test="reserveStatusDepict != null">
+      AND RESERVE_STATUS_DEPICT = #{reserveStatusDepict,jdbcType=VARCHAR}
+    </if>
+    <if test="patientId != null">
+      AND PATIENT_ID = #{patientId,jdbcType=VARCHAR}
+    </if>
+    <if test="initialQuantity != null">
+      <![CDATA[AND  rownum <=#{initialQuantity,jdbcType=DECIMAL}]]>
+    </if>
+  </select>
+</mapper>

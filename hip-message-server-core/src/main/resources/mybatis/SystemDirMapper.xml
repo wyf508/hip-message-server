@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djhu.hiup.message.server.core.dao.ISystemDirDao" >
+  <resultMap id="BaseResultMap" type="com.djhu.hiup.message.server.core.model.SystemDir" >
+    <id column="PK" property="pk" jdbcType="DECIMAL" />
+    <result column="DIR_PATH" property="dirPath" jdbcType="VARCHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    PK, DIR_PATH, CREATE_DATE
+  </sql>
+
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from SYSTEM_DIR where pk = 2
+  </select>
+
+</mapper>

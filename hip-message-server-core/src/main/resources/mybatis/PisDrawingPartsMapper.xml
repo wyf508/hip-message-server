@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djhu.hiup.message.server.core.dao.IPisDrawingPartsDao" >
+  <resultMap id="BaseResultMap" type="com.djhu.hiup.message.server.core.model.PisDrawingParts" >
+    <id column="PK" property="pk" jdbcType="DECIMAL" />
+    <result column="REQUEST_PIS_PK" property="requestPisPk" jdbcType="DECIMAL" />
+    <result column="SPECIMENT_ID" property="specimentId" jdbcType="VARCHAR" />
+    <result column="DRAWING_PARTS" property="drawingParts" jdbcType="VARCHAR" />
+    <result column="DRAWING_NUMBER" property="drawingNumber" jdbcType="VARCHAR" />
+    <result column="DRAWING_NUMBER_UNIT" property="drawingNumberUnit" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PK, REQUEST_PIS_PK, SPECIMENT_ID, DRAWING_PARTS, DRAWING_NUMBER, DRAWING_NUMBER_UNIT, 
+    CREATE_TIME
+  </sql>
+
+  <select id="selectByRequestPisPk" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List" />
+    from PIS_DRAWING_PARTS
+    where REQUEST_PIS_PK = #{requestPisPk,jdbcType=DECIMAL}
+  </select>
+
+  <delete id="deleteByRequestPisPk" parameterType="java.math.BigDecimal" >
+    delete from PIS_DRAWING_PARTS
+    where REQUEST_PIS_PK = #{requestPisPk,jdbcType=DECIMAL}
+  </delete>
+
+  <insert id="insertPisDrawingParts" parameterType="map"  >
+    insert into PIS_DRAWING_PARTS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      PK,
+      <if test="requestPisPk != null" >
+        REQUEST_PIS_PK,
+      </if>
+      <if test="specimentId != null" >
+        SPECIMENT_ID,
+      </if>
+      <if test="drawingParts != null" >
+        DRAWING_PARTS,
+      </if>
+      <if test="drawingNumber != null" >
+        DRAWING_NUMBER,
+      </if>
+      <if test="drawingNumberUnit != null" >
+        DRAWING_NUMBER_UNIT,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      PIS_DRAWING_PARTS_SEQ.NEXTVAL,
+      <if test="requestPisPk != null" >
+        #{requestPisPk,jdbcType=DECIMAL},
+      </if>
+      <if test="specimentId != null" >
+        #{specimentId,jdbcType=VARCHAR},
+      </if>
+      <if test="drawingParts != null" >
+        #{drawingParts,jdbcType=VARCHAR},
+      </if>
+      <if test="drawingNumber != null" >
+        #{drawingNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="drawingNumberUnit != null" >
+        #{drawingNumberUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+
+	<insert id="insertPisDrawingPartsList" parameterType="java.util.List" useGeneratedKeys="false">
+        begin
+        <foreach collection="list" item="item" index="index" separator=";">
+             insert into PIS_DRAWING_PARTS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      PK,
+      <if test="item.requestPisPk != null" >
+        REQUEST_PIS_PK,
+      </if>
+      <if test="item.specimentId != null" >
+        SPECIMENT_ID,
+      </if>
+      <if test="item.drawingParts != null" >
+        DRAWING_PARTS,
+      </if>
+      <if test="item.drawingNumber != null" >
+        DRAWING_NUMBER,
+      </if>
+      <if test="item.drawingNumberUnit != null" >
+        DRAWING_NUMBER_UNIT,
+      </if>
+      <if test="item.createTime != null" >
+        CREATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      PIS_DRAWING_PARTS_SEQ.NEXTVAL,
+      <if test="item.requestPisPk != null" >
+        #{item.requestPisPk,jdbcType=DECIMAL},
+      </if>
+      <if test="item.specimentId != null" >
+        #{item.specimentId,jdbcType=VARCHAR},
+      </if>
+      <if test="item.drawingParts != null" >
+        #{item.drawingParts,jdbcType=VARCHAR},
+      </if>
+      <if test="item.drawingNumber != null" >
+        #{item.drawingNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="item.drawingNumberUnit != null" >
+        #{item.drawingNumberUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="item.createTime != null" >
+        #{item.createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+        </foreach>
+        ;end;
+    </insert>
+</mapper>

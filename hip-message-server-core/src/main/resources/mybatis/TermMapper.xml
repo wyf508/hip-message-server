@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.djhu.hiup.message.server.core.dao.ITermDao" >
+  <resultMap id="BaseResultMap" type="com.djhu.hiup.message.server.core.model.Term" >
+    <id column="PK" property="pk" jdbcType="DECIMAL" />
+    <result column="MSG_ID" property="msgId" jdbcType="VARCHAR" />
+    <result column="MSG_CREATION_TIME" property="msgCreationTime" jdbcType="VARCHAR" />
+    <result column="RECEIVE_ID" property="receiveId" jdbcType="VARCHAR" />
+    <result column="SEND_ID" property="sendId" jdbcType="VARCHAR" />
+    <result column="VALUE_SET_ID" property="valueSetId" jdbcType="VARCHAR" />
+    <result column="VALUE_SET_DEPICT" property="valueSetDepict" jdbcType="VARCHAR" />
+    <result column="STATUS_CODE" property="statusCode" jdbcType="VARCHAR" />
+    <result column="VALUE_SET_VERSION_CODE" property="valueSetVersionCode" jdbcType="VARCHAR" />
+    <result column="VALUE_SET_VERSION_DEPICT" property="valueSetVersionDepict" jdbcType="VARCHAR" />
+    <result column="VALUE_PROJECT_CODE" property="valueProjectCode" jdbcType="VARCHAR" />
+    <result column="VALUE_PROJECT_DEPICT" property="valueProjectDepict" jdbcType="VARCHAR" />
+    <result column="VALUE_PROJECT_STATUS_CODE" property="valueProjectStatusCode" jdbcType="VARCHAR" />
+    <result column="AUTHOR_CODE" property="authorCode" jdbcType="VARCHAR" />
+    <result column="AUTHOR_NAME" property="authorName" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="HIUP_STATUS" property="hiupStatus" jdbcType="VARCHAR" />
+    <result column="HIUP_INFO" property="hiupInfo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PK, MSG_ID, MSG_CREATION_TIME, RECEIVE_ID, SEND_ID, VALUE_SET_ID, VALUE_SET_DEPICT, 
+    STATUS_CODE, VALUE_SET_VERSION_CODE, VALUE_SET_VERSION_DEPICT, VALUE_PROJECT_CODE, 
+    VALUE_PROJECT_DEPICT, VALUE_PROJECT_STATUS_CODE, AUTHOR_CODE, AUTHOR_NAME, CREATE_TIME, 
+    UPDATE_TIME, HIUP_STATUS, HIUP_INFO
+  </sql>
+
+  <select id="selectCountBySelective" resultType="java.lang.Integer" parameterType="map" >
+    select count(*) from TERM
+      where SEND_ID = #{sendId,jdbcType=VARCHAR} AND
+      VALUE_SET_ID = #{valueSetId,jdbcType=VARCHAR}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from TERM
+    where PK = #{pk,jdbcType=DECIMAL}
+  </delete>
+
+  <insert id="insertSelective" parameterType="map"  >
+    insert into TERM
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      PK,
+      <if test="msgId != null" >
+        MSG_ID,
+      </if>
+      <if test="msgCreationTime != null" >
+        MSG_CREATION_TIME,
+      </if>
+      <if test="receiveId != null" >
+        RECEIVE_ID,
+      </if>
+      <if test="sendId != null" >
+        SEND_ID,
+      </if>
+      <if test="valueSetId != null" >
+        VALUE_SET_ID,
+      </if>
+      <if test="valueSetDepict != null" >
+        VALUE_SET_DEPICT,
+      </if>
+      <if test="statusCode != null" >
+        STATUS_CODE,
+      </if>
+      <if test="valueSetVersionCode != null" >
+        VALUE_SET_VERSION_CODE,
+      </if>
+      <if test="valueSetVersionDepict != null" >
+        VALUE_SET_VERSION_DEPICT,
+      </if>
+      <if test="valueProjectCode != null" >
+        VALUE_PROJECT_CODE,
+      </if>
+      <if test="valueProjectDepict != null" >
+        VALUE_PROJECT_DEPICT,
+      </if>
+      <if test="valueProjectStatusCode != null" >
+        VALUE_PROJECT_STATUS_CODE,
+      </if>
+      <if test="authorCode != null" >
+        AUTHOR_CODE,
+      </if>
+      <if test="authorName != null" >
+        AUTHOR_NAME,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="hiupStatus != null" >
+        HIUP_STATUS,
+      </if>
+      <if test="hiupInfo != null" >
+        HIUP_INFO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      TERM_SEQ.NEXTVAL,
+      <if test="msgId != null" >
+        #{msgId,jdbcType=VARCHAR},
+      </if>
+      <if test="msgCreationTime != null" >
+        #{msgCreationTime,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveId != null" >
+        #{receiveId,jdbcType=VARCHAR},
+      </if>
+      <if test="sendId != null" >
+        #{sendId,jdbcType=VARCHAR},
+      </if>
+      <if test="valueSetId != null" >
+        #{valueSetId,jdbcType=VARCHAR},
+      </if>
+      <if test="valueSetDepict != null" >
+        #{valueSetDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="statusCode != null" >
+        #{statusCode,jdbcType=VARCHAR},
+      </if>
+      <if test="valueSetVersionCode != null" >
+        #{valueSetVersionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="valueSetVersionDepict != null" >
+        #{valueSetVersionDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="valueProjectCode != null" >
+        #{valueProjectCode,jdbcType=VARCHAR},
+      </if>
+      <if test="valueProjectDepict != null" >
+        #{valueProjectDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="valueProjectStatusCode != null" >
+        #{valueProjectStatusCode,jdbcType=VARCHAR},
+      </if>
+      <if test="authorCode != null" >
+        #{authorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="authorName != null" >
+        #{authorName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hiupStatus != null" >
+        #{hiupStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="hiupInfo != null" >
+        #{hiupInfo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateBySelective" parameterType="map"  >
+    update TERM
+    <set >
+      <if test="msgId != null" >
+        MSG_ID = #{msgId,jdbcType=VARCHAR},
+      </if>
+      <if test="msgCreationTime != null" >
+        MSG_CREATION_TIME = #{msgCreationTime,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveId != null" >
+        RECEIVE_ID = #{receiveId,jdbcType=VARCHAR},
+      </if>
+      <if test="sendId != null" >
+        SEND_ID = #{sendId,jdbcType=VARCHAR},
+      </if>
+      <if test="valueSetId != null" >
+        VALUE_SET_ID = #{valueSetId,jdbcType=VARCHAR},
+      </if>
+      <if test="valueSetDepict != null" >
+        VALUE_SET_DEPICT = #{valueSetDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="statusCode != null" >
+        STATUS_CODE = #{statusCode,jdbcType=VARCHAR},
+      </if>
+      <if test="valueSetVersionCode != null" >
+        VALUE_SET_VERSION_CODE = #{valueSetVersionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="valueSetVersionDepict != null" >
+        VALUE_SET_VERSION_DEPICT = #{valueSetVersionDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="valueProjectCode != null" >
+        VALUE_PROJECT_CODE = #{valueProjectCode,jdbcType=VARCHAR},
+      </if>
+      <if test="valueProjectDepict != null" >
+        VALUE_PROJECT_DEPICT = #{valueProjectDepict,jdbcType=VARCHAR},
+      </if>
+      <if test="valueProjectStatusCode != null" >
+        VALUE_PROJECT_STATUS_CODE = #{valueProjectStatusCode,jdbcType=VARCHAR},
+      </if>
+      <if test="authorCode != null" >
+        AUTHOR_CODE = #{authorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="authorName != null" >
+        AUTHOR_NAME = #{authorName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hiupStatus != null" >
+        HIUP_STATUS = #{hiupStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="hiupInfo != null" >
+        HIUP_INFO = #{hiupInfo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SEND_ID = #{sendId,jdbcType=VARCHAR} AND
+    VALUE_SET_ID = #{valueSetId,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectBySelective" parameterType="map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from TERM
+    where 1=1
+    <if test="valueSetId != null">
+      and  VALUE_SET_ID = #{valueSetId,jdbcType=VARCHAR}
+    </if>
+    <if test="valueSetVersionCode != null">
+      and VALUE_SET_VERSION_CODE = #{valueSetVersionCode,jdbcType=VARCHAR}
+    </if>
+    <if test="valueProjectCode != null">
+      and  VALUE_PROJECT_CODE = #{valueProjectCode,jdbcType=VARCHAR}
+    </if>
+  </select>
+</mapper>

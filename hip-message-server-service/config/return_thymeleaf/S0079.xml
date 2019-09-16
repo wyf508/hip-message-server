@@ -1,0 +1,169 @@
+<QUMT_IN020040UV01 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ITSVersion="XML_1.0" xmlns="urn:hl7-org:v3" xsi:schemaLocation="urn:hl7-org:v3 ../multicacheschemasYY.xsd">
+    <!-- 消息流水号 -->
+    <id root="2.16.156.10011.2.5.1.1" th:attr="extension=${returnMsgId}"/>
+    <creationTime  th:attr="value=${#dates.format(#dates.createNow(), 'yyyyMMddHHmmss')}"/>
+    <!-- 消息的服务标识-->
+    <interactionId root="2.16.156.10011.2.5.1.2" extension="PRSC_IN030102UV01"/>
+    <!--处理代码，标识此消息是否是产品、训练、调试系统的一部分。D：调试；P：产品；T：训练 -->
+    <processingCode code="P"/>
+    <!-- 消息处理模式: A(Archive); I(Initial load); R(Restore from archive); T(Current
+        processing) -->
+    <processingModeCode/>
+    <!-- 消息应答: AL(Always); ER(Error/reject only); NE(Never) -->
+    <acceptAckCode code="AL"/>
+    <!-- 接受者 -->
+    <receiver typeCode="RCV">
+        <device classCode="DEV" determinerCode="INSTANCE">
+            <!-- 接受者ID -->
+            <id>
+                <item root="2.16.156.10011.2.5.1.3" th:attr="extension=${sendId}"/>
+            </id>
+        </device>
+    </receiver>
+    <!-- 发送者 -->
+    <sender typeCode="SND">
+        <device classCode="DEV" determinerCode="INSTANCE">
+            <!-- 发送者ID -->
+            <id>
+                <item root="2.16.156.10011.2.5.1.3" th:attr="extension=${receiveId}"/>
+            </id>
+        </device>
+    </sender>
+    <acknowledgement th:attr="typeCode=${returnStatusCode}">
+        <targetMessage>
+            <id root="2.16.156.10011.2.5.1.1"  th:attr="extension=${msgId}"/>
+        </targetMessage>
+        <acknowledgementDetail>
+            <!--处理结果说明-->
+            <text th:text="${returnStatusExplain}"/>
+        </acknowledgementDetail>
+    </acknowledgement>
+    <controlActProcess classCode="CACT" moodCode="EVN">
+        <!-- 可以返回多个手术排班信息，返回多个循环subject -->
+        <subject typeCode="SUBJ" xsi:nil="false"  th:each="item:${resultsList}">
+            <actAppointment classCode="ACT" moodCode="APT">
+                <!-- 手术排班号 -->
+                <id root="2.16.156.10011.2.5.1.33" th:attr="extension=${item.operationClassNo}"/>
+                <effectiveTime xsi:type="IVL_TS">
+                    <originalText xsi:type="ED" value="am"/>
+                    <!-- 预约手术时间  -->
+                    <low th:attr="value=${item.reservesOperationTime}"/>
+                    <!-- 预计手术时长 -->
+                    <width xsi:type="PQ" th:attr="unit=${item.expectedDurationUnit},value=${item.expectedDuration}"/>
+                </effectiveTime>
+                <!--患者信息  -->
+                <subject typeCode="SBJ">
+                    <patient classCode="PAT">
+                        <!--患者ID -->
+                        <id>
+                            <!--门（急）诊号标识 -->
+                            <item root="2.16.156.10011.1.10" th:attr="extension=${item.outpatientNo}"/>
+                            <!--住院号标识-->
+                            <item root="2.16.156.10011.1.12"  th:attr="extension=${item.inpatientNo}"/>
+                            <!--患者ID标识-->
+                            <item root="2.16.156.10011.2.5.1.4" th:attr="extension=${item.patientId}"/>
+                            <!-- 就诊次数 -->
+                            <item root="2.16.156.10011.2.5.1.8" th:attr="extension=${item.visitNumber}"/>
+                        </id>
+                        <patientPerson>
+                            <name xsi:type="BAG_EN">
+                                <item>
+                                    <part th:attr="value=${item.name}"/>
+                                </item>
+                            </name>
+                        </patientPerson>
+                    </patient>
+                </subject>
+                <!--预约设备  -->
+                <reusableDevice typeCode="RDV" xsi:nil="false">
+                    <manufacturedDevice classCode="MANU ">
+                        <manufacturedDevice classCode="DEV " determinerCode="INSTANCE ">
+                            <!-- 预约设备编码 -->
+                            <id th:attr="extension=${item.reservesDeviceCode}"/>
+                            <!-- 预约设备名称 -->
+                            <name xsi:type="BAG_EN">
+                                <item>
+                                    <part th:attr="value=${item.reserveDeviceName}"/>
+                                </item>
+                            </name>
+                        </manufacturedDevice>
+                    </manufacturedDevice>
+                </reusableDevice>
+                <performer typeCode="PRF " xsi:nil="false ">
+                    <assignedPerson classCode="ASSIGNED">
+                        <!--主刀医生编码 -->
+                        <id>
+                            <item   th:attr="extension=${item.mainKnifeDoctorCode}" root="2.16.156.10011.1.4"/>
+                        </id>
+                        <code>
+                            <displayName value="主刀医生"/>
+                        </code>
+                        <!--主刀医生姓名-->
+                        <assignedPerson determinerCode="INSTANCE" classCode="PSN">
+                            <name xsi:type="BAG_EN">
+                                <item>
+                                    <part   th:attr="value=${item.mainKnifeDoctorName}"/>
+                                </item>
+                            </name>
+                        </assignedPerson>
+                    </assignedPerson>
+                </performer>
+                <!--可以有多个手术助手-->
+                <performer typeCode="PRF " xsi:nil="false ">
+                    <assignedPerson classCode="ASSIGNED">
+                        <!--手术助手编码 -->
+                        <id>
+                            <item   th:attr="extension=${item.operativeAssistantCode}" root="2.16.156.10011.1.4"/>
+                        </id>
+                        <code>
+                            <displayName value="手术助手"/>
+                        </code>
+                        <!--手术助手姓名-->
+                        <assignedPerson determinerCode="INSTANCE" classCode="PSN">
+                            <name xsi:type="BAG_EN">
+                                <item>
+                                    <part   th:attr="value=${item.operativeAssistantName}"/>
+                                </item>
+                            </name>
+                        </assignedPerson>
+                    </assignedPerson>
+                </performer>
+                <!--执行科室  -->
+                <location typeCode="LOC " xsi:nil="false">
+                    <serviceDeliveryLocation classCode="SDLOC ">
+                        <!--执行科室编码 -->
+                        <id>
+                            <item   th:attr="extension=${item.execDeptCode}" root="2.16.156.10011.1.26"/>
+                        </id>
+                        <!--执行科室名称 -->
+                        <addr xsi:type="BAG_AD">
+                            <item>
+                                <part   th:attr="value=${item.execDeptName}"/>
+                            </item>
+                        </addr>
+                        <location classCode="PLC" determinerCode="INSTANCE">
+                            <name xsi:type="BAG_EN">
+                                <item>
+                                    <!--手术间-->
+                                    <part   th:attr="value=${item.operativeRoom}"/>
+                                </item>
+                            </name>
+                        </location>
+                    </serviceDeliveryLocation>
+                </location>
+                <!--手术申请单编号 -->
+                <referencedOrder typeCode="OREF" xsi:nil="false">
+                    <actOrder classCode="ACT" moodCode="RQO">
+                        <!--手术申请单号 -->
+                        <id root="2.16.156.10011.1.24" th:attr="extension=${item.operativeRequestNo}"/>
+                    </actOrder>
+                </referencedOrder>
+            </actAppointment>
+        </subject>
+        <queryAck>
+            <queryId th:attr="extension=${queryId}"/>
+            <!--AE 系统错误、NF 未找到数据、OK 找到数据、QE 查询参数错误-->
+            <queryResponseCode th:attr="code=${queryResponseCode}"/>
+        </queryAck>
+    </controlActProcess>
+</QUMT_IN020040UV01>
